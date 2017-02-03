@@ -1,4 +1,4 @@
-package undici;
+package undici.GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -82,8 +82,9 @@ public class RegistrierenDialog extends JDialog {
 		buttonAbbrechen.setBackground(Color.white);
 		buttonEinloggen.setBackground(Color.white);
 
-		// Button funktion
-		buttonAbbrechen.addActionListener(e -> System.exit(0));
+		buttonAbbrechen.addActionListener(e -> {
+			setVisible(false);
+		});
 
 		// Panel kombinieren
 		panelGeschlecht.add(geschlecht);

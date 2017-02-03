@@ -1,4 +1,4 @@
-package undici;
+package undici.GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -59,7 +59,9 @@ public class AbsendenDialog extends JDialog {
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 30));
 		buttonAnmelden.setPreferredSize(new Dimension(150, 30));
 
-		buttonExit.addActionListener(e -> System.exit(0));
+		buttonExit.addActionListener(e -> {
+			setVisible(false);
+		});
 		buttonAnmelden.addActionListener(e -> {
 			JDialog ad = new AnmeldeDialog();
 			ad.pack();

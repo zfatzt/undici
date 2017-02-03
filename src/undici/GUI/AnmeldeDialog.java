@@ -1,4 +1,4 @@
-package undici;
+package undici.GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -75,7 +75,9 @@ public class AnmeldeDialog extends JDialog {
 		buttonExit.setVisible(true);
 		buttonEinloggen.setVisible(true);
 
-		buttonExit.addActionListener(e -> System.exit(0));
+		buttonExit.addActionListener(e -> {
+			setVisible(false);
+		});
 
 		buttonExit.setBackground(Color.white);
 		buttonEinloggen.setBackground(Color.white);
