@@ -1,0 +1,114 @@
+package undici;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+
+public class RegistrierenDialog extends JDialog {
+	private static final long serialVersionUID = 3L;
+
+	public RegistrierenDialog() {
+		// JWindow
+
+		setTitle("Registrierung");
+		setPreferredSize(new Dimension(350, 800));
+		setLocation(800, 100);
+		setResizable(false);
+		setBackground(Color.white);
+		setUndecorated(true);
+
+		// JPanel
+		JPanel panelNorth = new JPanel();
+		JPanel panelSouth = new JPanel();
+		JPanel panelGeschlecht = new JPanel();
+		JPanel panelEmail = new JPanel();
+		JPanel panelPasswort = new JPanel();
+
+		panelNorth.setBackground(Color.white);
+		panelSouth.setBackground(Color.white);
+		panelGeschlecht.setBackground(Color.white);
+		panelEmail.setBackground(Color.white);
+		panelPasswort.setBackground(Color.white);
+
+		panelNorth.setPreferredSize(new Dimension(350, 740));
+		panelSouth.setPreferredSize(new Dimension(350, 60));
+		panelGeschlecht.setPreferredSize(new Dimension(350, 40));
+		panelEmail.setPreferredSize(new Dimension(350, 40));
+		panelPasswort.setPreferredSize(new Dimension(350, 40));
+		
+		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
+		
+		// JLabel
+		JLabel label = new JLabel("Registrierung");
+		label.setFont(new Font("Titillium", 1, 30));
+
+		JLabel labelEmail = new JLabel("      Email");
+		labelEmail.setFont(new Font("Titillium", 1, 12));
+
+		JLabel labelPasswort = new JLabel("Passwort");
+		labelPasswort.setFont(new Font("Titillium", 1, 12));
+
+		// Combobox
+		String[] geschlechtStrings = { "Herr", "Frau" };
+		JComboBox geschlecht = new JComboBox(geschlechtStrings);
+		geschlecht.setBackground(Color.white);
+		geschlecht.setPreferredSize(new Dimension(160, 30));
+
+		// Eingabe
+		JTextField eingabeEmail = new JTextField("", 20);
+		JPasswordField eingabePasswort = new JPasswordField("", 20);
+
+		eingabeEmail.setBackground(Color.white);
+		eingabePasswort.setBackground(Color.white);
+
+		eingabeEmail.setPreferredSize(new Dimension(160, 30));
+		eingabePasswort.setPreferredSize(new Dimension(160, 30));
+
+		// Button
+		JButton buttonAbbrechen = new JButton("Abbrechen");
+		JButton buttonEinloggen = new JButton("Registrieren");
+
+		buttonAbbrechen.setBackground(Color.white);
+		buttonEinloggen.setBackground(Color.white);
+
+		// Button funktion
+		buttonAbbrechen.addActionListener(e -> System.exit(0));
+
+		// Panel kombinieren
+		panelGeschlecht.add(geschlecht);
+		panelEmail.add(labelEmail);
+		panelEmail.add(eingabeEmail);
+		panelPasswort.add(labelPasswort);
+		panelPasswort.add(eingabePasswort);
+
+		// panelNorth hinzufuegen
+		panelNorth.add(label);
+		panelNorth.add(panelGeschlecht);
+		panelNorth.add(panelEmail);
+		panelNorth.add(panelPasswort);
+
+		// panelSouth hinzufuegen
+		panelSouth.add(buttonEinloggen);
+		panelSouth.add(buttonAbbrechen);
+
+		// Panel zu Frame hinzufuegen
+		add(panelNorth, BorderLayout.NORTH);
+		add(panelSouth, BorderLayout.SOUTH);
+
+		// Rest
+		pack();
+		setVisible(true);
+
+	}
+}
