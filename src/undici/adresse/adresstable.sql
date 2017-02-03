@@ -9,5 +9,6 @@ CREATE TABLE adresse (
   strasse varchar(50) NOT NULL,
   hausnummer int not null,
   plz int not null,
-  ort varchar(50) NOT NULL  
+  ort varchar(50) NOT NULL 
+  
   );

@@ -5,6 +5,7 @@ import undici.adresse.*;
 public class Kunde {
 	
 	private int id;
+	private int adresse_id;
 	private String anrede;
 	private String name;
 	private String vorname;
@@ -12,6 +13,18 @@ public class Kunde {
 	private String passwort;
 	private String telefon;
 	private String kreditkartenNr;
+	
+	
+	public int getAdresse_id() {
+		return adresse_id;
+	}
+
+	public void setAdresse_id(int adresse_id) {
+		this.adresse_id = adresse_id;
+	}
+
+
+	
 	
 	private Adresse wohnAdresse = new Adresse();
 
@@ -90,7 +103,7 @@ public class Kunde {
 
 	public String toString() {
 
-		String s = this.getAnrede() + " \n" + this.getVorname() + " " + this.getName() + "\n" + this.getEmail() +"\n" + this.getTelefon() + "\n" +  this.getPasswort() + "\n" + this.getKreditkartenNr();
+		String s = this.getAnrede() + " \n" + this.getVorname() + " " + this.getName() + "\n" + this.getEmail() +"\n" + this.getTelefon() + "\n" +  this.getPasswort() + "\n" + this.getKreditkartenNr() + getWohnAdresse().toString();
 		return s;
 	}
 }

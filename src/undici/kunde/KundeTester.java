@@ -30,6 +30,9 @@ public class KundeTester {
 //				String name = sc.nextLine();
 				k.setName("Fatzer");
 				
+				k.setAdresse_id(1);
+				
+				
 //				System.out.println("email > ");
 //				String email = sc.nextLine();
 				k.setEmail("tobias.fatzer@bluewin.ch");
@@ -45,7 +48,6 @@ public class KundeTester {
 //				System.out.println("kreditkartenNr > ");
 //				String kreditkartenNr = sc.nextLine();
 				k.setKreditkartenNr("561313033");
-				
 				
 				pd.insertKunde(k);
 			}
