@@ -8,8 +8,15 @@ public class Bestellung {
 	private String getraenke;
 	private String zahlung;
 	private int id;
+	private int kunde_id;
 	
 	
+	public int getKunde_id() {
+		return kunde_id;
+	}
+	public void setKunde_id(int kunde_id) {
+		this.kunde_id = kunde_id;
+	}
 	public int getId() {
 		return id;
 	}

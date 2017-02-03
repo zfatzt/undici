@@ -2,7 +2,7 @@ package undici.bestellung;
 
 import java.sql.SQLException;
 import java.util.Scanner;
-
+import undici.kunde.*;
 
 public class BestellungTester {
 
@@ -22,7 +22,7 @@ public class BestellungTester {
 //				System.out.println("Vorname> ");
 //				String vorname = sc.nextLine();
 				b.setPizza("Margherita");
-				
+			
 //				System.out.println("name> ");
 //				String name = sc.nextLine();
 				b.setZahlung("Barzahlung");
@@ -30,8 +30,15 @@ public class BestellungTester {
 //				System.out.println("email > ");
 //				String email = sc.nextLine();
 				b.gesamtpreis();
+				b.setKunde_id(1);
+				
+				
+				
+				
+				
 				
 				bd.insertBestellung(b);
+				
 			}
 		
 			for(Bestellung bestellung : bd.getAllBestellungen()){
