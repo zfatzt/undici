@@ -1,6 +1,7 @@
 package undici.bestellung;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import undici.adresse.Adresse;
+import undici.kunde.*;
 
 public class Bestellung {
 	private String pizza;
@@ -9,8 +10,14 @@ public class Bestellung {
 	private String zahlung;
 	private int id;
 	private int kunde_id;
+	private Kunde k = new Kunde();
 	
-	
+	public Kunde getK() {
+		return k;
+	}
+	public void setK(Kunde k) {
+		this.k = k;
+	}
 	public int getKunde_id() {
 		return kunde_id;
 	}
@@ -55,7 +62,7 @@ public class Bestellung {
 
 	public String toString() {
 
-		String s = this.getPizza() + "\n" + this.getraenke + "\n"  + this.getZahlung() + "\n" + this.gesamtpreis() + "\n";
+		String s = this.getPizza() + "\n" + this.getraenke + "\n"  + this.getZahlung() + "\n" + this.gesamtpreis() + "\n" + getK().toString();
 		return s;
 	}
 }

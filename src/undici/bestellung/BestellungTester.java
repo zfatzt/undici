@@ -30,7 +30,7 @@ public class BestellungTester {
 //				System.out.println("email > ");
 //				String email = sc.nextLine();
 				b.gesamtpreis();
-				b.setKunde_id(1);
+				b.setKunde_id(5);
 				
 				
 				
