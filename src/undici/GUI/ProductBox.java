@@ -1,5 +1,6 @@
 package undici.GUI;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -17,8 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 public class ProductBox extends JPanel {
-	public ProductBox(String name, Double preis, String beschreibung, String pfad) throws IOException {
-
+	public ProductBox(String name, int preis, String beschreibung, String pfad) throws IOException {
+		//JLabel
+		JLabel labelPreis = new JLabel("" + preis + " Fr.");
+		
 		// Buttons
 		JButton buttonBestellen = new JButton("Bestellen");
 
@@ -47,6 +50,7 @@ public class ProductBox extends JPanel {
 		setVisible(true);
 		add(labelBild);
 		add(textBeschreibung);
+		add(labelPreis);
 		add(comboBoxAnzahl);
 		add(buttonBestellen);
 
