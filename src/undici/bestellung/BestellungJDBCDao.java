@@ -16,22 +16,23 @@ public class BestellungJDBCDao {
 	private Connection con = null;
 	
 	public void insertBestellung(Bestellung b) throws SQLException {
-		String sql = "INSERT INTO undici.bestellung (undici.bestellung.kunde_id, getraenke, pizza, zahlung, gesamtpreis) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO undici.bestellung (undici.bestellung.kunde_id, undici.bestellung.getraenk_id, undici.bestellung.anzahlpizza, undici.bestellung.pizza_id, zahlung, gesamtpreis) VALUES (?, ?, ?, ?, ?, ?)";
 		con = ConnectionFactory.getInstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setInt(1, b.getKunde_id());
-		ps.setString(2, b.getGetraenke());
-		ps.setString(3, b.getPizza());
-		ps.setString(4, b.getZahlung());
-		ps.setDouble(5, b.gesamtpreis());
+		ps.setInt(2, b.getGetraenk_id());
+		ps.setInt(3, b.getPizza_id());
+		ps.setInt(4, b.getAnzahlpizza());
+		ps.setString(5, b.getZahlung());
+		ps.setDouble(6, b.gesamtpreis());
 		ps.executeUpdate();
 	}
 	
 
 	public Bestellung findBestellungById(int id) throws SQLException {
 		Bestellung b = null;
-		String sql = "SELECT undici.bestellung.id, undici.bestellung.getraenke, undici.bestellung.pizza, undici.bestellung.gesamtpreis,undici.kunde.adresse_id, undici.bestellung.zahlung, undici.kunde.anrede, undici.kunde.vorname, undici.kunde.name, undici.kunde.email, undici.kunde.telefon, undici.kunde.passwort, undici.kunde.kreditkartenNr, undici.adresse.strasse, undici.adresse.hausnummer, undici.adresse.plz, undici.adresse.ort from undici.bestellung join undici.kunde on undici.kunde.id=undici.bestellung.kunde_id join undici.adresse on undici.adresse.id = undici.kunde.adresse_id FROM undici.bestellung WHERE id = ?";
+		String sql = "SELECT undici.bestellung.id, undici.bestellung.getraenk_id, undici.bestellung.pizza_id, undici.bestellung.anzahlpizza, undici.bestellung.gesamtpreis,undici.kunde.adresse_id, undici.bestellung.zahlung, undici.kunde.anrede, undici.kunde.vorname, undici.kunde.name, undici.kunde.email, undici.kunde.telefon, undici.kunde.passwort, undici.kunde.kreditkartenNr, undici.adresse.strasse, undici.adresse.hausnummer, undici.adresse.plz, undici.adresse.ort from undici.bestellung join undici.kunde on undici.kunde.id=undici.bestellung.kunde_id join undici.adresse on undici.adresse.id = undici.kunde.adresse_id FROM undici.bestellung WHERE undici.bestellung.id = ?";
 		con = ConnectionFactory.getInstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, id);	
@@ -40,8 +41,9 @@ public class BestellungJDBCDao {
 			b = new Bestellung();
 			b.setId(rs.getInt("id"));
 			b.setKunde_id(rs.getInt("kunde_id"));
-			b.setGetraenke(rs.getString("getraenke"));
-			b.setPizza(rs.getString("pizza"));
+			b.setGetraenk_id(rs.getInt("getraenk_id"));
+			b.setPizza_id(rs.getInt("pizza_id"));
+			b.setAnzahlpizza(rs.getInt("anzahlpizza"));
 			b.setZahlung(rs.getString("zahlung"));
 			b.gesamtpreis();
 			break;
@@ -53,7 +55,24 @@ public class BestellungJDBCDao {
 	public ArrayList<Bestellung> getAllBestellungen() throws SQLException {
 		ArrayList<Bestellung> bestellung = new ArrayList<Bestellung>();
 		Bestellung b = null;
-		String sql = "select undici.bestellung.id, undici.bestellung.getraenke, undici.bestellung.pizza, undici.bestellung.gesamtpreis,undici.kunde.adresse_id, undici.bestellung.zahlung, undici.kunde.anrede, undici.kunde.vorname, undici.kunde.name, undici.kunde.email, undici.kunde.telefon, undici.kunde.passwort, undici.kunde.kreditkartenNr, undici.adresse.strasse, undici.adresse.hausnummer, undici.adresse.plz, undici.adresse.ort from undici.bestellung join undici.kunde on undici.kunde.id=undici.bestellung.kunde_id join undici.adresse on undici.adresse.id = undici.kunde.adresse_id ;";
+		String sql = "select undici.bestellung.id,"
+				+ "undici.bestellung.getraenk_id,"
+				+ "undici.bestellung.pizza_id,"
+				+ "undici.bestellung.gesamtpreis,"
+				+ "undici.kunde.adresse_id,"
+				+ "undici.bestellung.zahlung,"
+				+ "undici.kunde.anrede,"
+				+ "undici.kunde.vorname,"
+				+ "undici.kunde.name,"
+				+ "undici.kunde.email,"
+				+ "undici.kunde.telefon,"
+				+ "undici.kunde.passwort,"
+				+ "undici.kunde.kreditkartenNr,"
+				+ "undici.adresse.strasse,"
+				+ "undici.adresse.hausnummer,"
+				+ "undici.adresse.plz,"
+				+ "undici.bestellung.anzahlpizza"
+				+ "undici.adresse.ort from undici.bestellung join undici.kunde on undici.kunde.id=undici.bestellung.kunde_id join undici.adresse on undici.adresse.id = undici.kunde.adresse_id join undici.pizza on pizza.id=undici.bestellung.pizza_id join undici.getraenk on undici.getraenk.id=undici.bestellung.getraenk_id;";
 		//Zur DB verbinden (Verbindung holen):
 		con = ConnectionFactory.getInstance().getConnection();
 		//Daten in die Querry Info abfüllen ps.set...		
@@ -64,8 +83,9 @@ public class BestellungJDBCDao {
 		while (rs.next()) {
 			b = new Bestellung();
 			b.setId(rs.getInt("id"));
-			b.setGetraenke(rs.getString("getraenke"));
-			b.setPizza(rs.getString("pizza"));
+			b.setGetraenk_id(rs.getInt("getraenk_id"));
+			b.setPizza_id(rs.getInt("pizza_id"));
+			b.setAnzahlpizza(rs.getInt("anzahlpizza"));
 			b.setZahlung(rs.getString("zahlung"));
 			b.gesamtpreis();
 			Kunde k = new Kunde();
@@ -78,15 +98,16 @@ public class BestellungJDBCDao {
 			k.setTelefon(rs.getString("telefon"));
 			k.setPasswort(rs.getString("passwort"));
 			k.setKreditkartenNr(rs.getString("kreditkartenNr"));
-			Adresse x = new Adresse();
-			x.setStrasse(rs.getString("strasse"));
-			x.setHausnummer(rs.getInt("hausnummer"));
-			x.setOrt(rs.getString("ort"));
+			Adresse a = new Adresse();
+			a.setStrasse(rs.getString("strasse"));
+			a.setHausnummer(rs.getInt("hausnummer"));
+			a.setOrt(rs.getString("ort"));
 			try {
-				x.setPlz(rs.getString("plz"));
+				a.setPlz(rs.getString("plz"));
 			} catch (PlzException e) {	e.printStackTrace();
 			}
-			k.setWohnAdresse(x);
+			k.setWohnAdresse(a);
+			b.setK(k);
 			bestellung.add(b);
 		} // ps und rs schliessen
 		

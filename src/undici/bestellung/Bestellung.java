@@ -4,11 +4,20 @@ import undici.adresse.Adresse;
 import undici.kunde.*;
 
 public class Bestellung {
-	private String pizza;
+	private int pizza_id;
 	private double preis;
-	private String getraenke;
+	private int getraenk_id;
 	private String zahlung;
 	private int id;
+	private int anzahlpizza;
+	
+	public int getAnzahlpizza() {
+		return anzahlpizza;
+	}
+	public void setAnzahlpizza(int anzahlpizza) {
+		this.anzahlpizza = anzahlpizza;
+	}
+
 	private int kunde_id;
 	private Kunde k = new Kunde();
 	
@@ -30,23 +39,27 @@ public class Bestellung {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getPizza() {
-		return pizza;
-	}
-	public void setPizza(String pizza) {
-		this.pizza = pizza;
-	}
+
+	
 	public double getPreis() {
 		return preis;
 	}
 	public void setPreis(double preis) {
 		this.preis = preis;
 	}
-	public String getGetraenke() {
-		return getraenke;
+
+
+	public int getPizza_id() {
+		return pizza_id;
 	}
-	public void setGetraenke(String getraenke) {
-		this.getraenke = getraenke;
+	public void setPizza_id(int pizza_id) {
+		this.pizza_id = pizza_id;
+	}
+	public int getGetraenk_id() {
+		return getraenk_id;
+	}
+	public void setGetraenk_id(int getraenk_id) {
+		this.getraenk_id = getraenk_id;
 	}
 	public String getZahlung() {
 		return zahlung;
@@ -62,7 +75,7 @@ public class Bestellung {
 
 	public String toString() {
 
-		String s = this.getPizza() + "\n" + this.getraenke + "\n"  + this.getZahlung() + "\n" + this.gesamtpreis() + "\n" + getK().toString();
+		String s = this.getPizza_id() + "\n" + this.getraenk_id + "\n"  + this.getZahlung() + "\n" + this.gesamtpreis() + "\n" + getK().toString();
 		return s;
 	}
 }

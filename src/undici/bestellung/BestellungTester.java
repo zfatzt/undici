@@ -17,11 +17,11 @@ public class BestellungTester {
 				
 //				System.out.println("Anrede");
 //				String anrede = sc.nextLine();
-				b.setGetraenke("Fanta");
+				b.setGetraenk_id(1);
 				
 //				System.out.println("Vorname> ");
 //				String vorname = sc.nextLine();
-				b.setPizza("Margherita");
+				b.setPizza_id(1);
 			
 //				System.out.println("name> ");
 //				String name = sc.nextLine();
@@ -30,13 +30,8 @@ public class BestellungTester {
 //				System.out.println("email > ");
 //				String email = sc.nextLine();
 				b.gesamtpreis();
-				b.setKunde_id(5);
-				
-				
-				
-				
-				
-				
+				b.setKunde_id(1);
+				b.setAnzahlpizza(1);
 				bd.insertBestellung(b);
 				
 			}
