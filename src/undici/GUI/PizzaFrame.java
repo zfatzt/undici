@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -32,7 +33,7 @@ public class PizzaFrame extends JDialog {
 		setBackground(Color.WHITE);
 
 		// Logo
-		BufferedImage myPicture = ImageIO.read(new File("src/undici/GUI/Bilder/undieci_logo.png"));
+		BufferedImage myPicture = ImageIO.read(new File("src/undici/GUI/Bilder/undici_logo.png"));
 
 		// TitledBorder
 		TitledBorder anmeldenBorder = BorderFactory.createTitledBorder("Anmelden");
@@ -55,6 +56,8 @@ public class PizzaFrame extends JDialog {
 		JPanel panelTotal = new JPanel();
 		JPanel panelBestellung = new JPanel();
 		JPanel panelPizza = new JPanel();
+		panelPizza.setLayout(new BoxLayout(panelPizza, BoxLayout.Y_AXIS));
+
 		JPanel panelSonderpizza = new JPanel();
 		JPanel panelGetraenke = new JPanel();
 
@@ -87,15 +90,13 @@ public class PizzaFrame extends JDialog {
 		panelTotal.setBorder(totalBorder);
 
 		// TextArea
-		String textBestellung = 
-				"Hallo \r\n"
-				+ "Tobias  \r\n"
-				+ "wie gehts \r\n"; // Bestellung hier
-															// einfügen mit
-															// toString
+		String textBestellung = "Hallo \r\n" + "Tobias  \r\n" + "wie gehts \r\n"; // Bestellung
+																					// hier
+																					// einfügen
+																					// mit
+																					// toString
 		JTextArea textFieldBestellung = new JTextArea(textBestellung);
-
-		textFieldBestellung.setEnabled(true);
+		textFieldBestellung.setEditable(false);
 		textFieldBestellung.setBackground(Color.WHITE);
 		textFieldBestellung.setPreferredSize(new Dimension(210, 630));
 
@@ -132,9 +133,9 @@ public class PizzaFrame extends JDialog {
 		tabbedPane.addTab("Sonderpizza", panelSonderpizza);
 		tabbedPane.addTab("Getränke", panelGetraenke);
 
-		//Pizza 
-		ProductBox pizzaMargharita = new ProductBox("Margharita", 2.5, "ganz toole sache");
-		
+		// Pizza
+		PizzaBox pizzaBox = new PizzaBox();
+
 		// Panel hinzufuegen
 		panelLogo.add(labelLogo);
 
@@ -150,7 +151,8 @@ public class PizzaFrame extends JDialog {
 		panelLeft.add(panelBestellung);
 		panelLeft.add(panelTotal);
 
-		panelPizza.add(pizzaMargharita);
+		panelPizza.add(pizzaBox);
+
 		panelCenter.add(tabbedPane);
 
 		panelNorth.add(panelAnmeldung, BorderLayout.WEST);
