@@ -98,7 +98,7 @@ public class BestellungJDBCDao {
 				e.printStackTrace();
 			}
 			k.setWohnAdresse(a);
-			b.setK(k);
+			b.setKunde(k);
 			bestellung.add(b);
 		} // ps und rs schliessen
 

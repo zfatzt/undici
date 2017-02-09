@@ -19,13 +19,13 @@ public class Bestellung {
 	}
 
 	private int kunde_id;
-	private Kunde k = new Kunde();
+	private Kunde kunde = new Kunde();
 	
-	public Kunde getK() {
-		return k;
+	public Kunde getKunde() {
+		return kunde;
 	}
-	public void setK(Kunde k) {
-		this.k = k;
+	public void setKunde(Kunde kunde) {
+		this.kunde = kunde;
 	}
 	public int getKunde_id() {
 		return kunde_id;
@@ -75,7 +75,7 @@ public class Bestellung {
 
 	public String toString() {
 
-		String s = this.getPizza_id() + "\n" + this.getraenk_id + "\n"  + this.getZahlung() + "\n" + this.gesamtpreis() + "\n" + getK().toString();
+		String s = "\nPizza id > " + this.getPizza_id() + "\n" + "Getränk id > " + this.getraenk_id + "\n"  + "Zahlungsmethode > " + this.getZahlung() + "\n" + "Gesamtpreis > " + this.gesamtpreis() + "\n" + "Kunde > \n"+ getKunde().toString();
 		return s;
 	}
 }
