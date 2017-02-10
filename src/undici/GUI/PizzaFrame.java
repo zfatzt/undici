@@ -3,6 +3,7 @@ package undici.GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.ScrollPane;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
@@ -90,7 +92,7 @@ public class PizzaFrame extends JDialog {
 		panelTotal.setBorder(totalBorder);
 
 		// TextArea
-		String textBestellung = "Hallo \r\n" + "Tobias  \r\n" + "wie gehts \r\n"; // Bestellung
+		String textBestellung = "Hallo Whatup bitch :D \r\n" + "Tobias  \r\n" + "wie gehts \r\n"; // Bestellung
 																					// hier
 																					// einfügen
 																					// mit
@@ -124,7 +126,14 @@ public class PizzaFrame extends JDialog {
 			JDialog rd = new RegistrierenDialog();
 			rd.pack();
 		});
-
+		
+		//JScrollPane
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBackground(Color.LIGHT_GRAY);
+		
+		
+		
+		
 		// TabbedPane
 		JTabbedPane tabbedPane = new JTabbedPane();
 
@@ -152,6 +161,7 @@ public class PizzaFrame extends JDialog {
 		panelLeft.add(panelTotal);
 
 		panelPizza.add(pizzaBox);
+		panelPizza.add(scrollPane);
 
 		panelCenter.add(tabbedPane);
 

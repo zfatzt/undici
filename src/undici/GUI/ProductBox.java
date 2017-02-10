@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
 import undici.pizza.Pizza;
@@ -49,7 +50,7 @@ public class ProductBox extends JPanel {
 		JComboBox comboBoxAnzahl = new JComboBox(anzahl);
 		comboBoxAnzahl.setBackground(Color.white);
 		comboBoxAnzahl.setPreferredSize(new Dimension(50, 30));
-
+		
 		// JPanel
 		setBackground(Color.WHITE);
 		setMaximumSize(new Dimension(540, 140));
