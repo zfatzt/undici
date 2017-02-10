@@ -3,7 +3,6 @@ package undici.GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.ScrollPane;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 
 public class PizzaFrame extends JDialog {
@@ -51,6 +51,7 @@ public class PizzaFrame extends JDialog {
 		JPanel panelNorth = new JPanel(new BorderLayout());
 		JPanel panelCenter = new JPanel();
 		JPanel panelLeft = new JPanel();
+		//JPanel panelRight = new JPanel();
 		JPanel panelAnmeldung = new JPanel();
 		JPanel panelAnmeldenButton = new JPanel();
 		JPanel panelRegistrierenButton = new JPanel();
@@ -58,6 +59,7 @@ public class PizzaFrame extends JDialog {
 		JPanel panelTotal = new JPanel();
 		JPanel panelBestellung = new JPanel();
 		JPanel panelPizza = new JPanel();
+		//JPanel panelScrollpane = new JPanel();
 		panelPizza.setLayout(new BoxLayout(panelPizza, BoxLayout.Y_AXIS));
 
 		JPanel panelSonderpizza = new JPanel();
@@ -66,6 +68,7 @@ public class PizzaFrame extends JDialog {
 		panelNorth.setBackground(Color.BLUE);
 		panelCenter.setBackground(Color.WHITE);
 		panelLeft.setBackground(Color.WHITE);
+		//panelRight.setBackground(Color.WHITE);
 		panelAnmeldung.setBackground(Color.WHITE);
 		panelAnmeldenButton.setBackground(Color.WHITE);
 		panelRegistrierenButton.setBackground(Color.WHITE);
@@ -75,10 +78,13 @@ public class PizzaFrame extends JDialog {
 		panelPizza.setBackground(Color.WHITE);
 		panelSonderpizza.setBackground(Color.WHITE);
 		panelGetraenke.setBackground(Color.WHITE);
+		//panelScrollpane.setBackground(Color.LIGHT_GRAY);
 
 		panelNorth.setPreferredSize(new Dimension(550, 150));
 		panelCenter.setPreferredSize(new Dimension(550, 850));
 		panelLeft.setPreferredSize(new Dimension(220, 1000));
+		//panelRight.setPreferredSize(new Dimension(40, 150));
+		//panelScrollpane.setPreferredSize(new Dimension(20,450));
 		panelAnmeldung.setPreferredSize(new Dimension(220, 150));
 		panelAnmeldenButton.setPreferredSize(new Dimension(210, 50));
 		panelBestellung.setPreferredSize(new Dimension(220, 660));
@@ -87,12 +93,12 @@ public class PizzaFrame extends JDialog {
 		panelSonderpizza.setPreferredSize(new Dimension(550, 785));
 		panelGetraenke.setPreferredSize(new Dimension(550, 785));
 
-		panelAnmeldung.setBorder(anmeldenBorder);
+		panelAnmeldung.setBorder(anmeldenBorder); 
 		panelBestellung.setBorder(bestellungBorder);
 		panelTotal.setBorder(totalBorder);
 
 		// TextArea
-		String textBestellung = "Hallo Whatup bitch :D \r\n" + "Tobias  \r\n" + "wie gehts \r\n"; // Bestellung
+		String textBestellung = "Hallo\r\n" + "Tobias  \r\n" + "wie gehts \r\n"; // Bestellung
 																					// hier
 																					// einfÃ¼gen
 																					// mit
@@ -128,8 +134,10 @@ public class PizzaFrame extends JDialog {
 		});
 		
 		//JScrollPane
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBackground(Color.LIGHT_GRAY);
+		/* JScrollPane scrollPane = new JScrollPane (panelScrollpane, 
+		            ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+		            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);*/
+
 		
 		
 		
@@ -139,8 +147,8 @@ public class PizzaFrame extends JDialog {
 
 		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.addTab("Pizza", panelPizza);
-		tabbedPane.addTab("Sonderpizza", panelSonderpizza);
-		tabbedPane.addTab("GetrÃ¤nke", panelGetraenke);
+		//tabbedPane.addTab("Sonderpizza", panelSonderpizza); Hier müssen wir noch schauen ob wir es hinkriegen.
+		tabbedPane.addTab("Getränke", panelGetraenke);
 
 		// Pizza
 		PizzaBox pizzaBox = new PizzaBox();
@@ -160,9 +168,10 @@ public class PizzaFrame extends JDialog {
 		panelLeft.add(panelBestellung);
 		panelLeft.add(panelTotal);
 
+		//panelRight.add(scrollPane);
+		
 		panelPizza.add(pizzaBox);
-		panelPizza.add(scrollPane);
-
+		
 		panelCenter.add(tabbedPane);
 
 		panelNorth.add(panelAnmeldung, BorderLayout.WEST);
@@ -172,6 +181,8 @@ public class PizzaFrame extends JDialog {
 		add(panelLeft, BorderLayout.WEST);
 		add(panelNorth, BorderLayout.NORTH);
 		add(panelCenter, BorderLayout.CENTER);
+		//add(panelRight, BorderLayout.EAST);
+
 
 		// Rest
 		pack();
