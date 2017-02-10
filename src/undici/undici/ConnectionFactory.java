@@ -12,7 +12,7 @@ public class ConnectionFactory {
 		private String dbPwd;
 		
 		private ConnectionFactory() {
-			setDbURL("jdbc:mysql://localhost:3306/?useSSL=false");
+			setDbURL("jdbc:mysql://192.168.3.183:3306/?useSSL=false");
 			setDbUser("root");
 			setDbPwd("1234");
 		}
