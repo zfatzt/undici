@@ -33,7 +33,7 @@ public class PizzaJDBCDao {
 	public ArrayList<Pizza> getAllpizzen() throws SQLException {
 		ArrayList<Pizza> pizzen = new ArrayList<Pizza>();
 		Pizza p = null;
-		String sql = "select undici.zutat.zutat, undici.pizza.id, undici.pizza.pizza, undici.pizza.preis  from undici.pizza_zutat join undici.pizza on undici.pizza.id = undici.pizza_zutat.pizza_id join undici.zutat on undici.zutat.id = undici.pizza_zutat.zutat_id where undici.pizza.id = 1;";
+		String sql = "select undici.zutat.zutat, undici.pizza.id, undici.pizza.pizza, undici.pizza.preis  from undici.pizza_zutat join undici.pizza on undici.pizza.id = undici.pizza_zutat.pizza_id join undici.zutat on undici.zutat.id = undici.pizza_zutat.zutat_id;";
 		// Zur DB verbinden (Verbindung holen):
 		con = ConnectionFactory.getInstance().getConnection();
 		// Daten in die Querry Info abfüllen ps.set...
@@ -41,19 +41,14 @@ public class PizzaJDBCDao {
 		// Querry ausführen:
 		ResultSet rs = ps.executeQuery();
 		// Daten aus Query Resultat verarbeiten:
-		
 
-		
 		while (rs.next()) {
-			
+
 			int id = rs.getInt("id");
-			if (containPizza(id, pizzen))
-			{
+			if (containPizza(id, pizzen)) {
 				Pizza pizza = getPizzaById(id, pizzen);
 				p.setZutat(rs.getString("zutat"));
-			}
-			else
-			{
+			} else {
 				p = new Pizza();
 				p.setZutat(rs.getString("zutat"));
 				p.setId(rs.getInt("id"));
@@ -66,35 +61,24 @@ public class PizzaJDBCDao {
 
 		return pizzen;
 	}
-	
-	private boolean containPizza(int id, List<Pizza> pizzen)
-	{
+
+	private boolean containPizza(int id, List<Pizza> pizzen) {
 		for (Pizza pizza : pizzen) {
-			if (pizza.getId() == id)
-			{
+			if (pizza.getId() == id) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
-	private Pizza getPizzaById(int id, List<Pizza> pizzen)
-	{
+
+	private Pizza getPizzaById(int id, List<Pizza> pizzen) {
 		for (Pizza pizza : pizzen) {
-			if (pizza.getId() == id)
-			{
+			if (pizza.getId() == id) {
 				return pizza;
 			}
 		}
-		
+
 		throw new RuntimeException("Pizza with id: " + id + " not found!");
 	}
 }
-
-
-
-
-
-
-
