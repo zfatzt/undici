@@ -2,6 +2,7 @@ package undici.GUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class ProductBox extends JPanel {
 
 		// Buttons
 		JButton buttonBestellen = new JButton("Bestellen");
+		
 
 		// Border
 		TitledBorder border = BorderFactory.createTitledBorder(name);
@@ -49,11 +51,11 @@ public class ProductBox extends JPanel {
 		String[] anzahl = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 		JComboBox comboBoxAnzahl = new JComboBox(anzahl);
 		comboBoxAnzahl.setBackground(Color.white);
-		comboBoxAnzahl.setPreferredSize(new Dimension(50, 30));
+		//comboBoxAnzahl.setPreferredSize(new Dimension(50, 30));
 		
 		// JPanel
 		setBackground(Color.WHITE);
-		setMaximumSize(new Dimension(540, 140));
+		//setMaximumSize(new Dimension(540, 140));
 		setBorder(border);
 		setVisible(true);
 		add(labelBild);

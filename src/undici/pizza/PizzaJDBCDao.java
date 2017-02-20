@@ -15,7 +15,7 @@ public class PizzaJDBCDao {
 
 	public Pizza findPizzaById(int id) throws SQLException {
 		Pizza pizza = null;
-		String sql = "select undici.zutat.zutat, undici.pizza.id, undici.pizza.pizza, undici.pizza.preis from undici.pizza_zutat join undici.pizza on undici.pizza.id = undici.pizza_zutat.pizza_id join undici.zutat on undici.zutat.id = undici.pizza_zutat.zutat_id where undici.pizza.id = 1;";
+		String sql = "select undici.zutat.zutat, undici.pizza.id, undici.pizza.pizza, undici.pizza.preis, undici.pizza.bild from undici.pizza_zutat join undici.pizza on undici.pizza.id = undici.pizza_zutat.pizza_id join undici.zutat on undici.zutat.id = undici.pizza_zutat.zutat_id where undici.pizza.id = 1;";
 		con = ConnectionFactory.getInstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, id);
@@ -25,6 +25,7 @@ public class PizzaJDBCDao {
 			pizza.setId(rs.getInt("id"));
 			pizza.setPizza(rs.getString("pizza"));
 			pizza.setPreis(rs.getDouble("preis"));
+			pizza.setBild(rs.getString("bild"));
 			break;
 		}
 		return pizza;
@@ -33,7 +34,7 @@ public class PizzaJDBCDao {
 	public ArrayList<Pizza> getAllpizzen() throws SQLException {
 		ArrayList<Pizza> pizzen = new ArrayList<Pizza>();
 		Pizza p = null;
-		String sql = "select undici.zutat.zutat, undici.pizza.id, undici.pizza.pizza, undici.pizza.preis  from undici.pizza_zutat join undici.pizza on undici.pizza.id = undici.pizza_zutat.pizza_id join undici.zutat on undici.zutat.id = undici.pizza_zutat.zutat_id;";
+		String sql = "select undici.zutat.zutat, undici.pizza.id, undici.pizza.pizza, undici.pizza.preis, undici.pizza.bild from undici.pizza_zutat join undici.pizza on undici.pizza.id = undici.pizza_zutat.pizza_id join undici.zutat on undici.zutat.id = undici.pizza_zutat.zutat_id;";
 		// Zur DB verbinden (Verbindung holen):
 		con = ConnectionFactory.getInstance().getConnection();
 		// Daten in die Querry Info abfüllen ps.set...
@@ -54,6 +55,7 @@ public class PizzaJDBCDao {
 				p.setId(rs.getInt("id"));
 				p.setPizza(rs.getString("pizza"));
 				p.setPreis(rs.getDouble("preis"));
+				p.setBild(rs.getString("bild"));
 
 				pizzen.add(p);
 			}

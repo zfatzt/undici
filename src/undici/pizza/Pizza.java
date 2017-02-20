@@ -7,7 +7,14 @@ public class Pizza {
 	private String pizza;
 	private double preis;
 	private int id;
+	private String bild; 
 	
+	public String getBild() {
+		return bild;
+	}
+	public void setBild(String bild) {
+		this.bild = bild;
+	}
 	private List<String> zutaten = new ArrayList<String>();
 	
 	public String getPizza() {
