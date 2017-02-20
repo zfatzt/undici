@@ -1,8 +1,6 @@
 package undici.GUI;
 
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,24 +19,34 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 public class ProductBox extends JPanel {
+	private static final long serialVersionUID = 1L;
+
 	@SuppressWarnings("rawtypes")
 	public ProductBox(String name, double preis, List<String> zutaten, String pfad, JTextArea area, JTextArea total) throws IOException, SQLException {
 		
-		// JLabel
+		//PreisLabel
 		JLabel labelPreis = new JLabel("" + preis + " Fr.");
 
-		// Combobox
+		//AnzahlPizzen
 		String[] anzahl = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+		@SuppressWarnings("unchecked")
 		JComboBox comboBoxAnzahl = new JComboBox(anzahl);
 		comboBoxAnzahl.setBackground(Color.white);
 		
-		// Buttons
+		//BestellButton
 		JButton buttonBestellen = new JButton("Bestellen");
-
+		
+		
+		//ActionListener
 		buttonBestellen.addActionListener(e -> {
+			
+			
+			//BestellungTextArea erstellt
 			int anzahlPizzen = (comboBoxAnzahl.getSelectedIndex() + 1);
 			System.out.println(name + " " + anzahlPizzen + " " + preis);
 			area.append(name + "\t" + anzahlPizzen + "\t" + preis + "\n");
+			
+			//TotalTextArea erstellt
 			if(total.getText().equals("")) total.setText("total > \t0.0");
 			double gesamtPreis = Double.parseDouble(total.getText().substring(8));
 			gesamtPreis = gesamtPreis + (anzahlPizzen * preis);
@@ -47,25 +55,22 @@ public class ProductBox extends JPanel {
 		});
 																												
 
-		// Border
+		//Grenze
 		TitledBorder border = BorderFactory.createTitledBorder(name);
 		border.setTitleJustification(TitledBorder.LEFT);
 
-		// Bild
+		//PizzaBilder
 		BufferedImage myPicture = ImageIO.read(new File(pfad));
 		JLabel labelBild = new JLabel(new ImageIcon(myPicture));
 
-		// Beschreibung
-
+		//ZutatenListe
 		String[] zutatenArr = new String[zutaten.size()];
 		zutatenArr = zutaten.toArray(zutatenArr);
+		@SuppressWarnings("unchecked")
 		JList zutaten2 = new JList(zutatenArr);
 
-		// comboBoxAnzahl.setPreferredSize(new Dimension(50, 30));
-
-		// JPanel
+		//Alles zu JPanel Hinzufügen
 		setBackground(Color.WHITE);
-		// setMaximumSize(new Dimension(540, 140));
 		setBorder(border);
 		setVisible(true);
 		add(labelBild);

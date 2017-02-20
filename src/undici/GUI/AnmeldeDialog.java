@@ -35,12 +35,6 @@ public class AnmeldeDialog extends JDialog {
 		JPanel panelPasswort = new JPanel();
 		JPanel panelMain = new JPanel();
 
-		panelEmail.setBackground(Color.WHITE);
-		panelPasswort.setBackground(Color.WHITE);
-		panelNorth.setBackground(Color.WHITE);
-		panelSouth.setBackground(Color.WHITE);
-		panelMain.setBackground(Color.WHITE);
-
 		panelNorth.setPreferredSize(new Dimension(350, 130));
 		panelSouth.setPreferredSize(new Dimension(350, 50));
 		panelEmail.setPreferredSize(new Dimension(350, 40));

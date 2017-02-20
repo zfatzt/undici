@@ -21,7 +21,8 @@ public class PizzaBoxScrollPane extends JPanel {
 
 	public PizzaBoxScrollPane(JTextArea area, JTextArea total) throws IOException {
 		super();
-
+		
+		//höhe, breite und Anzahl Pizzen sichtbar auf einer seite
 		int numberOfVisibleRows = 5;
 		int WidthOfPizzaBox = 540;
 		int HightOfPizzaBox = 140;
@@ -32,7 +33,7 @@ public class PizzaBoxScrollPane extends JPanel {
 		PizzaJDBCDao db = new PizzaJDBCDao();
 
 		
-
+		//Pizza wird von der Datenbank ausgelesen
 		try {
 			for (Pizza pizza : db.getAllpizzen()) {
 				ProductBox pizzaBox = new ProductBox(pizza.getPizza(), pizza.getPreis(), pizza.getZutaten(), pizza.getBild(), area, total);
@@ -41,7 +42,8 @@ public class PizzaBoxScrollPane extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		//ScrollPane
 		vertical = new JScrollPane(content);
 		vertical.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		vertical.setPreferredSize(new Dimension(WidthOfPizzaBox, (HightOfPizzaBox * numberOfVisibleRows) ));

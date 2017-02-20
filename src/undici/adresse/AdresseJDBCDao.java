@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.jdbc.Statement;
+
 import undici.excepitons.PlzException;
 import undici.undici.ConnectionFactory;
 
@@ -15,19 +17,32 @@ public class AdresseJDBCDao implements AdresseDao {
 		
 		private Connection con = null;
 
-		public void insertAdresse(Adresse a) throws SQLException {
+		public int insertAdresse(Adresse a) throws SQLException {
 			//Querry bereit machen:	
 			String sql = "INSERT INTO undici.adresse (strasse, hausnummer, plz, ort) VALUES (?, ?, ?, ?)";
 			//Zur DB verbinden (Verbindung holen):
 			con = ConnectionFactory.getInstance().getConnection();
 			//Querry Information erstellen		
-			PreparedStatement ps = con.prepareStatement(sql);
+			PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			//Daten in die Querry Info abfüllen ps.set...		
 			ps.setString(1, a.getStrasse());
-			ps.setInt(2, a.getHausnummer());
+			ps.setString(2, a.getHausnummer());
 			ps.setString(3, a.getPlz());
 			ps.setString(4, a.getOrt());
 			ps.executeUpdate(); // ps schliessen
+			
+			ResultSet set =  ps.getGeneratedKeys(); 
+	        while (set.next() == true)
+	        {
+//	            a.getId().setValue(set.getInt(1));
+//	            System.out.println("Key: " + tAdresse.getAdressid().getIntValue());
+	        }
+//			set.next();
+			
+			
+			return 0;
+			
+			
 		}
 		
 
@@ -48,7 +63,7 @@ public class AdresseJDBCDao implements AdresseDao {
 				a = new Adresse();
 				a.setId(rs.getInt("id"));
 				a.setStrasse(rs.getString("strasse"));
-				a.setHausnummer(rs.getInt("hausnummer"));
+				a.setHausnummer(rs.getString("hausnummer"));
 				try {
 					a.setPlz(rs.getString("plz"));
 				} catch (PlzException e){}
@@ -74,7 +89,7 @@ public class AdresseJDBCDao implements AdresseDao {
 				a = new Adresse();
 				a.setId(rs.getInt("id"));
 				a.setStrasse(rs.getString("strasse"));
-				a.setHausnummer(rs.getInt("hausnummer"));
+				a.setHausnummer(rs.getString("hausnummer"));
 				try {
 					a.setPlz(rs.getString("plz"));
 				} catch (PlzException e){}

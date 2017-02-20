@@ -9,7 +9,7 @@ public class Hauptprogramm {
 
 	public static void main(String[] args) throws IOException {
 		JFrame abd = new PizzaFrame();
-		abd.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+		abd.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE); //Schliesst alle Prozesse & threats beim schliessen.
 		abd.pack();
 
 	}

@@ -22,8 +22,7 @@ public class AdresseTester {
 				String strasse = sc.nextLine();
 				a.setStrasse(strasse);
 				System.out.println("nun ihre Hausnummer > ");
-				int hausnr = sc.nextInt();
-				sc.nextLine();
+				String hausnr = sc.nextLine();
 				a.setHausnummer(hausnr);
 				try {
 					System.out.println("nun ihre plz > ");

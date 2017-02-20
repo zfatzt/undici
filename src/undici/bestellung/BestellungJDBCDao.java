@@ -90,7 +90,7 @@ public class BestellungJDBCDao {
 			k.setKreditkartenNr(rs.getString("kreditkartenNr"));
 			Adresse a = new Adresse();
 			a.setStrasse(rs.getString("strasse"));
-			a.setHausnummer(rs.getInt("hausnummer"));
+			a.setHausnummer(rs.getString("hausnummer"));
 			a.setOrt(rs.getString("ort"));
 			try {
 				a.setPlz(rs.getString("plz"));

@@ -11,13 +11,13 @@ public class Adresse {
 	private String plz;
 	private String ort;
 	private int id;
-	private int hausnummer; 
+	private String hausnummer; 
 	
-	public int getHausnummer() {
+	public String getHausnummer() {
 		return hausnummer;
 	}
 
-	public void setHausnummer(int hausnummer) {
+	public void setHausnummer(String hausnummer) {
 		this.hausnummer = hausnummer;
 	}
 
