@@ -56,7 +56,7 @@ public class PizzaFrame extends JFrame {
 		JPanel panelAnmeldenButton = new JPanel();
 		JPanel panelRegistrierenButton = new JPanel();
 		JPanel panelLogo = new JPanel();
-		JPanel panelTotal = new JPanel();
+		
 		JPanel panelBestellung = new JPanel();
 		//JPanel panelSonderpizza = new JPanel();
 		JPanel panelGetraenke = new JPanel();
@@ -68,7 +68,7 @@ public class PizzaFrame extends JFrame {
 		panelAnmeldenButton.setBackground(Color.WHITE);
 		panelRegistrierenButton.setBackground(Color.WHITE);
 		panelLogo.setBackground(Color.WHITE);
-		panelTotal.setBackground(Color.WHITE);
+	
 		panelBestellung.setBackground(Color.WHITE);
 		panelGetraenke.setBackground(Color.WHITE);
 
@@ -79,23 +79,40 @@ public class PizzaFrame extends JFrame {
 		panelAnmeldung.setPreferredSize(new Dimension(220, 150));
 		panelAnmeldenButton.setPreferredSize(new Dimension(210, 50));
 		panelBestellung.setPreferredSize(new Dimension(220, 660));
-		panelTotal.setPreferredSize(new Dimension(220, 150));
+		
 		
 		//panelSonderpizza.setPreferredSize(new Dimension(550, 785));
 		panelGetraenke.setPreferredSize(new Dimension(550, 785));
 		panelAnmeldung.setBorder(anmeldenBorder); 
 		panelBestellung.setBorder(bestellungBorder);
-		panelTotal.setBorder(totalBorder);
-
-		// TextArea
-		String textBestellung = "Hallo\r\n" + "Tobias  \r\n" + "wie gehts \r\n"; // Bestellung hier einfügen mit tostring
-																					
-																					
+		
+		
+		
+		
+		//bestellungsfeld
+		String textBestellung = "";
+		
+		
+		//Jtextarea
 		JTextArea textFieldBestellung = new JTextArea(textBestellung);
 		textFieldBestellung.setEditable(false);
 		textFieldBestellung.setBackground(Color.WHITE);
 		textFieldBestellung.setPreferredSize(new Dimension(210, 630));
-
+		panelBestellung.add(textFieldBestellung);
+		
+	
+		
+		//Preis
+		String total = "";
+		JTextArea panelTotal = new JTextArea(total);
+		panelTotal.setEditable(false);
+		panelTotal.setBackground(Color.WHITE);
+		panelTotal.setPreferredSize(new Dimension(210, 630));
+		panelTotal.setPreferredSize(new Dimension(220, 150));
+		panelTotal.setBorder(totalBorder);
+		panelLeft.add(panelTotal);
+		
+		
 		// JLabel
 		JLabel labelLogo = new JLabel(new ImageIcon(myPicture));
 
@@ -125,7 +142,7 @@ public class PizzaFrame extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane();
 
 		// Pizza
-		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane();
+		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(textFieldBestellung, panelTotal);
 
 		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.addTab("Pizza", pizzaBox);
@@ -135,7 +152,9 @@ public class PizzaFrame extends JFrame {
 		// Panel hinzufuegen
 		panelLogo.add(labelLogo);
 
-		panelBestellung.add(textFieldBestellung);
+		
+		
+		
 
 		panelAnmeldenButton.add(buttonAnmelden);
 
@@ -145,7 +164,8 @@ public class PizzaFrame extends JFrame {
 		panelAnmeldung.add(panelRegistrierenButton);
 
 		panelLeft.add(panelBestellung);
-		panelLeft.add(panelTotal);
+		
+		
 
 		
 		panelCenter.add(tabbedPane);

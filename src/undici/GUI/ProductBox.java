@@ -1,8 +1,8 @@
 package undici.GUI;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,21 +17,35 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
-
-import undici.pizza.Pizza;
-import undici.pizza.PizzaJDBCDao;
 
 public class ProductBox extends JPanel {
 	@SuppressWarnings("rawtypes")
-	public ProductBox(String name, double preis, List<String> zutaten, String pfad) throws IOException, SQLException {
+	public ProductBox(String name, double preis, List<String> zutaten, String pfad, JTextArea area, JTextArea total) throws IOException, SQLException {
+		
 		// JLabel
 		JLabel labelPreis = new JLabel("" + preis + " Fr.");
 
+		// Combobox
+		String[] anzahl = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+		JComboBox comboBoxAnzahl = new JComboBox(anzahl);
+		comboBoxAnzahl.setBackground(Color.white);
+		
 		// Buttons
 		JButton buttonBestellen = new JButton("Bestellen");
-		
+
+		buttonBestellen.addActionListener(e -> {
+			int anzahlPizzen = (comboBoxAnzahl.getSelectedIndex() + 1);
+			System.out.println(name + " " + anzahlPizzen + " " + preis);
+			area.append(name + "\t" + anzahlPizzen + "\t" + preis + "\n");
+			if(total.getText().equals("")) total.setText("total > \t0.0");
+			double gesamtPreis = Double.parseDouble(total.getText().substring(8));
+			gesamtPreis = gesamtPreis + (anzahlPizzen * preis);
+			total.setText( "total > \t" + gesamtPreis + "\n");			
+			
+		});
+																												
 
 		// Border
 		TitledBorder border = BorderFactory.createTitledBorder(name);
@@ -47,15 +61,11 @@ public class ProductBox extends JPanel {
 		zutatenArr = zutaten.toArray(zutatenArr);
 		JList zutaten2 = new JList(zutatenArr);
 
-		// Combobox
-		String[] anzahl = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-		JComboBox comboBoxAnzahl = new JComboBox(anzahl);
-		comboBoxAnzahl.setBackground(Color.white);
-		//comboBoxAnzahl.setPreferredSize(new Dimension(50, 30));
-		
+		// comboBoxAnzahl.setPreferredSize(new Dimension(50, 30));
+
 		// JPanel
 		setBackground(Color.WHITE);
-		//setMaximumSize(new Dimension(540, 140));
+		// setMaximumSize(new Dimension(540, 140));
 		setBorder(border);
 		setVisible(true);
 		add(labelBild);
@@ -63,6 +73,7 @@ public class ProductBox extends JPanel {
 		add(labelPreis);
 		add(comboBoxAnzahl);
 		add(buttonBestellen);
+		
 
 	}
 

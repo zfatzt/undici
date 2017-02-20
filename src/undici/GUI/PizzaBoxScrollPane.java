@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import undici.pizza.Pizza;
 import undici.pizza.PizzaJDBCDao;
@@ -18,7 +19,7 @@ public class PizzaBoxScrollPane extends JPanel {
 	private JScrollPane vertical;
 	private JPanel content = new JPanel();
 
-	public PizzaBoxScrollPane() throws IOException {
+	public PizzaBoxScrollPane(JTextArea area, JTextArea total) throws IOException {
 		super();
 
 		int numberOfVisibleRows = 5;
@@ -34,7 +35,7 @@ public class PizzaBoxScrollPane extends JPanel {
 
 		try {
 			for (Pizza pizza : db.getAllpizzen()) {
-				ProductBox pizzaBox = new ProductBox(pizza.getPizza(), pizza.getPreis(), pizza.getZutaten(), pizza.getBild());
+				ProductBox pizzaBox = new ProductBox(pizza.getPizza(), pizza.getPreis(), pizza.getZutaten(), pizza.getBild(), area, total);
 				content.add(pizzaBox);
 			}
 		} catch (SQLException e) {
