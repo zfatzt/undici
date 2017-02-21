@@ -114,7 +114,7 @@ public class KundeJBDBCDao implements KundeDao {
         public boolean kannEinloggen(String email, String passwort) {
 
             try {
-                        String sql = "select undici.kunde.email, undici.kunde.passwort from undici.kunde where name=? and passwort=?";
+                        String sql = "select undici.kunde.email, undici.kunde.passwort from undici.kunde where email=? and passwort=?";
                         con = ConnectionFactory.getInstance().getConnection();
                         PreparedStatement ps = con.prepareStatement(sql);
                         ps.setString(1, email);

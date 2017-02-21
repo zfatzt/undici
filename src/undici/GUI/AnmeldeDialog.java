@@ -80,11 +80,13 @@ public class AnmeldeDialog extends JDialog {
 		buttonEinloggen.addActionListener(e -> {
 			KundeJBDBCDao kunde = new KundeJBDBCDao();
             if (kunde.kannEinloggen(eingabeEmail.getText(), new String(eingabePasswort.getPassword()))) {
+            	System.out.println("Hi");
+            	setVisible(false);
             	
 } else {
                 JOptionPane.showMessageDialog(panelError,
-                                               "Passwort stimmt nicht mit dem Benutzername überein oder Sie sind noch nicht Registriert",
-                                               "Inane Fehler", JOptionPane.ERROR_MESSAGE);
+                                               "Email oder Passwort falsch. Falls Sie sich noch nicht Regristriert haben bitte tun Sie das jetzt.",
+                                               "Anmeldefehler", JOptionPane.ERROR_MESSAGE);
 }
 
 		});
