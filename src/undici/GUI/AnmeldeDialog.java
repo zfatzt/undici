@@ -44,13 +44,13 @@ public class AnmeldeDialog extends JDialog {
 
 		// JLabel
 		JLabel label = new JLabel("Anmeldung");
-		label.setFont(new Font("Titillium", 1, 30));
+		label.setFont(new Font("Arial", 1, 30));
 
 		JLabel labelEmail = new JLabel("      Email");
-		labelEmail.setFont(new Font("Titillium", 1, 12));
+		labelEmail.setFont(new Font("Arial", 1, 12));
 
 		JLabel labelPasswort = new JLabel("Passwort");
-		labelPasswort.setFont(new Font("Titillium", 1, 12));
+		labelPasswort.setFont(new Font("Arial", 1, 12));
 
 		// Eingabe Email
 		JTextField eingabeEmail = new JTextField("", 20);

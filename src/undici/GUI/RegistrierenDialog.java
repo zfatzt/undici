@@ -49,7 +49,7 @@ public class RegistrierenDialog extends JDialog {
 		JPanel panelPasswort = new JPanel();
 		JPanel panelPasswortWiederholen = new JPanel();
 
-		// grössen werden definiert
+		// grï¿½ssen werden definiert
 		panelNorth.setPreferredSize(new Dimension(350, 490));
 		panelSouth.setPreferredSize(new Dimension(350, 60));
 		panelGeschlecht.setPreferredSize(new Dimension(350, 40));
@@ -80,19 +80,19 @@ public class RegistrierenDialog extends JDialog {
 		JLabel labelPasswort = new JLabel("                     Passwort");
 		JLabel labelPasswortWiederholen = new JLabel("Passwort wiederholen");
 
-		label.setFont(new Font("Titillium", 1, 30));
-		labelGeschlecht.setFont(new Font("Titillium", 1, 12));
-		labelVorname.setFont(new Font("Titillium", 1, 12));
-		labelName.setFont(new Font("Titillium", 1, 12));
-		labelStrasse.setFont(new Font("Titillium", 1, 12));
-		labelHausnummer.setFont(new Font("Titillium", 1, 12));
-		labelOrt.setFont(new Font("Titillium", 1, 12));
-		labelPLZ.setFont(new Font("Titillium", 1, 12));
-		labelTelefon.setFont(new Font("Titillium", 1, 12));
-		labelEmail.setFont(new Font("Titillium", 1, 12));
-		labelEmailWiederholen.setFont(new Font("Titillium", 1, 12));
-		labelPasswort.setFont(new Font("Titillium", 1, 12));
-		labelPasswortWiederholen.setFont(new Font("Titillium", 1, 12));
+		label.setFont(new Font("Arial", 1, 30));
+		labelGeschlecht.setFont(new Font("Arial", 1, 12));
+		labelVorname.setFont(new Font("Arial", 1, 12));
+		labelName.setFont(new Font("Arial", 1, 12));
+		labelStrasse.setFont(new Font("Arial", 1, 12));
+		labelHausnummer.setFont(new Font("Arial", 1, 12));
+		labelOrt.setFont(new Font("Arial", 1, 12));
+		labelPLZ.setFont(new Font("Arial", 1, 12));
+		labelTelefon.setFont(new Font("Arial", 1, 12));
+		labelEmail.setFont(new Font("Arial", 1, 12));
+		labelEmailWiederholen.setFont(new Font("Arial", 1, 12));
+		labelPasswort.setFont(new Font("Arial", 1, 12));
+		labelPasswortWiederholen.setFont(new Font("Arial", 1, 12));
 
 		// Combobox
 		String[] AnredeArray = { "-", "Herr", "Frau" };
@@ -113,7 +113,7 @@ public class RegistrierenDialog extends JDialog {
 		JPasswordField eingabePasswort = new JPasswordField("", 15);
 		JPasswordField eingabePasswortWiederholen = new JPasswordField("", 15);
 
-		// grössen Definiert
+		// grï¿½ssen Definiert
 		eingabeVorname.setPreferredSize(new Dimension(100, 30));
 		eingabeName.setPreferredSize(new Dimension(100, 30));
 		eingabeStrasse.setPreferredSize(new Dimension(100, 30));
