@@ -120,12 +120,13 @@ public class PizzaFrame extends JFrame {
 
 		// TabbedPane
 		JTabbedPane tabbedPane = new JTabbedPane();
-
+		
 		// Pizza
 		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(textAreaBestellung, textAreaTotal);
+		GetraenkeBoxScrollPane getraenkeBox = new GetraenkeBoxScrollPane(textAreaBestellung, textAreaTotal);
 
 		tabbedPane.addTab("Pizza", pizzaBox);
-		tabbedPane.addTab("Getränke", panelGetraenke);
+		tabbedPane.addTab("Getränke", getraenkeBox);
 
 		// Panel hinzufuegen
 		panelLogo.add(labelLogo);
