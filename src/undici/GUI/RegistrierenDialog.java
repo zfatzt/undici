@@ -147,7 +147,7 @@ public class RegistrierenDialog extends JDialog {
 			// einsetzen id db
 			Adresse adresse = new Adresse();
 			Kunde kunde = new Kunde();
-			KundeJBDBCDao db = new KundeJBDBCDao();
+			KundeJBDBCDao dbKunde = new KundeJBDBCDao();
 			AdresseJDBCDao dbAdresse = new AdresseJDBCDao();
 			
 			try {
@@ -162,7 +162,7 @@ public class RegistrierenDialog extends JDialog {
 				kunde.setName(eingabeName.getText());
 				adresse.setStrasse(eingabeStrasse.getText());
 				adresse.setHausnummer(eingabeHausnummer.getText());
-				adresse.setOrt(eingabePLZ.getText());
+				adresse.setOrt(eingabeOrt.getText());
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
@@ -174,10 +174,11 @@ public class RegistrierenDialog extends JDialog {
 				kunde.setEmail(eingabeEmail.getText());
 				kunde.setPasswort(new String(eingabePasswort.getPassword()));
 				
+				
 				int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
 				kunde.setAdresse_id(primaryKeyOfAdress);
 				
-				db.insertKunde(kunde);
+				dbKunde.insertKunde(kunde);
 
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

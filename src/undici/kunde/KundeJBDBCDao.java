@@ -19,7 +19,7 @@ public class KundeJBDBCDao implements KundeDao {
 
 		public void insertKunde(Kunde k) throws SQLException {
 			//Querry bereit machen:	
-			String sql = "INSERT INTO undici.kunde ( adresse_id, anrede, vorname, name, email, telefon, passwort, ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO undici.kunde ( adresse_id, anrede, vorname, name, email, telefon, passwort) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			con = ConnectionFactory.getInstance().getConnection();	
 			PreparedStatement ps = con.prepareStatement(sql);		
 			
