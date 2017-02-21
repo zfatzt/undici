@@ -60,7 +60,7 @@ public class BestellungJDBCDao {
 				+ "				undici.kunde.anrede," + "				undici.kunde.vorname,"
 				+ "				undici.kunde.name," + "				undici.kunde.email,"
 				+ "				undici.kunde.telefon," + "				undici.kunde.passwort,"
-				+ "				undici.kunde.kreditkartenNr," + "				undici.adresse.strasse,"
+				 + "				undici.adresse.strasse,"
 				+ "				undici.adresse.hausnummer," + "				undici.adresse.plz,"
 				+ "				undici.adresse.ort,"
 				+ "				undici.bestellung.anzahlpizza from undici.bestellung join undici.kunde on undici.kunde.id=undici.bestellung.kunde_id join undici.adresse on undici.adresse.id = undici.kunde.adresse_id join undici.pizza on undici.pizza.id=undici.bestellung.pizza_id join undici.getraenk on undici.getraenk.id=undici.bestellung.getraenk_id;";
@@ -93,7 +93,6 @@ public class BestellungJDBCDao {
 			}
 			k.setTelefon(rs.getString("telefon"));
 			k.setPasswort(rs.getString("passwort"));
-			k.setKreditkartenNr(rs.getString("kreditkartenNr"));
 			Adresse a = new Adresse();
 			a.setStrasse(rs.getString("strasse"));
 			a.setHausnummer(rs.getString("hausnummer"));

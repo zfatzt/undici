@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -15,13 +16,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import undici.kunde.Kunde;
 import undici.kunde.KundeJBDBCDao;
 
 public class AnmeldeDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	public AnmeldeDialog() {
+	public AnmeldeDialog(PizzaFrame pizzaFrame) {
 		Dimension d = new Dimension(350, 180);
+		// public boolean istEingelogt = true;
 
 		// JDialog
 		setTitle("Anmeldung");
@@ -85,18 +88,29 @@ public class AnmeldeDialog extends JDialog {
 		buttonExit.addActionListener(e -> {
 			setVisible(false);
 		});
-		
+
 		buttonEinloggen.addActionListener(e -> {
 			KundeJBDBCDao kunde = new KundeJBDBCDao();
-            if (kunde.kannEinloggen(eingabeEmail.getText(), new String(eingabePasswort.getPassword()))) {
-            	System.out.println("Hi");
-            	setVisible(false);
-            	
-} else {
-                JOptionPane.showMessageDialog(panelError,
-                                               "Email oder Passwort falsch. Falls Sie sich noch nicht Regristriert haben bitte tun Sie das jetzt.",
-                                               "Anmeldefehler", JOptionPane.ERROR_MESSAGE);
-}
+				
+			if (kunde.kannEinloggen(eingabeEmail.getText(), new String(eingabePasswort.getPassword()))) {
+				System.out.println("Hi");
+				setVisible(false);
+				Kunde user;
+				try {
+					user = kunde.findKundeByEmailAndPassword(eingabeEmail.getText(), new String(eingabePasswort.getPassword()));
+					pizzaFrame.angemeldet(user);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+
+			} else {
+				JOptionPane.showMessageDialog(panelError,
+						"Email oder Passwort falsch. Falls Sie sich noch nicht Regristriert haben bitte tun Sie das jetzt.",
+						"Anmeldefehler", JOptionPane.ERROR_MESSAGE);
+			}
 
 		});
 

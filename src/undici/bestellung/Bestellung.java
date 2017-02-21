@@ -69,7 +69,6 @@ public class Bestellung {
 	}
 	
 	public double gesamtpreis() {
-		double preis = 96.90 + 96.35;
 		return preis;
 	}
 

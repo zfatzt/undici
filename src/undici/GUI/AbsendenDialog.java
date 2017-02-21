@@ -62,10 +62,10 @@ public class AbsendenDialog extends JDialog {
 		buttonExit.addActionListener(e -> {
 			setVisible(false);
 		});
-		buttonAnmelden.addActionListener(e -> {
-			JDialog ad = new AnmeldeDialog();
-			ad.pack();
-		});
+//		buttonAnmelden.addActionListener(e -> {
+//			JDialog ad = new AnmeldeDialog();
+//			ad.pack();
+//		});
 		buttonRegistrieren.addActionListener(e -> {
 			JDialog rd = new RegistrierenDialog();
 			rd.pack();

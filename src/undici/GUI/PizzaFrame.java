@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -19,9 +22,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
+import undici.kunde.Kunde;
+
+
 public class PizzaFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-
+	JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
+	private int bestellungsNummerZähler = 0;
+	private Kunde user;
 	public PizzaFrame() throws IOException {
 		Dimension d = new Dimension(800, 1000);
 
@@ -99,24 +107,51 @@ public class PizzaFrame extends JFrame {
 		// Button
 		JButton buttonRegistrieren = new JButton("Registrieren");
 		JButton buttonAnmelden = new JButton("Anmelden");
-		JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
+	
 
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
 
+		bestellungAbschicken.setEnabled(false);
+
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
-			JDialog ad = new AnmeldeDialog();
+			JDialog ad = new AnmeldeDialog(this);
 			ad.pack();
 		});
 		buttonRegistrieren.addActionListener(e -> {
 			JDialog rd = new RegistrierenDialog();
 			rd.pack();
 		});
-		
+
 		bestellungAbschicken.addActionListener(e -> {
+			FileReader fr = null;
+			BufferedWriter bw = null;
+			FileWriter fw = null;
+			String fileName = "Bestellung";
+			bestellungsNummerZähler += 1;
+			fileName = fileName + bestellungsNummerZähler;
+
+			File f = new File("src/undici/bestellungen/" + fileName);
+
+			try {
+				fw = new FileWriter(f);
+				bw = new BufferedWriter(fw);
+				String s;
+				s = textAreaTotal.getText();
+				s += textAreaBestellung.getText();
+				s += user.getName();
+				fw.write(s + "\n");
+
+				fw.flush();
+				bw.close();
+				fileName = fileName + 1;
+			} catch (IOException e1) {
 			
+
+			}
+
 		});
 
 		// HintergrundFarbe setzen
@@ -164,4 +199,10 @@ public class PizzaFrame extends JFrame {
 		setVisible(true);
 	}
 
+
+	public void angemeldet(Kunde kunde){
+		this.user = kunde;
+		bestellungAbschicken.setEnabled(true);
+	}
+	
 }

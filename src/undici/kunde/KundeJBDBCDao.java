@@ -129,6 +129,39 @@ public class KundeJBDBCDao implements KundeDao {
             }
             return false;
 }
+        public Kunde findKundeByEmailAndPassword(String email, String passwort) throws SQLException {
+			Kunde k = null;
+			//Querry bereit machen:		
+			String sql = "SELECT id, anrede, vorname, name, adresse_id, email, telefon, passwort  FROM undici.kunde WHERE email = ? and passwort = ?";
+			//Zur DB verbinden (Verbindung holen):
+			con = ConnectionFactory.getInstance().getConnection();
+			//Querry Information erstellen
+			PreparedStatement ps = con.prepareStatement(sql);
+			//Daten in die Querry Info abfüllen ps.set...
+			ps.setString(1, email);
+			ps.setString(2, passwort);
+			//Querry ausführen:		
+			ResultSet rs = ps.executeQuery();
+			//Daten aus Query Resultat verarbeiten:
+			while (rs.next()) {
+				k = new Kunde();
+				k.setId(rs.getInt("id"));
+				k.setAdresse_id(rs.getInt("adresse_id"));
+				k.setAnrede(rs.getString("anrede"));
+				k.setVorname(rs.getString("vorname"));
+				k.setName(rs.getString("name"));
+				try {
+					k.setEmail(rs.getString("email"));
+				} catch (EmailException e) {
+					e.printStackTrace();
+				}
+				k.setTelefon(rs.getString("telefon"));
+				k.setPasswort(rs.getString("passwort"));
+				break;
+			} // ps und rs schliessen
+			return k;
+		}
+        
         
 	}
 
