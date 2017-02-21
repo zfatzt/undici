@@ -1,6 +1,8 @@
 package undici.kunde;
 
-import undici.adresse.*;
+import undici.adresse.Adresse;
+import undici.excepitons.EmailException;
+import org.apache.commons.validator.EmailValidator;
 
 public class Kunde {
 	
@@ -57,8 +59,12 @@ public class Kunde {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String email) throws EmailException{
+		if(EmailValidator.getInstance().isValid(email)){
+			this.email = email;	
+		}else {
+			throw new EmailException("Diese Email ist ungültig: " + email);
+		}
 	}
 
 	public String getPasswort() {

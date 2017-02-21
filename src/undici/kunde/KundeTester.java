@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import undici.excepitons.EmailException;
 import undici.excepitons.PlzException;
 
 
@@ -35,7 +36,11 @@ public class KundeTester {
 				
 //				System.out.println("email > ");
 //				String email = sc.nextLine();
-				k.setEmail("tobias.fatzer@bluewin.ch");
+				try {
+					k.setEmail("tobias.fatzer@bluewin.ch");
+				} catch (EmailException e) {
+					
+				}
 				
 //				System.out.println("telefon > ");
 //				String telefon = sc.nextLine();

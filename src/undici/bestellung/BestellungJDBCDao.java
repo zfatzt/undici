@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import undici.adresse.Adresse;
+import undici.excepitons.EmailException;
 import undici.excepitons.PlzException;
 import undici.kunde.Kunde;
 import undici.undici.ConnectionFactory;
@@ -84,7 +85,12 @@ public class BestellungJDBCDao {
 			k.setAnrede(rs.getString("anrede"));
 			k.setVorname(rs.getString("vorname"));
 			k.setName(rs.getString("name"));
-			k.setEmail(rs.getString("email"));
+			try {
+				k.setEmail(rs.getString("email"));
+			} catch (EmailException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			k.setTelefon(rs.getString("telefon"));
 			k.setPasswort(rs.getString("passwort"));
 			k.setKreditkartenNr(rs.getString("kreditkartenNr"));

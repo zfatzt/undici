@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import undici.adresse.Adresse;
+import undici.excepitons.EmailException;
 import undici.excepitons.PlzException;
 import undici.undici.ConnectionFactory;
 
@@ -55,7 +56,11 @@ public class KundeJBDBCDao implements KundeDao {
 				k.setAnrede(rs.getString("anrede"));
 				k.setVorname("vorname");
 				k.setName("name");
-				k.setEmail("email");
+				try {
+					k.setEmail("email");
+				} catch (EmailException e) {
+					e.printStackTrace();
+				}
 				k.setTelefon("telefon");
 				k.setPasswort("passwort");
 				break;
@@ -82,7 +87,11 @@ public class KundeJBDBCDao implements KundeDao {
 				kunde1.setAnrede(rs.getString("anrede"));
 				kunde1.setVorname(rs.getString("vorname"));
 				kunde1.setName(rs.getString("name"));
-				kunde1.setEmail(rs.getString("email"));
+				try {
+					kunde1.setEmail(rs.getString("email"));
+				} catch (EmailException e1) {
+					e1.printStackTrace();
+				}
 				kunde1.setTelefon(rs.getString("telefon"));
 				kunde1.setPasswort(rs.getString("passwort"));
 				Adresse adresse = new Adresse();
@@ -101,5 +110,25 @@ public class KundeJBDBCDao implements KundeDao {
 			
 			return kunde;
 		}
+		
+        public boolean kannEinloggen(String email, String passwort) {
+
+            try {
+                        String sql = "select undici.kunde.email, undici.kunde.passwort from undici.kunde where email=? and passwort=?";
+                        con = ConnectionFactory.getInstance().getConnection();
+                        PreparedStatement ps = con.prepareStatement(sql);
+                        ps.setString(1, email);
+                        ps.setString(2, passwort);
+                        ResultSet rs = ps.executeQuery();
+                        rs.getFetchSize();
+                        if (rs.next()) {
+                                   return true;
+                        }
+            } catch (SQLException e) {
+                        throw new RuntimeException(e);
+            }
+            return false;
+}
+        
 	}
 

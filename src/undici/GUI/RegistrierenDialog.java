@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -18,6 +19,7 @@ import javax.swing.border.LineBorder;
 
 import undici.adresse.Adresse;
 import undici.adresse.AdresseJDBCDao;
+import undici.excepitons.EmailException;
 import undici.excepitons.PlzException;
 import undici.kunde.Kunde;
 import undici.kunde.KundeJBDBCDao;
@@ -48,6 +50,8 @@ public class RegistrierenDialog extends JDialog {
 		JPanel panelEmailWiederholen = new JPanel();
 		JPanel panelPasswort = new JPanel();
 		JPanel panelPasswortWiederholen = new JPanel();
+		JPanel panelError = new JPanel();
+		
 
 		// grï¿½ssen werden definiert
 		panelNorth.setPreferredSize(new Dimension(350, 490));
@@ -80,19 +84,8 @@ public class RegistrierenDialog extends JDialog {
 		JLabel labelPasswort = new JLabel("                     Passwort");
 		JLabel labelPasswortWiederholen = new JLabel("Passwort wiederholen");
 
+		//Schriftart und grösse des Titels setzen
 		label.setFont(new Font("Arial", 1, 30));
-		labelGeschlecht.setFont(new Font("Arial", 1, 12));
-		labelVorname.setFont(new Font("Arial", 1, 12));
-		labelName.setFont(new Font("Arial", 1, 12));
-		labelStrasse.setFont(new Font("Arial", 1, 12));
-		labelHausnummer.setFont(new Font("Arial", 1, 12));
-		labelOrt.setFont(new Font("Arial", 1, 12));
-		labelPLZ.setFont(new Font("Arial", 1, 12));
-		labelTelefon.setFont(new Font("Arial", 1, 12));
-		labelEmail.setFont(new Font("Arial", 1, 12));
-		labelEmailWiederholen.setFont(new Font("Arial", 1, 12));
-		labelPasswort.setFont(new Font("Arial", 1, 12));
-		labelPasswortWiederholen.setFont(new Font("Arial", 1, 12));
 
 		// Combobox
 		String[] AnredeArray = { "-", "Herr", "Frau" };
@@ -137,12 +130,9 @@ public class RegistrierenDialog extends JDialog {
 			setVisible(false);
 		});
 
+		
+		//actionListener
 		buttonRegristrieren.addActionListener(e -> {
-			System.out.println(eingabeVorname.getText());
-			System.out.println(eingabeName.getText());
-			System.out.println(eingabeEmail.getText());
-			System.out.println(eingabeStrasse.getText());
-			System.out.println(new String(eingabePasswort.getPassword()));
 
 			// einsetzen id db
 			Adresse adresse = new Adresse();
@@ -166,22 +156,34 @@ public class RegistrierenDialog extends JDialog {
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				kunde.setWohnAdresse(adresse);
 				kunde.setTelefon(eingabeTelefon.getText());
-				kunde.setEmail(eingabeEmail.getText());
-				kunde.setPasswort(new String(eingabePasswort.getPassword()));
-				int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
-				kunde.setAdresse_id(primaryKeyOfAdress);
-				dbKunde.insertKunde(kunde);
-				setVisible(false);
+				try {
+					kunde.setEmail(eingabeEmail.getText());
+				} catch (EmailException e1) {
+					JOptionPane.showMessageDialog(panelError,
+	                        e1,
+	                        "ungültige E-Mail adresse", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
+				if((eingabeEmail.getText().equals(eingabeEmailWiederholen.getText()) && (new String(eingabePasswort.getPassword()).equals( new String(eingabePasswortWiederholen.getPassword()))))){
+					
+					kunde.setPasswort(new String(eingabePasswort.getPassword()));
+					int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
+					kunde.setAdresse_id(primaryKeyOfAdress);
+					
+					dbKunde.insertKunde(kunde);
+					setVisible(false);
+				}else{
+					JOptionPane.showMessageDialog(panelError,
+	                        "Passwort oder E-Mail adresse stimmen nicht überein.",
+	                        "übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-
+				
 			}
 
 		});
