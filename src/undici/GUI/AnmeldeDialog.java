@@ -45,16 +45,25 @@ public class AnmeldeDialog extends JDialog {
 		panelPasswort.setPreferredSize(new Dimension(350, 40));
 
 		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
-
+		
+		panelMain.setBackground(Color.WHITE);
+		panelNorth.setBackground(Color.WHITE);
+		panelSouth.setBackground(Color.WHITE);
+		panelEmail.setBackground(Color.WHITE);
+		panelPasswort.setBackground(Color.WHITE);
+		
 		// JLabel
 		JLabel label = new JLabel("Anmeldung");
 		label.setFont(new Font("Arial", 1, 30));
+		label.setBackground(Color.WHITE);
 
 		JLabel labelEmail = new JLabel("      Email");
 		labelEmail.setFont(new Font("Arial", 1, 12));
+		labelEmail.setBackground(Color.WHITE);
 
 		JLabel labelPasswort = new JLabel("Passwort");
 		labelPasswort.setFont(new Font("Arial", 1, 12));
+		labelPasswort.setBackground(Color.WHITE);
 
 		// Eingabe Email
 		JTextField eingabeEmail = new JTextField("", 20);
@@ -111,6 +120,7 @@ public class AnmeldeDialog extends JDialog {
 		// panelMain hinzufügen
 		panelMain.add(panelNorth, BorderLayout.NORTH);
 		panelMain.add(panelSouth, BorderLayout.SOUTH);
+	
 
 		// Panel zu Frame hinzufügen
 		add(panelMain);

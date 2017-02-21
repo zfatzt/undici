@@ -66,7 +66,21 @@ public class RegistrierenDialog extends JDialog {
 		panelEmailWiederholen.setPreferredSize(new Dimension(350, 40));
 		panelPasswort.setPreferredSize(new Dimension(350, 40));
 		panelPasswortWiederholen.setPreferredSize(new Dimension(350, 40));
-
+		
+		panelNorth.setBackground(Color.WHITE);
+		panelSouth.setBackground(Color.WHITE);
+		panelGeschlecht.setBackground(Color.WHITE);
+		panelVorname.setBackground(Color.WHITE);
+		panelName.setBackground(Color.WHITE);
+		panelStrasse.setBackground(Color.WHITE);
+		panelOrt.setBackground(Color.WHITE);
+		panelTelefon.setBackground(Color.WHITE);
+		panelEmail.setBackground(Color.WHITE);
+		panelEmailWiederholen.setBackground(Color.WHITE);
+		panelPasswort.setBackground(Color.WHITE);
+		panelPasswortWiederholen.setBackground(Color.WHITE);
+		panelError.setBackground(Color.WHITE);
+		
 		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
 
 		// JLabels werden erstellt
@@ -84,7 +98,7 @@ public class RegistrierenDialog extends JDialog {
 		JLabel labelPasswort = new JLabel("                     Passwort");
 		JLabel labelPasswortWiederholen = new JLabel("Passwort wiederholen");
 
-		//Schriftart und grösse des Titels setzen
+		//Schriftart und grï¿½sse des Titels setzen
 		label.setFont(new Font("Arial", 1, 30));
 
 		// Combobox
@@ -165,7 +179,7 @@ public class RegistrierenDialog extends JDialog {
 				} catch (EmailException e1) {
 					JOptionPane.showMessageDialog(panelError,
 	                        e1,
-	                        "ungültige E-Mail adresse", JOptionPane.ERROR_MESSAGE);
+	                        "ungï¿½ltige E-Mail adresse", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 				if((eingabeEmail.getText().equals(eingabeEmailWiederholen.getText()) && (new String(eingabePasswort.getPassword()).equals( new String(eingabePasswortWiederholen.getPassword()))))){
@@ -178,8 +192,8 @@ public class RegistrierenDialog extends JDialog {
 					setVisible(false);
 				}else{
 					JOptionPane.showMessageDialog(panelError,
-	                        "Passwort oder E-Mail adresse stimmen nicht überein.",
-	                        "übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
+	                        "Passwort oder E-Mail adresse stimmen nicht ï¿½berein.",
+	                        "ï¿½bereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			} catch (SQLException e1) {

@@ -67,7 +67,7 @@ CREATE TABLE adresse (
 
     
   insert into pizza (pizza, preis, bild) values
-  ('Margheritta', 16,'src/undici/GUI/Bilder/margherita.jpg')
+  ('Margharita', 16,'src/undici/GUI/Bilder/margharita.jpg')
   ,('Funghi', 19,'src/undici/GUI/Bilder/funghi.jpg')
   ,('Salame', 20,'src/undici/GUI/Bilder/salame.jpg')
   ,('Salame Picante', 20,'src/undici/GUI/Bilder/salamePicante.jpg')
@@ -113,16 +113,17 @@ foreign key(pizza_id) references undici.pizza(id));
     CREATE TABLE getraenk (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   getraenk varchar(45) not null,
-  preis double not null);
+  preis double not null,
+  bild varchar(55) not null);
   
-  insert into getraenk(getraenk, preis) values
-  ('Coca Cola', 4)
-  ,('Coca-Cola zero', 4)
-  ,('Coca-Cola light', 4)
-  ,('Fanta', 4)
-  ,('Sprite', 4)
-  ,('Valser Wasser', 2)
-  ,('Rivella Rot', 2);
+  insert into getraenk(getraenk, preis, bild) values
+  ('Coca Cola', 4,'src/undici/GUI/Bilder/cocaCola.png')
+  ,('Coca-Cola zero', 4,'src/undici/GUI/Bilder/cocaColaZero.jpg')
+  ,('Coca-Cola light', 4,'src/undici/GUI/Bilder/cocaColaLight.png')
+  ,('Fanta', 4,'src/undici/GUI/Bilder/fanta.jpg')
+  ,('Sprite', 4,'src/undici/GUI/Bilder/sprite.jpg')
+  ,('Valser Wasser', 2,'src/undici/GUI/Bilder/valserWasser.png')
+  ,('Rivella Rot', 2,'src/undici/GUI/Bilder/rivellaRot.png');
     
     CREATE TABLE bestellung (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -136,4 +137,3 @@ foreign key(pizza_id) references undici.pizza(id));
 	foreign key(getraenk_id) references undici.getraenk(id),
     foreign key(pizza_id) references undici.pizza(id));
     
-  
