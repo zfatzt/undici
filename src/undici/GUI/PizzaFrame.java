@@ -90,7 +90,7 @@ public class PizzaFrame extends JFrame {
 		JTextArea textAreaTotal = new JTextArea(total);
 		textAreaTotal.setEditable(false);
 		textAreaTotal.setPreferredSize(new Dimension(210, 630));
-		textAreaTotal.setPreferredSize(new Dimension(220, 150));
+		textAreaTotal.setPreferredSize(new Dimension(220, 100));
 		textAreaTotal.setBorder(totalBorder);
 
 		// JLabel
@@ -99,9 +99,11 @@ public class PizzaFrame extends JFrame {
 		// Button
 		JButton buttonRegistrieren = new JButton("Registrieren");
 		JButton buttonAnmelden = new JButton("Anmelden");
+		JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
 
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
+		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
 
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
@@ -112,11 +114,16 @@ public class PizzaFrame extends JFrame {
 			JDialog rd = new RegistrierenDialog();
 			rd.pack();
 		});
+		
+		bestellungAbschicken.addActionListener(e -> {
+			
+		});
 
 		// HintergrundFarbe setzen
 		panelNorth.setBackground(Color.WHITE);
 		buttonAnmelden.setBackground(Color.WHITE);
 		buttonRegistrieren.setBackground(Color.WHITE);
+		bestellungAbschicken.setBackground(Color.WHITE);
 
 		// TabbedPane
 		JTabbedPane tabbedPane = new JTabbedPane();
@@ -139,6 +146,7 @@ public class PizzaFrame extends JFrame {
 
 		panelLeft.add(panelBestellung);
 		panelLeft.add(textAreaTotal);
+		panelLeft.add(bestellungAbschicken);
 
 		panelCenter.add(tabbedPane);
 
