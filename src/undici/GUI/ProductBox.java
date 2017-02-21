@@ -22,54 +22,53 @@ public class ProductBox extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("rawtypes")
-	public ProductBox(String name, double preis, List<String> zutaten, String pfad, JTextArea area, JTextArea total) throws IOException, SQLException {
-		
-		//PreisLabel
+	public ProductBox(String name, double preis, List<String> zutaten, String pfad, JTextArea area, JTextArea total)
+			throws IOException, SQLException {
+
+		// PreisLabel
 		JLabel labelPreis = new JLabel("" + preis + " Fr.");
 
-		//AnzahlPizzen
+		// AnzahlPizzen
 		String[] anzahl = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 		@SuppressWarnings("unchecked")
 		JComboBox comboBoxAnzahl = new JComboBox(anzahl);
 		comboBoxAnzahl.setBackground(Color.white);
-		
-		//BestellButton
+
+		// BestellButton
 		JButton buttonBestellen = new JButton("Bestellen");
-		
-		
-		//ActionListener
+
+		// ActionListener
 		buttonBestellen.addActionListener(e -> {
-			
-			
-			//BestellungTextArea erstellt
+
+			// BestellungTextArea erstellt
 			int anzahlPizzen = (comboBoxAnzahl.getSelectedIndex() + 1);
 			System.out.println(name + " " + anzahlPizzen + " " + preis);
 			area.append(name + "\t" + anzahlPizzen + "\t" + preis + "\n");
-			
-			//TotalTextArea erstellt
-			if(total.getText().equals("")) total.setText("total > \t0.0");
-			double gesamtPreis = Double.parseDouble(total.getText().substring(8));
-			gesamtPreis = gesamtPreis + (anzahlPizzen * preis);
-			total.setText( "total > \t" + gesamtPreis + "\n");			
-			
-		});
-																												
 
-		//Grenze
+			// TotalTextArea erstellt
+			if (total.getText().equals(""))
+				total.setText(" \t0.0");
+			double gesamtPreis = Double.parseDouble(total.getText().substring(4));
+			gesamtPreis = gesamtPreis + (anzahlPizzen * preis);
+			total.setText("Fr. \t" + gesamtPreis + "\n");
+
+		});
+
+		// Grenze
 		TitledBorder border = BorderFactory.createTitledBorder(name);
 		border.setTitleJustification(TitledBorder.LEFT);
 
-		//PizzaBilder
+		// PizzaBilder
 		BufferedImage myPicture = ImageIO.read(new File(pfad));
 		JLabel labelBild = new JLabel(new ImageIcon(myPicture));
 
-		//ZutatenListe
+		// ZutatenListe
 		String[] zutatenArr = new String[zutaten.size()];
 		zutatenArr = zutaten.toArray(zutatenArr);
 		@SuppressWarnings("unchecked")
 		JList zutaten2 = new JList(zutatenArr);
 
-		//Alles zu JPanel Hinzufügen
+		// Alles zu JPanel Hinzufï¿½gen
 		setBackground(Color.WHITE);
 		setBorder(border);
 		setVisible(true);
@@ -78,7 +77,6 @@ public class ProductBox extends JPanel {
 		add(labelPreis);
 		add(comboBoxAnzahl);
 		add(buttonBestellen);
-		
 
 	}
 

@@ -22,10 +22,10 @@ public class PizzaBoxScrollPane extends JPanel {
 	public PizzaBoxScrollPane(JTextArea area, JTextArea total) throws IOException {
 		super();
 		
-		//höhe, breite und Anzahl Pizzen sichtbar auf einer seite
+		//hï¿½he, breite und Anzahl Pizzen sichtbar auf einer seite
 		int numberOfVisibleRows = 5;
 		int WidthOfPizzaBox = 540;
-		int HightOfPizzaBox = 140;
+		int HightOfPizzaBox = 155;
 		
 		BoxLayout boxLayout = new BoxLayout(content, BoxLayout.Y_AXIS);
 		content.setLayout(boxLayout);

@@ -55,35 +55,43 @@ public class PizzaFrame extends JFrame {
 		JPanel panelBestellung = new JPanel();
 		JPanel panelGetraenke = new JPanel();
 
-		
-		//grˆsse setzen
+		panelNorth.setBackground(Color.WHITE);
+		panelCenter.setBackground(Color.WHITE);
+		panelLeft.setBackground(Color.WHITE);
+		panelAnmeldung.setBackground(Color.WHITE);
+		panelAnmeldenButton.setBackground(Color.WHITE);
+		panelRegistrierenButton.setBackground(Color.WHITE);
+		panelLogo.setBackground(Color.WHITE);
+		panelBestellung.setBackground(Color.WHITE);
+		panelGetraenke.setBackground(Color.WHITE);
+
+		// groesse setzen
 		panelNorth.setPreferredSize(new Dimension(550, 150));
 		panelCenter.setPreferredSize(new Dimension(550, 850));
 		panelLeft.setPreferredSize(new Dimension(220, 1000));
 
 		panelAnmeldung.setPreferredSize(new Dimension(220, 150));
 		panelAnmeldenButton.setPreferredSize(new Dimension(210, 50));
-		panelBestellung.setPreferredSize(new Dimension(220, 660));
+		panelBestellung.setPreferredSize(new Dimension(220, 650));
 
 		panelGetraenke.setPreferredSize(new Dimension(550, 785));
 		panelAnmeldung.setBorder(anmeldenBorder);
 		panelBestellung.setBorder(bestellungBorder);
 
-		//BestellungsTextArea 
+		// BestellungsTextArea
 		String textBestellung = "";
 		JTextArea textAreaBestellung = new JTextArea(textBestellung);
 		textAreaBestellung.setEditable(false);
-		textAreaBestellung.setPreferredSize(new Dimension(210, 630));
+		textAreaBestellung.setPreferredSize(new Dimension(210, 620));
 		panelBestellung.add(textAreaBestellung);
 
-		//TotalPreisTextArea
+		// TotalPreisTextArea
 		String total = "";
 		JTextArea textAreaTotal = new JTextArea(total);
 		textAreaTotal.setEditable(false);
 		textAreaTotal.setPreferredSize(new Dimension(210, 630));
 		textAreaTotal.setPreferredSize(new Dimension(220, 150));
 		textAreaTotal.setBorder(totalBorder);
-		panelLeft.add(textAreaTotal);
 
 		// JLabel
 		JLabel labelLogo = new JLabel(new ImageIcon(myPicture));
@@ -92,11 +100,10 @@ public class PizzaFrame extends JFrame {
 		JButton buttonRegistrieren = new JButton("Registrieren");
 		JButton buttonAnmelden = new JButton("Anmelden");
 
-
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 
-		//ActionListener
+		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
 			JDialog ad = new AnmeldeDialog();
 			ad.pack();
@@ -106,13 +113,11 @@ public class PizzaFrame extends JFrame {
 			rd.pack();
 		});
 
+		// HintergrundFarbe setzen
+		panelNorth.setBackground(Color.WHITE);
+		buttonAnmelden.setBackground(Color.WHITE);
+		buttonRegistrieren.setBackground(Color.WHITE);
 
-		//HintergrundFarbe setzen
-		panelNorth.setBackground(Color.BLUE);
-		buttonAnmelden.setBackground(Color.white);
-		buttonRegistrieren.setBackground(Color.white);
-
-		
 		// TabbedPane
 		JTabbedPane tabbedPane = new JTabbedPane();
 
@@ -120,7 +125,7 @@ public class PizzaFrame extends JFrame {
 		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(textAreaBestellung, textAreaTotal);
 
 		tabbedPane.addTab("Pizza", pizzaBox);
-		tabbedPane.addTab("Getr‰nke", panelGetraenke);
+		tabbedPane.addTab("Getr√§nke", panelGetraenke);
 
 		// Panel hinzufuegen
 		panelLogo.add(labelLogo);
@@ -133,6 +138,7 @@ public class PizzaFrame extends JFrame {
 		panelAnmeldung.add(panelRegistrierenButton);
 
 		panelLeft.add(panelBestellung);
+		panelLeft.add(textAreaTotal);
 
 		panelCenter.add(tabbedPane);
 
