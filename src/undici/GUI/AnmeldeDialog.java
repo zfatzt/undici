@@ -9,10 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import undici.kunde.KundeJBDBCDao;
 
 public class AnmeldeDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -34,6 +37,7 @@ public class AnmeldeDialog extends JDialog {
 		JPanel panelEmail = new JPanel();
 		JPanel panelPasswort = new JPanel();
 		JPanel panelMain = new JPanel();
+		JPanel panelError = new JPanel();
 
 		panelNorth.setPreferredSize(new Dimension(350, 130));
 		panelSouth.setPreferredSize(new Dimension(350, 50));
@@ -71,6 +75,18 @@ public class AnmeldeDialog extends JDialog {
 
 		buttonExit.addActionListener(e -> {
 			setVisible(false);
+		});
+		
+		buttonEinloggen.addActionListener(e -> {
+			KundeJBDBCDao kunde = new KundeJBDBCDao();
+            if (kunde.kannEinloggen(eingabeEmail.getText(), new String(eingabePasswort.getPassword()))) {
+            	
+} else {
+                JOptionPane.showMessageDialog(panelError,
+                                               "Passwort stimmt nicht mit dem Benutzername überein oder Sie sind noch nicht Registriert",
+                                               "Inane Fehler", JOptionPane.ERROR_MESSAGE);
+}
+
 		});
 
 		buttonExit.setBackground(Color.white);

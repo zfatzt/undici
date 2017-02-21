@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 
 import undici.adresse.Adresse;
 import undici.adresse.AdresseJDBCDao;
+import undici.excepitons.EmailException;
 import undici.excepitons.PlzException;
 import undici.kunde.Kunde;
 import undici.kunde.KundeJBDBCDao;
@@ -48,6 +49,7 @@ public class RegistrierenDialog extends JDialog {
 		JPanel panelEmailWiederholen = new JPanel();
 		JPanel panelPasswort = new JPanel();
 		JPanel panelPasswortWiederholen = new JPanel();
+		
 
 		// gr�ssen werden definiert
 		panelNorth.setPreferredSize(new Dimension(350, 490));
@@ -166,12 +168,15 @@ public class RegistrierenDialog extends JDialog {
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				kunde.setWohnAdresse(adresse);
 				kunde.setTelefon(eingabeTelefon.getText());
-				kunde.setEmail(eingabeEmail.getText());
+				try {
+					kunde.setEmail(eingabeEmail.getText());
+				} catch (EmailException e1) {
+					e1.printStackTrace();
+				}
 				kunde.setPasswort(new String(eingabePasswort.getPassword()));
 				int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
 				kunde.setAdresse_id(primaryKeyOfAdress);
@@ -179,8 +184,6 @@ public class RegistrierenDialog extends JDialog {
 				setVisible(false);
 				
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 
 			}
 
