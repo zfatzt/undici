@@ -173,13 +173,11 @@ public class RegistrierenDialog extends JDialog {
 				kunde.setTelefon(eingabeTelefon.getText());
 				kunde.setEmail(eingabeEmail.getText());
 				kunde.setPasswort(new String(eingabePasswort.getPassword()));
-				
-				
 				int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
 				kunde.setAdresse_id(primaryKeyOfAdress);
-				
 				dbKunde.insertKunde(kunde);
-
+				setVisible(false);
+				
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
