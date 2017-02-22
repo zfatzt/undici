@@ -133,7 +133,6 @@ public class PizzaFrame extends JFrame {
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
 
-		bestellungAbschicken.setEnabled(false);
 
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
@@ -146,31 +145,34 @@ public class PizzaFrame extends JFrame {
 		});
 
 		bestellungAbschicken.addActionListener(e -> {
-			FileReader fr = null;
-			BufferedWriter bw = null;
-			FileWriter fw = null;
-			String fileName = "Bestellung";
-			bestellungsNummerZ�hler += 1;
-			fileName = fileName + bestellungsNummerZ�hler;
-
-			File f = new File("src/undici/bestellungen/" + fileName);
-
-			try {
-				fw = new FileWriter(f);
-				bw = new BufferedWriter(fw);
-				String s;
-				s =user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n" + user.getWohnAdresse().toString();
-				s +=  textAreaTotal.getText();
-				s += textAreaBestellung.getText();
-				fw.write(s + "\n");
-
-				fw.flush();
-				bw.close();
-				fileName = fileName + 1;
-			} catch (IOException e1) {
 			
-
-			}
+			
+			
+//			FileReader fr = null;
+//			BufferedWriter bw = null;
+//			FileWriter fw = null;
+//			String fileName = "Bestellung";
+//			bestellungsNummerZähler += 1;
+//			fileName = fileName + bestellungsNummerZähler;
+//
+//			File f = new File("src/undici/bestellungen/" + fileName);
+//
+//			try {
+//				fw = new FileWriter(f);
+//				bw = new BufferedWriter(fw);
+//				String s;
+//				s =user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n" + user.getWohnAdresse().toString();
+//				s +=  textAreaTotal.getText();
+//				s += textAreaBestellung.getText();
+//				fw.write(s + "\n");
+//
+//				fw.flush();
+//				bw.close();
+//				fileName = fileName + 1;
+//			} catch (IOException e1) {
+//			
+//
+//			}
 
 		});
 

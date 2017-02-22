@@ -19,10 +19,10 @@ import javax.swing.border.LineBorder;
 import undici.kunde.Kunde;
 import undici.kunde.KundeJBDBCDao;
 
-public class AnmeldeDialog extends JDialog {
+public class ZahlungsDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	public AnmeldeDialog(PizzaFrame pizzaFrame) {
+	public ZahlungsDialog(PizzaFrame pizzaFrame) {
 		Dimension d = new Dimension(350, 180);
 		// public boolean istEingelogt = true;
 
