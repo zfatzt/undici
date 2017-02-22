@@ -172,7 +172,7 @@ public class RegistrierenDialog extends JDialog {
 				} catch (PlzException e1) {
 					JOptionPane.showMessageDialog(panelError,
 	                        e1,
-	                        "ung�ltige E-Mail adresse", JOptionPane.ERROR_MESSAGE);
+	                        "PLZ", JOptionPane.ERROR_MESSAGE);
 				}
 				kunde.setWohnAdresse(adresse);
 				kunde.setTelefon(eingabeTelefon.getText());
