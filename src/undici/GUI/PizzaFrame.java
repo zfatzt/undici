@@ -145,34 +145,34 @@ public class PizzaFrame extends JFrame {
 		});
 
 		bestellungAbschicken.addActionListener(e -> {
+
 			
 			
+			FileReader fr = null;
+			BufferedWriter bw = null;
+			FileWriter fw = null;
+			String fileName = "Bestellung";
+			bestellungsNummerZähler += 1;
+			fileName = fileName + bestellungsNummerZähler;
+
+			File f = new File("src/undici/bestellungen/" + fileName);
+
+			try {
+				fw = new FileWriter(f);
+				bw = new BufferedWriter(fw);
+				String s;
+				s =user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n" + user.getWohnAdresse().toString();
+				s +=  textAreaTotal.getText();
+				s += textAreaBestellung.getText();
+				fw.write(s + "\n");
+
+				fw.flush();
+				bw.close();
+				fileName = fileName + 1;
+			} catch (IOException e1) {
 			
-//			FileReader fr = null;
-//			BufferedWriter bw = null;
-//			FileWriter fw = null;
-//			String fileName = "Bestellung";
-//			bestellungsNummerZähler += 1;
-//			fileName = fileName + bestellungsNummerZähler;
-//
-//			File f = new File("src/undici/bestellungen/" + fileName);
-//
-//			try {
-//				fw = new FileWriter(f);
-//				bw = new BufferedWriter(fw);
-//				String s;
-//				s =user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n" + user.getWohnAdresse().toString();
-//				s +=  textAreaTotal.getText();
-//				s += textAreaBestellung.getText();
-//				fw.write(s + "\n");
-//
-//				fw.flush();
-//				bw.close();
-//				fileName = fileName + 1;
-//			} catch (IOException e1) {
-//			
-//
-//			}
+
+			}
 
 		});
 
@@ -231,7 +231,7 @@ public class PizzaFrame extends JFrame {
 		textAreaAngemeldet.setVisible(true);
 		textAreaAngemeldet.setText("Guten Tag, Sie sind angemeldet als: \n"+ user.getAnrede() + " " + user.getVorname() + " " + user.getName());
 		textAreaAngemeldet.setFont(new Font("Arial", 1, 12));
-		
+		textAreaAngemeldet.setEditable(false);
 		
 		
 	}
