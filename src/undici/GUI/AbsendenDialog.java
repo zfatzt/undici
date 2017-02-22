@@ -15,7 +15,7 @@ import javax.swing.border.LineBorder;
 public class AbsendenDialog extends JDialog {
 	private static final long serialVersionUID = 2L;
 
-	public AbsendenDialog() {
+	public AbsendenDialog(PizzaFrame pizzaFrame) {
 		Dimension d = new Dimension(350, 180);
 		// JWindow
 		setTitle("Absenden");
@@ -62,13 +62,15 @@ public class AbsendenDialog extends JDialog {
 		buttonExit.addActionListener(e -> {
 			setVisible(false);
 		});
-//		buttonAnmelden.addActionListener(e -> {
-//			JDialog ad = new AnmeldeDialog();
-//			ad.pack();
-//		});
+		buttonAnmelden.addActionListener(e -> {
+			JDialog ad = new AnmeldeDialog(pizzaFrame);
+			ad.pack();
+			setVisible(false);
+		});
 		buttonRegistrieren.addActionListener(e -> {
 			JDialog rd = new RegistrierenDialog();
 			rd.pack();
+			setVisible(false);
 		});
 
 		// Panel hinzufügen

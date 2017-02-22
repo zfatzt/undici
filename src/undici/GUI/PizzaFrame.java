@@ -29,7 +29,6 @@ import javax.swing.text.StyledDocument;
 
 import undici.kunde.Kunde;
 
-
 public class PizzaFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// Button
@@ -39,7 +38,7 @@ public class PizzaFrame extends JFrame {
 
 	private int bestellungsNummerZähler = 0;
 	private Kunde user;
-	
+
 	// Jpanel erstellen
 	JPanel panelNorth = new JPanel(new BorderLayout());
 	JPanel panelCenter = new JPanel();
@@ -51,7 +50,7 @@ public class PizzaFrame extends JFrame {
 	JPanel panelBestellung = new JPanel();
 	JPanel panelGetraenke = new JPanel();
 	JTextPane textAreaAngemeldet = new JTextPane();
-	
+
 	public PizzaFrame() throws IOException {
 		Dimension d = new Dimension(800, 1000);
 
@@ -73,9 +72,6 @@ public class PizzaFrame extends JFrame {
 
 		TitledBorder totalBorder = BorderFactory.createTitledBorder("Total");
 		totalBorder.setTitleJustification(TitledBorder.LEFT);
-		
-
-
 
 		panelNorth.setBackground(Color.WHITE);
 		panelCenter.setBackground(Color.WHITE);
@@ -118,26 +114,24 @@ public class PizzaFrame extends JFrame {
 		// JLabel
 		JLabel labelLogo = new JLabel(new ImageIcon(myPicture));
 
-		//labelAngemeldet
+		// labelAngemeldet
 		textAreaAngemeldet.setVisible(false);
 		StyledDocument doc = textAreaAngemeldet.getStyledDocument();
-		
+
 		SimpleAttributeSet center = new SimpleAttributeSet();
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
 		doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
-
-	
-		//Buttons
+		// Buttons
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
-
-
+		
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
 			JDialog ad = new AnmeldeDialog(this);
 			ad.pack();
+			
 		});
 		buttonRegistrieren.addActionListener(e -> {
 			JDialog rd = new RegistrierenDialog();
@@ -145,7 +139,12 @@ public class PizzaFrame extends JFrame {
 		});
 
 		bestellungAbschicken.addActionListener(e -> {
-
+			if (user == null){
+				JDialog abd = new AbsendenDialog(this);
+				abd.pack();
+			}
+			JDialog abd = new ZahlungsDialog(this);
+			abd.pack();
 			
 			
 			FileReader fr = null;
@@ -161,8 +160,9 @@ public class PizzaFrame extends JFrame {
 				fw = new FileWriter(f);
 				bw = new BufferedWriter(fw);
 				String s;
-				s =user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n" + user.getWohnAdresse().toString();
-				s +=  textAreaTotal.getText();
+				s = user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n"
+						+ user.getWohnAdresse().toString();
+				s += textAreaTotal.getText();
 				s += textAreaBestellung.getText();
 				fw.write(s + "\n");
 
@@ -170,7 +170,6 @@ public class PizzaFrame extends JFrame {
 				bw.close();
 				fileName = fileName + 1;
 			} catch (IOException e1) {
-			
 
 			}
 
@@ -184,7 +183,7 @@ public class PizzaFrame extends JFrame {
 
 		// TabbedPane
 		JTabbedPane tabbedPane = new JTabbedPane();
-		
+
 		// Pizza
 		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(textAreaBestellung, textAreaTotal);
 		GetraenkeBoxScrollPane getraenkeBox = new GetraenkeBoxScrollPane(textAreaBestellung, textAreaTotal);
@@ -222,18 +221,17 @@ public class PizzaFrame extends JFrame {
 		setVisible(true);
 	}
 
-
-	public void angemeldet(Kunde kunde){
+	public void angemeldet(Kunde kunde) {
 		this.user = kunde;
 		buttonAnmelden.setVisible(false);
 		buttonRegistrieren.setVisible(false);
-		
+
 		textAreaAngemeldet.setVisible(true);
-		textAreaAngemeldet.setText("Guten Tag, Sie sind angemeldet als: \n"+ user.getAnrede() + " " + user.getVorname() + " " + user.getName());
+		textAreaAngemeldet.setText("Guten Tag, Sie sind angemeldet als: \n" + user.getAnrede() + " " + user.getVorname()
+				+ " " + user.getName());
 		textAreaAngemeldet.setFont(new Font("Arial", 1, 12));
 		textAreaAngemeldet.setEditable(false);
-		
-		
+
 	}
-	
+
 }

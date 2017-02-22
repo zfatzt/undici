@@ -93,7 +93,6 @@ public class AnmeldeDialog extends JDialog {
 			KundeJBDBCDao kunde = new KundeJBDBCDao();
 				
 			if (kunde.kannEinloggen(eingabeEmail.getText(), new String(eingabePasswort.getPassword()))) {
-				System.out.println("Hi");
 				setVisible(false);
 				Kunde user;
 				try {
