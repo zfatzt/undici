@@ -3,6 +3,7 @@ package undici.GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,16 +21,37 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import undici.kunde.Kunde;
 
 
 public class PizzaFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
+	// Button
+	JButton buttonRegistrieren = new JButton("Registrieren");
+	JButton buttonAnmelden = new JButton("Anmelden");
 	JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
+
 	private int bestellungsNummerZähler = 0;
 	private Kunde user;
+	
+	// Jpanel erstellen
+	JPanel panelNorth = new JPanel(new BorderLayout());
+	JPanel panelCenter = new JPanel();
+	JPanel panelLeft = new JPanel();
+	JPanel panelAnmeldung = new JPanel();
+	JPanel panelAnmeldenButton = new JPanel();
+	JPanel panelRegistrierenButton = new JPanel();
+	JPanel panelLogo = new JPanel();
+	JPanel panelBestellung = new JPanel();
+	JPanel panelGetraenke = new JPanel();
+	JTextPane textAreaAngemeldet = new JTextPane();
+	
 	public PizzaFrame() throws IOException {
 		Dimension d = new Dimension(800, 1000);
 
@@ -51,17 +73,9 @@ public class PizzaFrame extends JFrame {
 
 		TitledBorder totalBorder = BorderFactory.createTitledBorder("Total");
 		totalBorder.setTitleJustification(TitledBorder.LEFT);
+		
 
-		// Jpanel erstellen
-		JPanel panelNorth = new JPanel(new BorderLayout());
-		JPanel panelCenter = new JPanel();
-		JPanel panelLeft = new JPanel();
-		JPanel panelAnmeldung = new JPanel();
-		JPanel panelAnmeldenButton = new JPanel();
-		JPanel panelRegistrierenButton = new JPanel();
-		JPanel panelLogo = new JPanel();
-		JPanel panelBestellung = new JPanel();
-		JPanel panelGetraenke = new JPanel();
+
 
 		panelNorth.setBackground(Color.WHITE);
 		panelCenter.setBackground(Color.WHITE);
@@ -104,11 +118,17 @@ public class PizzaFrame extends JFrame {
 		// JLabel
 		JLabel labelLogo = new JLabel(new ImageIcon(myPicture));
 
-		// Button
-		JButton buttonRegistrieren = new JButton("Registrieren");
-		JButton buttonAnmelden = new JButton("Anmelden");
-	
+		//labelAngemeldet
+		textAreaAngemeldet.setVisible(false);
+		StyledDocument doc = textAreaAngemeldet.getStyledDocument();
+		
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
+
+	
+		//Buttons
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
@@ -130,8 +150,8 @@ public class PizzaFrame extends JFrame {
 			BufferedWriter bw = null;
 			FileWriter fw = null;
 			String fileName = "Bestellung";
-			bestellungsNummerZähler += 1;
-			fileName = fileName + bestellungsNummerZähler;
+			bestellungsNummerZ�hler += 1;
+			fileName = fileName + bestellungsNummerZ�hler;
 
 			File f = new File("src/undici/bestellungen/" + fileName);
 
@@ -139,9 +159,9 @@ public class PizzaFrame extends JFrame {
 				fw = new FileWriter(f);
 				bw = new BufferedWriter(fw);
 				String s;
-				s = textAreaTotal.getText();
+				s =user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n" + user.getWohnAdresse().toString();
+				s +=  textAreaTotal.getText();
 				s += textAreaBestellung.getText();
-				s += user.getName();
 				fw.write(s + "\n");
 
 				fw.flush();
@@ -179,6 +199,7 @@ public class PizzaFrame extends JFrame {
 
 		panelAnmeldung.add(panelAnmeldenButton);
 		panelAnmeldung.add(panelRegistrierenButton);
+		panelAnmeldung.add(textAreaAngemeldet);
 
 		panelLeft.add(panelBestellung);
 		panelLeft.add(textAreaTotal);
@@ -202,6 +223,14 @@ public class PizzaFrame extends JFrame {
 
 	public void angemeldet(Kunde kunde){
 		this.user = kunde;
+		buttonAnmelden.setVisible(false);
+		buttonRegistrieren.setVisible(false);
+		
+		textAreaAngemeldet.setVisible(true);
+		textAreaAngemeldet.setText("Guten Tag, Sie sind angemeldet als: \n"+ user.getAnrede() + " " + user.getVorname() + " " + user.getName());
+		textAreaAngemeldet.setFont(new Font("Arial", 1, 12));
+		
+		
 		
 	}
 	
