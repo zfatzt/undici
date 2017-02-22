@@ -19,6 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 public class ProductBox extends JPanel {
+	private int allePizzen = 0;
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("rawtypes")
@@ -29,7 +30,7 @@ public class ProductBox extends JPanel {
 		JLabel labelPreis = new JLabel("" + preis + " Fr.");
 
 		// AnzahlPizzen
-		String[] anzahl = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+		String[] anzahl = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 		@SuppressWarnings("unchecked")
 		JComboBox comboBoxAnzahl = new JComboBox(anzahl);
 		comboBoxAnzahl.setBackground(Color.white);
@@ -41,9 +42,19 @@ public class ProductBox extends JPanel {
 		buttonBestellen.addActionListener(e -> {
 
 			// BestellungTextArea erstellt
-			int anzahlPizzen = (comboBoxAnzahl.getSelectedIndex() + 1);
+			
+			int anzahlPizzen = (comboBoxAnzahl.getSelectedIndex());
+			if(comboBoxAnzahl.getSelectedIndex() == 0){
+				anzahlPizzen = comboBoxAnzahl.getSelectedIndex();
+				
+				
+				area.append(name + "\t" + anzahlPizzen + "\t" + preis + "\n");
+			
+			}else{
+			
 			System.out.println(name + " " + anzahlPizzen + " " + preis);
-			area.append(name + "\t" + anzahlPizzen + "\t" + preis + "\n");
+			area.append(name + "\t" + anzahlPizzen + "\t" + preis + "\n");}
+			
 
 			// TotalTextArea erstellt
 			if (total.getText().equals(""))

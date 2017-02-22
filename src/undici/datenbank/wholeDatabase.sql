@@ -123,7 +123,7 @@ foreign key(pizza_id) references undici.pizza(id));
   ,('Fanta', 4,'src/undici/GUI/Bilder/fanta.jpg')
   ,('Sprite', 4,'src/undici/GUI/Bilder/sprite.jpg')
   ,('Valser Wasser', 2,'src/undici/GUI/Bilder/valserWasser.png')
-  ,('Rivella Rot', 2,'src/undici/GUI/Bilder/rivellaRot.png');
+  ,('Rivella Rot', 4,'src/undici/GUI/Bilder/rivellaRot.png');
     
     CREATE TABLE bestellung (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
