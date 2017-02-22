@@ -51,7 +51,6 @@ public class RegistrierenDialog extends JDialog {
 		JPanel panelPasswort = new JPanel();
 		JPanel panelPasswortWiederholen = new JPanel();
 		JPanel panelError = new JPanel();
-		
 
 		// gr�ssen werden definiert
 		panelNorth.setPreferredSize(new Dimension(350, 490));
@@ -66,7 +65,7 @@ public class RegistrierenDialog extends JDialog {
 		panelEmailWiederholen.setPreferredSize(new Dimension(350, 40));
 		panelPasswort.setPreferredSize(new Dimension(350, 40));
 		panelPasswortWiederholen.setPreferredSize(new Dimension(350, 40));
-		
+
 		panelNorth.setBackground(Color.WHITE);
 		panelSouth.setBackground(Color.WHITE);
 		panelGeschlecht.setBackground(Color.WHITE);
@@ -80,7 +79,7 @@ public class RegistrierenDialog extends JDialog {
 		panelPasswort.setBackground(Color.WHITE);
 		panelPasswortWiederholen.setBackground(Color.WHITE);
 		panelError.setBackground(Color.WHITE);
-		
+
 		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
 
 		// JLabels werden erstellt
@@ -98,7 +97,7 @@ public class RegistrierenDialog extends JDialog {
 		JLabel labelPasswort = new JLabel("                     Passwort");
 		JLabel labelPasswortWiederholen = new JLabel("Passwort wiederholen");
 
-		//Schriftart und gr�sse des Titels setzen
+		// Schriftart und gr�sse des Titels setzen
 		label.setFont(new Font("Arial", 1, 30));
 
 		// Combobox
@@ -144,8 +143,7 @@ public class RegistrierenDialog extends JDialog {
 			setVisible(false);
 		});
 
-		
-		//actionListener
+		// actionListener
 		buttonRegristrieren.addActionListener(e -> {
 
 			// einsetzen id db
@@ -153,7 +151,7 @@ public class RegistrierenDialog extends JDialog {
 			Kunde kunde = new Kunde();
 			KundeJBDBCDao dbKunde = new KundeJBDBCDao();
 			AdresseJDBCDao dbAdresse = new AdresseJDBCDao();
-			
+
 			try {
 				if (geschlecht.getSelectedIndex() == 1) {
 					kunde.setAnrede("Herr");
@@ -170,36 +168,35 @@ public class RegistrierenDialog extends JDialog {
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
-					JOptionPane.showMessageDialog(panelError,
-	                        e1,
-	                        "PLZ", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panelError, e1, "ung�ltige E-Mail adresse",
+							JOptionPane.ERROR_MESSAGE);
 				}
 				kunde.setWohnAdresse(adresse);
 				kunde.setTelefon(eingabeTelefon.getText());
 				try {
 					kunde.setEmail(eingabeEmail.getText());
 				} catch (EmailException e1) {
-					JOptionPane.showMessageDialog(panelError,
-	                        e1,
-	                        "ung�ltige E-Mail adresse", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panelError, e1, "ungültige E-Mail adresse",
+							JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
-				if((eingabeEmail.getText().equals(eingabeEmailWiederholen.getText()) && (new String(eingabePasswort.getPassword()).equals( new String(eingabePasswortWiederholen.getPassword()))))){
-					
+				if ((eingabeEmail.getText().equals(eingabeEmailWiederholen.getText())
+						&& (new String(eingabePasswort.getPassword())
+								.equals(new String(eingabePasswortWiederholen.getPassword()))))) {
+
 					kunde.setPasswort(new String(eingabePasswort.getPassword()));
 					int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
 					kunde.setAdresse_id(primaryKeyOfAdress);
-					
-					dbKunde.insertKunde(kunde);
 					setVisible(false);
-				}else{
-					JOptionPane.showMessageDialog(panelError,
-	                        "Passwort oder E-Mail adresse stimmen nicht �berein.",
-	                        "�bereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
+					dbKunde.insertKunde(kunde);
+
+				} else {
+					JOptionPane.showMessageDialog(panelError, "Passwort oder E-Mail adresse stimmen nicht �berein.",
+							"übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 				}
-				
+
 			} catch (SQLException e1) {
-				
+
 			}
 
 		});

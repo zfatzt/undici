@@ -36,7 +36,6 @@ public class PizzaFrame extends JFrame {
 	JButton buttonAnmelden = new JButton("Anmelden");
 	JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
 
-	private int bestellungsNummerZähler = 0;
 	private Kunde user;
 
 	// Jpanel erstellen
@@ -139,7 +138,6 @@ public class PizzaFrame extends JFrame {
 		});
 
 		bestellungAbschicken.addActionListener(e -> {
-
 			if (user == null) {
 				JDialog abd = new AbsendenDialog(this);
 				abd.pack();

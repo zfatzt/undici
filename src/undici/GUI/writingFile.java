@@ -2,7 +2,6 @@ package undici.GUI;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -12,31 +11,33 @@ import javax.swing.JTextPane;
 import undici.kunde.Kunde;
 
 public class writingFile {
-	private int bestellungsNummerZaehler = 0;
 
 	public writingFile(PizzaFrame pizzaFrame, JTextArea textAreaTotal, JTextArea textAreaBestellung,
 			ZahlungsDialog zahlungsDialog, Kunde user, JTextPane textAreaAngemeldet) {
 
-		FileReader fr = null;
 		BufferedWriter bw = null;
 		FileWriter fw = null;
-		
+	
 		
 		String fileName = "Bestellung";
-		bestellungsNummerZaehler += 1;
-		fileName = fileName + bestellungsNummerZaehler;
+		fileName = fileName + user.getId();
 
 		File f = new File("src/undici/bestellungen/" + fileName);
- //blubn
+
 		try {
 			fw = new FileWriter(f);
 			bw = new BufferedWriter(fw);
 			String s;
+			s = "****************************** \n";
+			s = "            UNDICI             \n";
+			s = "****************************** \n";
+			s = "                               \n";
+			
+					
 			s = user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n"
 					+ user.getWohnAdresse().toString();
 			s += textAreaTotal.getText();
 			s += textAreaBestellung.getText();
-			s += "hi";
 			fw.write(s + "\n");
 
 			fw.flush();

@@ -20,7 +20,7 @@ public class KundeJBDBCDao implements KundeDao {
 
 		public void insertKunde(Kunde k) throws SQLException {
 			//Querry bereit machen:	
-			String sql = "INSERT INTO undici.kunde ( adresse_id, anrede, vorname, name, email, telefon, passwort) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO undici.kunde ( adresse_id, anrede, vorname, name, email, telefon, passwort,) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			con = ConnectionFactory.getInstance().getConnection();	
 			PreparedStatement ps = con.prepareStatement(sql);		
 			
@@ -44,9 +44,9 @@ public class KundeJBDBCDao implements KundeDao {
 			con = ConnectionFactory.getInstance().getConnection();
 			//Querry Information erstellen
 			PreparedStatement ps = con.prepareStatement(sql);
-			//Daten in die Querry Info abfüllen ps.set...
+			//Daten in die Querry Info abfï¿½llen ps.set...
 			ps.setInt(1, id);
-			//Querry ausführen:		
+			//Querry ausfï¿½hren:		
 			ResultSet rs = ps.executeQuery();
 			//Daten aus Query Resultat verarbeiten:
 			while (rs.next()) {
@@ -75,9 +75,9 @@ public class KundeJBDBCDao implements KundeDao {
 			String sql = "SELECT undici.kunde.id, undici.kunde.adresse_id, undici.adresse.strasse, undici.adresse.hausnummer, undici.adresse.plz, undici.adresse.ort, anrede, vorname, name, email, telefon, passwort  FROM undici.kunde join undici.adresse on undici.adresse.id = undici.kunde.adresse_id";
 			//Zur DB verbinden (Verbindung holen):
 			con = ConnectionFactory.getInstance().getConnection();
-			//Daten in die Querry Info abfüllen ps.set...		
+			//Daten in die Querry Info abfï¿½llen ps.set...		
 			PreparedStatement ps = con.prepareStatement(sql);
-			//Querry ausführen:
+			//Querry ausfï¿½hren:
 			ResultSet rs = ps.executeQuery();
 			//Daten aus Query Resultat verarbeiten:		
 			while (rs.next()) {
@@ -137,10 +137,10 @@ public class KundeJBDBCDao implements KundeDao {
 			con = ConnectionFactory.getInstance().getConnection();
 			//Querry Information erstellen
 			PreparedStatement ps = con.prepareStatement(sql);
-			//Daten in die Querry Info abfüllen ps.set...
+			//Daten in die Querry Info abfï¿½llen ps.set...
 			ps.setString(1, email);
 			ps.setString(2, passwort);
-			//Querry ausführen:		
+			//Querry ausfï¿½hren:		
 			ResultSet rs = ps.executeQuery();
 			//Daten aus Query Resultat verarbeiten:
 			while (rs.next()) {
