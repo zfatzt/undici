@@ -126,12 +126,12 @@ public class PizzaFrame extends JFrame {
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
-		
+
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
 			JDialog ad = new AnmeldeDialog(this);
 			ad.pack();
-			
+
 		});
 		buttonRegistrieren.addActionListener(e -> {
 			JDialog rd = new RegistrierenDialog();
@@ -139,14 +139,14 @@ public class PizzaFrame extends JFrame {
 		});
 
 		bestellungAbschicken.addActionListener(e -> {
-			if (user == null){
+			if (user == null) {
 				JDialog abd = new AbsendenDialog(this);
 				abd.pack();
+			} else {
+				JDialog abd = new ZahlungsDialog(this, user);
+				abd.pack();
 			}
-			JDialog abd = new ZahlungsDialog(this, user);
-			abd.pack();
-			
-			
+
 			FileReader fr = null;
 			BufferedWriter bw = null;
 			FileWriter fw = null;
