@@ -36,7 +36,7 @@ public class PizzaFrame extends JFrame {
 	JButton buttonAnmelden = new JButton("Anmelden");
 	JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
 
-	private int bestellungsNummerZähler = 0;
+	private int bestellungsNummerZ�hler = 0;
 	private Kunde user;
 
 	// Jpanel erstellen
@@ -126,12 +126,12 @@ public class PizzaFrame extends JFrame {
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
-
+		
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
 			JDialog ad = new AnmeldeDialog(this);
 			ad.pack();
-
+			
 		});
 		buttonRegistrieren.addActionListener(e -> {
 			JDialog rd = new RegistrierenDialog();
@@ -139,6 +139,7 @@ public class PizzaFrame extends JFrame {
 		});
 
 		bestellungAbschicken.addActionListener(e -> {
+
 			if (user == null) {
 				JDialog abd = new AbsendenDialog(this);
 				abd.pack();
@@ -146,32 +147,33 @@ public class PizzaFrame extends JFrame {
 				JDialog abd = new ZahlungsDialog(this, user);
 				abd.pack();
 			}
-
-			FileReader fr = null;
-			BufferedWriter bw = null;
-			FileWriter fw = null;
-			String fileName = "Bestellung";
-			bestellungsNummerZähler += 1;
-			fileName = fileName + bestellungsNummerZähler;
-
-			File f = new File("src/undici/bestellungen/" + fileName);
-
-			try {
-				fw = new FileWriter(f);
-				bw = new BufferedWriter(fw);
-				String s;
-				s = user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n"
-						+ user.getWohnAdresse().toString();
-				s += textAreaTotal.getText();
-				s += textAreaBestellung.getText();
-				fw.write(s + "\n");
-
-				fw.flush();
-				bw.close();
-				fileName = fileName + 1;
-			} catch (IOException e1) {
-
-			}
+			
+//			
+//			FileReader fr = null;
+//			BufferedWriter bw = null;
+//			FileWriter fw = null;
+//			String fileName = "Bestellung";
+//			bestellungsNummerZaehler += 1;
+//			fileName = fileName + bestellungsNummerZaehler;
+//
+//			File f = new File("src/undici/bestellungen/" + fileName);
+//
+//			try {
+//				fw = new FileWriter(f);
+//				bw = new BufferedWriter(fw);
+//				String s;
+//				s = user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n"
+//						+ user.getWohnAdresse().toString();
+//				s += textAreaTotal.getText();
+//				s += textAreaBestellung.getText();
+//				fw.write(s + "\n");
+//
+//				fw.flush();
+//				bw.close();
+//				fileName = fileName + 1;
+//			} catch (IOException e1) {
+//
+//			}
 
 		});
 
