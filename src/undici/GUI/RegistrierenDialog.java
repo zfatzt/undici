@@ -170,7 +170,9 @@ public class RegistrierenDialog extends JDialog {
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(panelError,
+	                        e1,
+	                        "ungï¿½ltige E-Mail adresse", JOptionPane.ERROR_MESSAGE);
 				}
 				kunde.setWohnAdresse(adresse);
 				kunde.setTelefon(eingabeTelefon.getText());
@@ -192,7 +194,7 @@ public class RegistrierenDialog extends JDialog {
 					setVisible(false);
 				}else{
 					JOptionPane.showMessageDialog(panelError,
-	                        "Passwort oder E-Mail adresse stimmen nicht ï¿½berein.",
+	                        "Passwort oder E-Mail adresse stimmen nicht überein.",
 	                        "ï¿½bereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 				}
 				
