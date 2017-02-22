@@ -17,6 +17,7 @@ import undici.kunde.Kunde;
 
 public class ZahlungsDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
+	private int bestellungsNummerZaehler = 0;
 
 	public ZahlungsDialog(PizzaFrame pizzaFrame, Kunde kunde) {
 		Dimension d = new Dimension(350, 180);
@@ -70,7 +71,11 @@ public class ZahlungsDialog extends JDialog {
 				kunde.setZahlungsArt("Barzahlung");
 			} else if (zahlungsArt.getSelectedIndex() == 1) {
 				kunde.setZahlungsArt("Kreditkarte");
-			} 
+			}
+	
+
+			
+			
 			setVisible(false);
 		});
 

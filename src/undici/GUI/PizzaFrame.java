@@ -147,6 +147,8 @@ public class PizzaFrame extends JFrame {
 				JDialog abd = new ZahlungsDialog(this, user);
 				abd.pack();
 			}
+
+	
 			
 //			
 //			FileReader fr = null;
