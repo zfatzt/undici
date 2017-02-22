@@ -28,7 +28,7 @@ import undici.kunde.Kunde;
 public class PizzaFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
-	private int bestellungsNummerZähler = 0;
+	private int bestellungsNummerZÃ¤hler = 0;
 	private Kunde user;
 	public PizzaFrame() throws IOException {
 		Dimension d = new Dimension(800, 1000);
@@ -130,8 +130,8 @@ public class PizzaFrame extends JFrame {
 			BufferedWriter bw = null;
 			FileWriter fw = null;
 			String fileName = "Bestellung";
-			bestellungsNummerZähler += 1;
-			fileName = fileName + bestellungsNummerZähler;
+			bestellungsNummerZÃ¤hler += 1;
+			fileName = fileName + bestellungsNummerZÃ¤hler;
 
 			File f = new File("src/undici/bestellungen/" + fileName);
 
@@ -202,7 +202,7 @@ public class PizzaFrame extends JFrame {
 
 	public void angemeldet(Kunde kunde){
 		this.user = kunde;
-		bestellungAbschicken.setEnabled(true);
+		
 	}
 	
 }
