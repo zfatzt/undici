@@ -3,7 +3,6 @@ package undici.GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,8 +10,6 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 public class ZahlungsDialog extends JDialog {
@@ -35,8 +32,8 @@ public class ZahlungsDialog extends JDialog {
 		JPanel panelCenter = new JPanel();
 		JPanel panelSouth = new JPanel();
 
-		panelNorth.setPreferredSize(new Dimension(350, 130));
-		panelSouth.setPreferredSize(new Dimension(350, 50));
+		panelNorth.setPreferredSize(new Dimension(350, 50));
+		panelSouth.setPreferredSize(new Dimension(350, 40));
 
 		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
 
@@ -47,10 +44,10 @@ public class ZahlungsDialog extends JDialog {
 		JLabel titel = new JLabel("Zahlungsart");
 		
 		// Combobox
-		String[] AnredeArray = { "-", "Barzahlung", "Kreditkarte" };
-		JComboBox geschlecht = new JComboBox(AnredeArray);
-		geschlecht.setBackground(Color.white);
-		geschlecht.setPreferredSize(new Dimension(170, 30));
+		String[] bezahlen = { "-", "Barzahlung", "Kreditkarte" };
+		JComboBox zahlungsArt = new JComboBox(bezahlen);
+		zahlungsArt.setBackground(Color.white);
+		zahlungsArt.setPreferredSize(new Dimension(170, 30));
 	
 		
 		// Button
@@ -68,7 +65,10 @@ public class ZahlungsDialog extends JDialog {
 		buttonBestellen.setBackground(Color.white);
 
 		
-		panelNorth.add(titel);
+		panelNorth.add(titel, BorderLayout.CENTER);
+		panelCenter.add(zahlungsArt, BorderLayout.CENTER);
+		panelSouth.add(buttonBestellen, BorderLayout.CENTER);
+		panelSouth.add(buttonExit);
 		
 		// Panel zu Frame hinzufügen
 		add(panelNorth, BorderLayout.NORTH);

@@ -44,7 +44,7 @@ public class AbsendenDialog extends JDialog {
 		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
 		// JLabel
 		JLabel label = new JLabel("Absenden");
-		label.setFont(new Font("Titillium", 1, 30));
+		label.setFont(new Font("Arial", 1, 30));
 
 		// Button
 		JButton buttonExit = new JButton("Abbrechen");
