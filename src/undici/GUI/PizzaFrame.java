@@ -37,7 +37,7 @@ public class PizzaFrame extends JFrame {
 	JButton buttonAnmelden = new JButton("Anmelden");
 	JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
 
-	private int bestellungsNummerZÃ¤hler = 0;
+	private int bestellungsNummerZähler = 0;
 	private Kunde user;
 	
 	// Jpanel erstellen
@@ -121,6 +121,7 @@ public class PizzaFrame extends JFrame {
 		//labelAngemeldet
 		textAreaAngemeldet.setVisible(false);
 		StyledDocument doc = textAreaAngemeldet.getStyledDocument();
+		textAreaAngemeldet.setEditable(false);
 		
 		SimpleAttributeSet center = new SimpleAttributeSet();
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
@@ -133,7 +134,6 @@ public class PizzaFrame extends JFrame {
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
 
-		bestellungAbschicken.setEnabled(false);
 
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
@@ -146,12 +146,13 @@ public class PizzaFrame extends JFrame {
 		});
 
 		bestellungAbschicken.addActionListener(e -> {
+			
 			FileReader fr = null;
 			BufferedWriter bw = null;
 			FileWriter fw = null;
 			String fileName = "Bestellung";
-			bestellungsNummerZï¿½hler += 1;
-			fileName = fileName + bestellungsNummerZï¿½hler;
+			bestellungsNummerZähler += 1;
+			fileName = fileName + bestellungsNummerZähler;
 
 			File f = new File("src/undici/bestellungen/" + fileName);
 
@@ -159,7 +160,7 @@ public class PizzaFrame extends JFrame {
 				fw = new FileWriter(f);
 				bw = new BufferedWriter(fw);
 				String s;
-				s =user.getAnrede() + "\n" + user.getVorname() + " " + user.getName() + "\n" + user.getWohnAdresse().toString();
+				s = user.getAnrede() + "\n" + user.getVorname() + " " + user.getName();
 				s +=  textAreaTotal.getText();
 				s += textAreaBestellung.getText();
 				fw.write(s + "\n");
@@ -229,7 +230,6 @@ public class PizzaFrame extends JFrame {
 		textAreaAngemeldet.setVisible(true);
 		textAreaAngemeldet.setText("Guten Tag, Sie sind angemeldet als: \n"+ user.getAnrede() + " " + user.getVorname() + " " + user.getName());
 		textAreaAngemeldet.setFont(new Font("Arial", 1, 12));
-		
 		
 		
 	}
