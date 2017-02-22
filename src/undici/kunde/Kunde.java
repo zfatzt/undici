@@ -15,6 +15,7 @@ public class Kunde {
 	private String passwort;
 	private String telefon;
 	private String kreditkartenNr;
+	private String zahlungsArt;
 	
 	
 	public int getAdresse_id() {
@@ -63,7 +64,7 @@ public class Kunde {
 		if(EmailValidator.getInstance().isValid(email)){
 			this.email = email;	
 		}else {
-			throw new EmailException("Diese Email ist ungültig: " + email);
+			throw new EmailException("Diese Email ist ungï¿½ltig: " + email);
 		}
 	}
 
@@ -111,5 +112,13 @@ public class Kunde {
 
 		String s = this.getAnrede() + " \n" + this.getVorname() + " " + this.getName() + "\n" + this.getEmail() +"\n" + this.getTelefon() + "\n" +  this.getPasswort() + "\n" + this.getKreditkartenNr() + getWohnAdresse().toString();
 		return s;
+	}
+
+	public String getZahlungsArt() {
+		return zahlungsArt;
+	}
+
+	public void setZahlungsArt(String zahlungsArt) {
+		this.zahlungsArt = zahlungsArt;
 	}
 }

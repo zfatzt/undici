@@ -143,7 +143,7 @@ public class PizzaFrame extends JFrame {
 				JDialog abd = new AbsendenDialog(this);
 				abd.pack();
 			}
-			JDialog abd = new ZahlungsDialog(this);
+			JDialog abd = new ZahlungsDialog(this, user);
 			abd.pack();
 			
 			
