@@ -168,8 +168,10 @@ public class RegistrierenDialog extends JDialog {
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
-					JOptionPane.showMessageDialog(panelError, e1, "ungültige PLZ", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panelError, e1, "ungï¿½ltige E-Mail adresse",
+							JOptionPane.ERROR_MESSAGE);
 				}
+				kunde.setWohnAdresse(adresse);
 				kunde.setTelefon(eingabeTelefon.getText());
 				try {
 					kunde.setEmail(eingabeEmail.getText());
@@ -178,23 +180,18 @@ public class RegistrierenDialog extends JDialog {
 							JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
-
 				if ((eingabeEmail.getText().equals(eingabeEmailWiederholen.getText())
-						&& (new String(eingabePasswort.getPassword()).equals(new String(eingabePasswortWiederholen.getPassword()))))) {
-					
-					if (dbKunde.EmailSchonVorhanden(eingabeEmail.getText())) {	
-						kunde.setWohnAdresse(adresse);
-						kunde.setPasswort(new String(eingabePasswort.getPassword()));
-						int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
-						kunde.setAdresse_id(primaryKeyOfAdress);
-						dbKunde.insertKunde(kunde);
-						setVisible(false);
-					}else{
-						JOptionPane.showMessageDialog(panelError, "Diese Email Adresse existiert bereits.",
-								"Ã¼bereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
-					}
+						&& (new String(eingabePasswort.getPassword())
+								.equals(new String(eingabePasswortWiederholen.getPassword()))))) {
+
+					kunde.setPasswort(new String(eingabePasswort.getPassword()));
+					int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
+					kunde.setAdresse_id(primaryKeyOfAdress);
+					dbKunde.insertKunde(kunde);
+					setVisible(false);
+
 				} else {
-					JOptionPane.showMessageDialog(panelError, "Passwort oder E-Mail adresse stimmen nicht überein.",
+					JOptionPane.showMessageDialog(panelError, "Passwort oder E-Mail adresse stimmen nicht ï¿½berein.",
 							"Ã¼bereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 				}
 
