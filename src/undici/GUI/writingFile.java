@@ -36,14 +36,12 @@ public class writingFile {
 			s += " KundenNr: " + user.getId() + "\r\n";
 			s += " " + user.getZahlungsArt() + "\r\n";
 			s += "                               \r\n";
-//			s += " " + user.getAnrede() + "\r\n";
-//			s += " " + user.getVorname() + " " + user.getName() + "\r\n";
 			s += " " + user.toString() + "\r\n";
 			s += "                               \r\n";
 			s += textAreaBestellung.getText() + "\r\n";
 			s += "                               \r\n";
 			s += "****************************** \r\n";
-			s += "*Total: " + textAreaTotal.getText()+ "\r\n" ;
+			s += "Total: " + textAreaTotal.getText()+ "\r\n" ;
 
 			
 			
