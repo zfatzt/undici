@@ -117,6 +117,7 @@ public class Kunde {
 				+" " + getWohnAdresse().toString();
 		return s;
 	}
+	
 
 	public String getZahlungsArt() {
 		return zahlungsArt;

@@ -19,7 +19,7 @@ public class writingFile {
 		BufferedWriter bw = null;
 		FileWriter fw = null;
 		Date dat = new Date();
-  
+
 		String fileName = "Bestellung";
 		fileName = fileName + user.getId();
 
@@ -29,6 +29,7 @@ public class writingFile {
 			fw = new FileWriter(f);
 			bw = new BufferedWriter(fw);
 			String s;
+			
 			s =  "****************************** \r\n";
 			s += "*           UNDICI           * \r\n";
 			s += "****************************** \r\n";
@@ -42,9 +43,6 @@ public class writingFile {
 			s += "                               \r\n";
 			s += "****************************** \r\n";
 			s += "Total: " + textAreaTotal.getText()+ "\r\n" ;
-
-			
-			
 			
 			fw.write(s + "\n");
 
