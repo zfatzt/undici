@@ -32,4 +32,8 @@ public class Bestellung extends ArrayList<BestellItem>{
 		
 		return totalPreis;
 	}
+	
+	
 }
+
+
