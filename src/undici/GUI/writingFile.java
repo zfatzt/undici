@@ -38,6 +38,7 @@ public class writingFile {
 			s += " " + user.getZahlungsArt() + "\r\n";
 			s += "                               \r\n";
 			s += " " + user.toString() + "\r\n";
+			s += " " + user.getWohnAdresse().toString() + "\r\n";
 			s += "                               \r\n";
 			s += textAreaBestellung.getText() + "\r\n";
 			s += "                               \r\n";

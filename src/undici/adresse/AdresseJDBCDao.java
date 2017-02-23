@@ -43,7 +43,7 @@ public class AdresseJDBCDao implements AdresseDao {
 	public Adresse findAdresseById(int id) throws SQLException {
 		Adresse a = null;
 		// Querry bereit machen:
-		String sql = "SELECT id, strasse, plz, ort FROM undici.person WHERE id = ?";
+		String sql = "SELECT id, strasse, hausnummer, plz, ort FROM undici.adresse WHERE id = ?";
 		// Zur DB verbinden (Verbindung holen):
 		con = ConnectionFactory.getInstance().getConnection();
 		// Querry Information erstellen

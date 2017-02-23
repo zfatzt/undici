@@ -36,6 +36,10 @@ public class AdresseTester {
 				pd.insertAdresse(a);
 			}
 		
+			System.out.println(a.getHausnummer());
+			System.out.println(a.getOrt());
+					System.out.println(a.getPlz());
+	
 			for(Adresse person : pd.getAllAdressen()){
 			System.out.println(person.toString());
 			}

@@ -113,8 +113,7 @@ public class Kunde {
 		String s= this.getAnrede() + " \r\n"
 				+" " + this.getVorname() + " " + this.getName() + "\r\n"
 				+" " + "Email: " +this.getEmail() +"\r\n"
-				+" " + "TelefonNr: " + this.getTelefon() + "\r\n"
-				+" " + getWohnAdresse().toString();
+				+" " + "TelefonNr: " + this.getTelefon() + "\r\n";
 		return s;
 	}
 	

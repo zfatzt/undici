@@ -87,7 +87,6 @@ public class ZahlungsDialog extends JDialog {
 			
 			//Bestellbestätigung
 			JOptionPane.showMessageDialog(panelBestätigung, "Ihre Bestellung wurde Erfolgreich gespeichert.");
-			
 			setVisible(false);
 			
 			

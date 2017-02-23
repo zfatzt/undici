@@ -1,6 +1,5 @@
 package undici.kunde;
 
-import undici.undici.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import undici.adresse.Adresse;
+import undici.adresse.AdresseDao;
+import undici.adresse.AdresseJDBCDao;
 import undici.excepitons.EmailException;
 import undici.excepitons.PlzException;
 import undici.undici.ConnectionFactory;
@@ -49,6 +50,10 @@ public class KundeJBDBCDao implements KundeDao {
 			k = new Kunde();
 			k.setId(rs.getInt("id"));
 			k.setAdresse_id(rs.getInt("adresse_id"));
+
+			AdresseDao adao = new AdresseJDBCDao();
+			k.setWohnAdresse(adao.findAdresseById(rs.getInt("adresse_id")));
+			
 			k.setAnrede(rs.getString("anrede"));
 			k.setVorname("vorname");
 			k.setName("name");
@@ -143,6 +148,10 @@ public class KundeJBDBCDao implements KundeDao {
 			k = new Kunde();
 			k.setId(rs.getInt("id"));
 			k.setAdresse_id(rs.getInt("adresse_id"));
+			
+			AdresseDao adao = new AdresseJDBCDao();
+			k.setWohnAdresse(adao.findAdresseById(rs.getInt("adresse_id")));
+			
 			k.setAnrede(rs.getString("anrede"));
 			k.setVorname(rs.getString("vorname"));
 			k.setName(rs.getString("name"));
