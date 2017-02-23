@@ -20,7 +20,7 @@ public class writingFile {
 		FileWriter fw = null;
 		Date dat = new Date();
 
-		String fileName = "Bestellung";
+		String fileName = "Bestellung ";
 		fileName = fileName + user.getId();
 
 		File f = new File("src/undici/bestellungen/" + fileName);
@@ -38,7 +38,6 @@ public class writingFile {
 			s += " " + user.getZahlungsArt() + "\r\n";
 			s += "                               \r\n";
 			s += " " + user.toString() + "\r\n";
-			s += " " + user.getWohnAdresse().toString() + "\r\n";
 			s += "                               \r\n";
 			s += textAreaBestellung.getText() + "\r\n";
 			s += "                               \r\n";

@@ -5,7 +5,7 @@ import undici.excepitons.EmailException;
 import org.apache.commons.validator.EmailValidator;
 
 public class Kunde {
-	
+
 	private int id;
 	private int adresse_id;
 	private String anrede;
@@ -16,8 +16,7 @@ public class Kunde {
 	private String telefon;
 	private String kreditkartenNr;
 	private String zahlungsArt;
-	
-	
+
 	public int getAdresse_id() {
 		return adresse_id;
 	}
@@ -26,11 +25,7 @@ public class Kunde {
 		this.adresse_id = adresse_id;
 	}
 
-
-	
-	
 	private Adresse wohnAdresse = new Adresse();
-
 
 	public String getName() {
 		return this.name;
@@ -60,10 +55,12 @@ public class Kunde {
 		return email;
 	}
 
-	public void setEmail(String email) throws EmailException{
-		if(EmailValidator.getInstance().isValid(email)){
-			this.email = email;	
-		}else {
+	// Email wird auf gültigketi Ueberprüft.
+	@SuppressWarnings("deprecation")
+	public void setEmail(String email) throws EmailException {
+		if (EmailValidator.getInstance().isValid(email)) {
+			this.email = email;
+		} else {
 			throw new EmailException("Diese Email ist ungï¿½ltig: " + email);
 		}
 	}
@@ -109,14 +106,12 @@ public class Kunde {
 	}
 
 	public String toString() {
-
-		String s= this.getAnrede() + " \r\n"
-				+" " + this.getVorname() + " " + this.getName() + "\r\n"
-				+" " + "Email: " +this.getEmail() +"\r\n"
-				+" " + "TelefonNr: " + this.getTelefon() + "\r\n";
+		//toString methode wird später für die Bestellbestätigung verwendet.
+		String s = this.getAnrede() + " \r\n" + " " + this.getVorname() + " " + this.getName() + "\r\n" + " "
+				+ this.getWohnAdresse() + " \r\n" + "Email: " + this.getEmail() + "\r\n" + " " + "TelefonNr: "
+				+ this.getTelefon() + "\r\n";
 		return s;
 	}
-	
 
 	public String getZahlungsArt() {
 		return zahlungsArt;

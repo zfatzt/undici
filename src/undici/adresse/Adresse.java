@@ -65,7 +65,7 @@ public class Adresse {
 
 	@Override
 	public String toString() {
-		String s = "\n" + getStrasse() + " " + getHausnummer() + " \n" + getPlz() + " \n" + getOrt();
+		String s = "\n " + getStrasse() + " " + getHausnummer() + " \n" + getPlz() + "  " + getOrt();
 		return s;
 	}
 }
