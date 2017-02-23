@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -19,17 +20,17 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 public class ProductBox extends JPanel {
+	private int allePizzen = 0;
 	private static final long serialVersionUID = 1L;
-
+	
 	@SuppressWarnings("rawtypes")
-	public ProductBox(String name, double preis, List<String> zutaten, String pfad, JTextArea area, JTextArea total)
-			throws IOException, SQLException {
-
+	public ProductBox(Bestellung bestellung, String name, double preis, List<String> zutaten, String pfad, JTextArea area, JTextArea total,
+			Map<String, Integer> pizzen, double gesamtPreis) throws IOException, SQLException {
 		// PreisLabel
 		JLabel labelPreis = new JLabel("" + preis + " Fr.");
 
 		// AnzahlPizzen
-		String[] anzahl = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+		String[] anzahl = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 		@SuppressWarnings("unchecked")
 		JComboBox comboBoxAnzahl = new JComboBox(anzahl);
 		comboBoxAnzahl.setBackground(Color.white);
@@ -38,21 +39,26 @@ public class ProductBox extends JPanel {
 		JButton buttonBestellen = new JButton("Bestellen");
 
 		// ActionListener
-		buttonBestellen.addActionListener(e -> {
+		total.setText("Fr. \t" + 0.00 + "\n");
 
-			// BestellungTextArea erstellt
-			int anzahlPizzen = (comboBoxAnzahl.getSelectedIndex() + 1);
-			System.out.println(name + " " + anzahlPizzen + " " + preis);
+		buttonBestellen.addActionListener(e -> {
 			
-			area.append(name + "\t" + anzahlPizzen + "\t" + preis + "\r\n");
+			int menge = comboBoxAnzahl.getSelectedIndex() + 1;
+			bestellung.add(new BestellItem(menge, preis, name));
+			
+			area.setText("");
+
+			
+			for (BestellItem item : bestellung) {
+				area.append(item.getName() + "\t" + item.getMenge() + "\t" + item.getPrice() + "\n");
+			}
 
 			// TotalTextArea erstellt
+			total.setText("");
 			if (total.getText().equals(""))
 				total.setText(" \t0.0");
-			double gesamtPreis = Double.parseDouble(total.getText().substring(4));
-			gesamtPreis = gesamtPreis + (anzahlPizzen * preis);
-			total.setText("Fr. \t" + gesamtPreis + "\n");
-
+			
+			total.setText("Fr. \t" + bestellung.getTotalPreis() + "\n");
 		});
 
 		// Grenze

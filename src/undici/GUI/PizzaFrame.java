@@ -5,11 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -30,6 +29,8 @@ import javax.swing.text.StyledDocument;
 import undici.kunde.Kunde;
 
 public class PizzaFrame extends JFrame {
+	Map<String, Integer> map = new HashMap<String, Integer>();
+
 	private static final long serialVersionUID = 1L;
 	// Button
 	JButton buttonRegistrieren = new JButton("Registrieren");
@@ -49,7 +50,8 @@ public class PizzaFrame extends JFrame {
 	JPanel panelBestellung = new JPanel();
 	JPanel panelGetraenke = new JPanel();
 	JTextPane textAreaAngemeldet = new JTextPane();
-
+	private Bestellung bestellung = new Bestellung();
+	
 	public PizzaFrame() throws IOException {
 		Dimension d = new Dimension(800, 1000);
 
@@ -109,7 +111,10 @@ public class PizzaFrame extends JFrame {
 		textAreaTotal.setPreferredSize(new Dimension(210, 630));
 		textAreaTotal.setPreferredSize(new Dimension(220, 100));
 		textAreaTotal.setBorder(totalBorder);
-
+		double gesamtPreis = 0;
+		if (!textAreaTotal.getText().equals("")) {
+			gesamtPreis = Double.parseDouble(textAreaTotal.getText().substring(4));
+		}
 		// JLabel
 		JLabel labelLogo = new JLabel(new ImageIcon(myPicture));
 
@@ -157,8 +162,10 @@ public class PizzaFrame extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane();
 
 		// Pizza
-		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(textAreaBestellung, textAreaTotal);
-		GetraenkeBoxScrollPane getraenkeBox = new GetraenkeBoxScrollPane(textAreaBestellung, textAreaTotal);
+
+		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal, map, gesamtPreis);
+		GetraenkeBoxScrollPane getraenkeBox = new GetraenkeBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal, map,
+				gesamtPreis);
 
 		tabbedPane.addTab("Pizza", pizzaBox);
 		tabbedPane.addTab("Getränke", getraenkeBox);
