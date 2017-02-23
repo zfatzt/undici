@@ -142,7 +142,7 @@ public class PizzaFrame extends JFrame {
 				JDialog abd = new AbsendenDialog(this);
 				abd.pack();
 			} else {
-				JDialog abd = new ZahlungsDialog(this, user);
+				JDialog abd = new ZahlungsDialog(this, user, textAreaTotal, textAreaBestellung, textAreaAngemeldet);
 				abd.pack();
 			}
 		});

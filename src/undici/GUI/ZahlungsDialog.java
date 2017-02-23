@@ -11,15 +11,17 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
 import undici.kunde.Kunde;
 
 public class ZahlungsDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
-	private int bestellungsNummerZaehler = 0;
 
-	public ZahlungsDialog(PizzaFrame pizzaFrame, Kunde kunde) {
+	public ZahlungsDialog(PizzaFrame pizzaFrame, Kunde kunde, JTextArea textAreaTotal, JTextArea textAreaBestellung,
+			 JTextPane textAreaAngemeldet) {
 		Dimension d = new Dimension(350, 180);
 		// public boolean istEingelogt = true;
 
@@ -44,6 +46,10 @@ public class ZahlungsDialog extends JDialog {
 		panelNorth.setBackground(Color.WHITE);
 		panelSouth.setBackground(Color.WHITE);
 		panelCenter.setBackground(Color.WHITE);
+
+		// Textdoukument
+		writingFile wf = new writingFile(pizzaFrame, textAreaTotal, textAreaBestellung, this, kunde,
+				textAreaAngemeldet);
 
 		// JLabel
 		JLabel titel = new JLabel("Zahlungsart");
@@ -72,10 +78,7 @@ public class ZahlungsDialog extends JDialog {
 			} else if (zahlungsArt.getSelectedIndex() == 1) {
 				kunde.setZahlungsArt("Kreditkarte");
 			}
-	
 
-			
-			
 			setVisible(false);
 		});
 
