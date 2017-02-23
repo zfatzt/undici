@@ -1,11 +1,9 @@
 package undici.kunde;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 import undici.excepitons.EmailException;
-import undici.excepitons.PlzException;
 
 
 public class KundeTester {
@@ -18,7 +16,7 @@ public class KundeTester {
 		try {
 			
 			for(int i=0; i < 1; i++){
-				
+				  
 //				System.out.println("Anrede");
 //				String anrede = sc.nextLine();
 				k.setAnrede("Herr");

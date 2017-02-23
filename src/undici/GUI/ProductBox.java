@@ -43,7 +43,8 @@ public class ProductBox extends JPanel {
 			// BestellungTextArea erstellt
 			int anzahlPizzen = (comboBoxAnzahl.getSelectedIndex() + 1);
 			System.out.println(name + " " + anzahlPizzen + " " + preis);
-			area.append(name + "\t" + anzahlPizzen + "\t" + preis + "\n");
+			
+			area.append(name + "\t\t\t" + anzahlPizzen + "\t" + preis + "\r\n");
 
 			// TotalTextArea erstellt
 			if (total.getText().equals(""))

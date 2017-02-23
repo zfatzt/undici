@@ -29,22 +29,22 @@ public class writingFile {
 			fw = new FileWriter(f);
 			bw = new BufferedWriter(fw);
 			String s;
-			s =  "****************************** \n";
-			s += "            UNDICI             \n";
-			s += "****************************** \n";
-			s += " " + dat.getHours() + ":" + dat.getMinutes() + " / " + dat.getDay() + "." + dat.getMonth() + dat.getYear() + "\n";
-			s += " KundenNr: " + user.getId() + "\n";
-			s += " " + user.getZahlungsArt() + "\n";
-			s += "                               \n";
-			s += " " + user.getAnrede() + "\n";
-			s += " " + user.getVorname() + " " + user.getName() + "\n";
-			s += " " + user.getWohnAdresse() + "\n";
-			s += "                               \n";
-			s += textAreaBestellung.getText() + "\n";
-			s += "                               \n";
-			s += "****************************** \n";
-			s += "Total: " + textAreaTotal.getText();
-			s += "****************************** \n";
+			s =  "****************************** \r\n";
+			s += "*           UNDICI           * \r\n";
+			s += "****************************** \r\n";
+			s += " " + dat.getHours() + ":" + dat.getMinutes() + " / " + dat.getDay() + "." + dat.getMonth()+ "." + dat.getYear() + "\r\n";
+			s += " KundenNr: " + user.getId() + "\r\n";
+			s += " " + user.getZahlungsArt() + "\r\n";
+			s += "                               \r\n";
+//			s += " " + user.getAnrede() + "\r\n";
+//			s += " " + user.getVorname() + " " + user.getName() + "\r\n";
+			s += " " + user.toString() + "\r\n";
+			s += "                               \r\n";
+			s += textAreaBestellung.getText() + "\r\n";
+			s += "                               \r\n";
+			s += "****************************** \r\n";
+			s += "*Total: " + textAreaTotal.getText()+ "\r\n" ;
+
 			
 			
 			
