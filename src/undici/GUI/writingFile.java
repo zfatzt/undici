@@ -47,6 +47,7 @@ public class writingFile {
 			s += "****************************** \n";
 			
 			
+			
 			fw.write(s + "\n");
 
 			fw.flush();
