@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -22,9 +20,8 @@ public class GetraenkeBoxScrollPane extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JScrollPane vertical;
 	private JPanel content = new JPanel();
-	
 
-	public GetraenkeBoxScrollPane(Bestellung bestellung, JTextArea area, JTextArea total, Map<String, Integer> map, double gesamtPreis ) throws IOException {
+	public GetraenkeBoxScrollPane(JTextArea area, JTextArea total) throws IOException {
 		super();
 		
 		//höhe, breite und Anzahl Pizzen sichtbar auf einer seite
@@ -41,7 +38,7 @@ public class GetraenkeBoxScrollPane extends JPanel {
 		//Getraenke wird von der Datenbank ausgelesen
 		try {
 			for (Getraenke getraenk : db.getAllGetraenke()) {
-				ProductBox getraenkeBox = new ProductBox(bestellung, getraenk.getGetraenk(), getraenk.getPreis(),getraenk.getEmpty() , getraenk.getBild(), area, total, map, gesamtPreis );
+				ProductBox getraenkeBox = new ProductBox(getraenk.getGetraenk(), getraenk.getPreis(),getraenk.getEmpty() , getraenk.getBild(), area, total);
 				content.add(getraenkeBox);
 			}
 		} catch (SQLException e) {
@@ -62,5 +59,4 @@ public class GetraenkeBoxScrollPane extends JPanel {
 		repaint();
 
 	}
-
 }

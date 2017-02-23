@@ -110,7 +110,11 @@ public class Kunde {
 
 	public String toString() {
 
-		String s = this.getAnrede() + " \n" + this.getVorname() + " " + this.getName() + "\n" + this.getEmail() +"\n" + this.getTelefon() + "\n" +  this.getPasswort() + "\n" + this.getKreditkartenNr() + getWohnAdresse().toString();
+		String s= this.getAnrede() + " \r\n"
+				+" " + this.getVorname() + " " + this.getName() + "\r\n"
+				+" " + "Email: " +this.getEmail() +"\r\n"
+				+" " + "TelefonNr: " + this.getTelefon() + "\r\n"
+				+" " + getWohnAdresse().toString();
 		return s;
 	}
 
