@@ -23,8 +23,7 @@ public class ProductBox extends JPanel {
 
 	@SuppressWarnings("rawtypes")
 	public ProductBox(Bestellung bestellung, String name, double preis, List<String> zutaten, String pfad,
-			JTextArea area, JTextArea total, double gesamtPreis)
-			throws IOException, SQLException {
+			JTextArea textAreaItem, JTextArea total, double gesamtPreis) throws IOException, SQLException {
 		// PreisLabel
 		JLabel labelPreis = new JLabel("" + preis + " Fr.");
 
@@ -45,10 +44,10 @@ public class ProductBox extends JPanel {
 			int menge = comboBoxAnzahl.getSelectedIndex() + 1;
 			bestellung.add(new BestellItem(menge, preis, name));
 
-			area.setText("");
+			textAreaItem.setText("");
 
 			for (BestellItem item : bestellung) {
-				area.append(item.getName() + "\t" + item.getMenge() + "\t" + item.getPrice() + "\n");
+				textAreaItem.append(item.getName() + "\t" + item.getMenge() + "\t" + item.getPrice() + "\n");
 			}
 
 			// TotalTextArea erstellt
@@ -59,29 +58,31 @@ public class ProductBox extends JPanel {
 			total.setText("Fr. \t" + bestellung.getTotalPreis() + "\n");
 		});
 
-		// Grenze
+		// Border
 		TitledBorder border = BorderFactory.createTitledBorder(name);
 		border.setTitleJustification(TitledBorder.LEFT);
 
 		// PizzaBilder
-		BufferedImage myPicture = ImageIO.read(new File(pfad));
-		JLabel labelBild = new JLabel(new ImageIcon(myPicture));
+		BufferedImage bild = ImageIO.read(new File(pfad));
+		JLabel labelBild = new JLabel(new ImageIcon(bild));
 
 		// ZutatenListe
-		String[] zutatenArr = new String[zutaten.size()];
-		zutatenArr = zutaten.toArray(zutatenArr);
+		String[] arrayZutaten = new String[zutaten.size()];
+		arrayZutaten = zutaten.toArray(arrayZutaten);
 		@SuppressWarnings("unchecked")
-		JList zutaten2 = new JList(zutatenArr);
+		JList zutaten2 = new JList(arrayZutaten);
 
 		// Alles zu JPanel Hinzufuegen
-		setBackground(Color.WHITE);
-		setBorder(border);
-		setVisible(true);
 		add(labelBild);
 		add(zutaten2);
 		add(labelPreis);
 		add(comboBoxAnzahl);
 		add(buttonBestellen);
+
+		// GUI
+		setBackground(Color.WHITE);
+		setBorder(border);
+		setVisible(true);
 
 	}
 

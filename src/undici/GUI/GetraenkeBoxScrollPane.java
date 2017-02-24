@@ -17,35 +17,35 @@ public class GetraenkeBoxScrollPane extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JScrollPane vertical;
-	private JPanel content = new JPanel();
+	private JPanel paneInhalt = new JPanel();
 
 	public GetraenkeBoxScrollPane(Bestellung bestellung, JTextArea area, JTextArea total, double gesamtPreis)
 			throws IOException {
 		super();
 
-		// höhe, breite und Anzahl Pizzen sichtbar auf einer seite
+		// Höhe, Breite und Anzahl Pizzen sichtbar auf einer Seite
 		int numberOfVisibleRows = 5;
 		int WidthOfGetraenkeBox = 540;
 		int HightOfGetraenkeBox = 155;
 
-		BoxLayout boxLayout = new BoxLayout(content, BoxLayout.Y_AXIS);
-		content.setLayout(boxLayout);
+		BoxLayout boxLayout = new BoxLayout(paneInhalt, BoxLayout.Y_AXIS);
+		paneInhalt.setLayout(boxLayout);
 
 		GetraenkeJDBCDao db = new GetraenkeJDBCDao();
 
-		// Getraenke wird von der Datenbank ausgelesen
+		// Getraenke werden von der Datenbank ausgelesen
 		try {
 			for (Getraenke getraenk : db.getAllGetraenke()) {
 				ProductBox getraenkeBox = new ProductBox(bestellung, getraenk.getGetraenk(), getraenk.getPreis(),
 						getraenk.getEmpty(), getraenk.getBild(), area, total, gesamtPreis);
-				content.add(getraenkeBox);
+				paneInhalt.add(getraenkeBox);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		// ScrollPane
-		vertical = new JScrollPane(content);
+		vertical = new JScrollPane(paneInhalt);
 		vertical.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		vertical.setPreferredSize(new Dimension(WidthOfGetraenkeBox, (HightOfGetraenkeBox * numberOfVisibleRows)));
 

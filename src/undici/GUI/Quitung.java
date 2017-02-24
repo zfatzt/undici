@@ -6,7 +6,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
 
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
@@ -14,27 +13,25 @@ import javax.swing.JTextPane;
 
 import undici.kunde.Kunde;
 
-public class writingFile {
+public class Quitung {
 	JDialog bestellBestaetigung = new JDialog();
 	JTextPane bestellBestaetigungText = new JTextPane();
 
-	public writingFile(PizzaFrame pizzaFrame, JTextArea textAreaTotal, JTextArea textAreaBestellung,
+	public Quitung(PizzaFrame pizzaFrame, JTextArea textAreaTotal, JTextArea textAreaBestellung,
 			ZahlungsDialog zahlungsDialog, Kunde user, JTextPane textAreaAngemeldet) {
 
-		BufferedWriter bw = null;
-		FileWriter fw = null;
- 
+		BufferedWriter bufferedWriter = null;
+		FileWriter fileWriter = null;
 
 		String nameDerBestellung = "Bestellung ";
 		nameDerBestellung = nameDerBestellung + user.getId();
 
-		File f = new File(System.getProperty("user.home"), "Desktop/" + nameDerBestellung);
-		
+		File f = new File(System.getProperty("user.home"), "Desktop/" + nameDerBestellung); // File wird auf Desktop gespeichert 
 
 		try {
-			fw = new FileWriter(f);
+			fileWriter = new FileWriter(f);
 
-			bw = new BufferedWriter(fw);
+			bufferedWriter = new BufferedWriter(fileWriter);
 			String bestellung;
 
 			bestellung = "************************************ \r\n";
@@ -49,19 +46,17 @@ public class writingFile {
 			bestellung += "************************************\r\n";
 			bestellung += "Total: \t" + textAreaTotal.getText() + "\r\n";
 
-			fw.write(bestellung + "\n");
+			fileWriter.write(bestellung + "\n");
 
 			bestellBestaetigungText.setText(bestellung);
 
-			fw.flush();
-			bw.close();
+			fileWriter.flush();
+			bufferedWriter.close();
 		} catch (IOException e1) {
 
 		}
-
 		bestellBestaetigungText.setEditable(false);
 		bestellBestaetigungText.setFont(new Font("Calibri", Font.PLAIN, 10));
-
 		bestellBestaetigung.setTitle(nameDerBestellung);
 		bestellBestaetigung.add(bestellBestaetigungText);
 		bestellBestaetigung.setLocation(600, 50);

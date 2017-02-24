@@ -36,20 +36,20 @@ public class ZahlungsDialog extends JDialog {
 		setUndecorated(true);
 
 		// JPanel
-		JPanel panelNorth = new JPanel();
-		JPanel panelCenter = new JPanel();
-		JPanel panelSouth = new JPanel();
+		JPanel panelNorden = new JPanel();
+		JPanel panelMitte = new JPanel();
+		JPanel panelSueden = new JPanel();
 		JOptionPane panelBestaetigung = new JOptionPane();
 		JFileChooser bestellungsFile = new JFileChooser();
 
-		panelNorth.setPreferredSize(new Dimension(350, 50));
-		panelSouth.setPreferredSize(new Dimension(350, 40));
+		panelNorden.setPreferredSize(new Dimension(350, 50));
+		panelSueden.setPreferredSize(new Dimension(350, 40));
 
 		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
 
-		panelNorth.setBackground(Color.WHITE);
-		panelSouth.setBackground(Color.WHITE);
-		panelCenter.setBackground(Color.WHITE);
+		panelNorden.setBackground(Color.WHITE);
+		panelSueden.setBackground(Color.WHITE);
+		panelMitte.setBackground(Color.WHITE);
 
 		// JLabel
 		JLabel titel = new JLabel("Zahlungsart");
@@ -63,13 +63,14 @@ public class ZahlungsDialog extends JDialog {
 		zahlungsArt.setVisible(true);
 
 		// Button
-		JButton buttonExit = new JButton("Abbrechen");
+		JButton buttonAbbrechen = new JButton("Abbrechen");
 		JButton buttonBestellen = new JButton("Bestellen");
 
-		buttonExit.setVisible(true);
+		buttonAbbrechen.setVisible(true);
 		buttonBestellen.setVisible(true);
 
-		buttonExit.addActionListener(e -> {
+		//ActionListener
+		buttonAbbrechen.addActionListener(e -> {
 			setVisible(false);
 		});
 		buttonBestellen.addActionListener(e -> {
@@ -80,7 +81,7 @@ public class ZahlungsDialog extends JDialog {
 				kunde.setZahlungsArt("Kreditkarte");
 			}
 			// Textdoukument
-			writingFile w = new writingFile(pizzaFrame, textAreaTotal, textAreaBestellung, this, kunde,
+			Quitung quittung = new Quitung(pizzaFrame, textAreaTotal, textAreaBestellung, this, kunde,
 					textAreaAngemeldet);
 
 			// Bestellbestaetigung
@@ -89,18 +90,18 @@ public class ZahlungsDialog extends JDialog {
 
 		});
 
-		buttonExit.setBackground(Color.white);
-		buttonBestellen.setBackground(Color.white);
+		buttonAbbrechen.setBackground(Color.WHITE);
+		buttonBestellen.setBackground(Color.WHITE);
 
-		panelNorth.add(titel, BorderLayout.CENTER);
-		panelCenter.add(zahlungsArt, BorderLayout.CENTER);
-		panelSouth.add(buttonBestellen, BorderLayout.CENTER);
-		panelSouth.add(buttonExit);
+		panelNorden.add(titel, BorderLayout.CENTER);
+		panelMitte.add(zahlungsArt, BorderLayout.CENTER);
+		panelSueden.add(buttonBestellen, BorderLayout.CENTER);
+		panelSueden.add(buttonAbbrechen);
 
 		// Panel zu Frame hinzufügen
-		add(panelNorth, BorderLayout.NORTH);
-		add(panelCenter, BorderLayout.CENTER);
-		add(panelSouth, BorderLayout.SOUTH);
+		add(panelNorden, BorderLayout.NORTH);
+		add(panelMitte, BorderLayout.CENTER);
+		add(panelSueden, BorderLayout.SOUTH);
 
 		// Rest
 		pack();

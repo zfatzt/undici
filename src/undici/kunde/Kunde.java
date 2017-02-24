@@ -1,8 +1,9 @@
 package undici.kunde;
 
+import org.apache.commons.validator.EmailValidator;
+
 import undici.adresse.Adresse;
 import undici.excepitons.EmailException;
-import org.apache.commons.validator.EmailValidator;
 
 public class Kunde {
 

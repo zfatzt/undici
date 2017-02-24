@@ -6,8 +6,6 @@ public class Bestellung extends ArrayList<BestellItem>{
 	
 	private static final long serialVersionUID = 1L;
 
-
-	@Override
 	public boolean add(BestellItem item) {
 		
 		if (this.contains(item))
@@ -19,8 +17,6 @@ public class Bestellung extends ArrayList<BestellItem>{
 		
 		return super.add(item);
 	}
-
-
 
 	public double getTotalPreis() {
 		

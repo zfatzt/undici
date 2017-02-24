@@ -26,40 +26,42 @@ public class AbsendenDialog extends JDialog {
 		setUndecorated(true);
 
 		// JPanel
-		JPanel panelMain = new JPanel();
+		JPanel panelHaupt = new JPanel();
 		JPanel panelAnmelden = new JPanel();
 		JPanel panelRegistrieren = new JPanel();
 		JPanel panelAbbrechen = new JPanel();
 
-		panelMain.setBackground(Color.WHITE);
+		panelHaupt.setBackground(Color.WHITE);
 		panelAnmelden.setBackground(Color.WHITE);
 		panelRegistrieren.setBackground(Color.WHITE);
 		panelAbbrechen.setBackground(Color.WHITE);
 
-		panelMain.setPreferredSize(new Dimension(350, 177));
+		panelHaupt.setPreferredSize(new Dimension(350, 177));
 		panelAnmelden.setPreferredSize(new Dimension(350, 35));
 		panelRegistrieren.setPreferredSize(new Dimension(350, 35));
 		panelAbbrechen.setPreferredSize(new Dimension(350, 35));
 
 		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
+		
 		// JLabel
-		JLabel label = new JLabel("Absenden");
-		label.setFont(new Font("Arial", 1, 30));
+		JLabel labelAbsenden = new JLabel("Absenden");
+		labelAbsenden.setFont(new Font("Arial", 1, 30));
 
 		// Button
-		JButton buttonExit = new JButton("Abbrechen");
+		JButton buttonAbbrechen = new JButton("Abbrechen");
 		JButton buttonRegistrieren = new JButton("Registrieren");
 		JButton buttonAnmelden = new JButton("Anmelden");
 
-		buttonExit.setBackground(Color.white);
-		buttonRegistrieren.setBackground(Color.white);
-		buttonAnmelden.setBackground(Color.white);
+		buttonAbbrechen.setBackground(Color.WHITE);
+		buttonRegistrieren.setBackground(Color.WHITE);
+		buttonAnmelden.setBackground(Color.WHITE);
 
-		buttonExit.setPreferredSize(new Dimension(150, 30));
+		buttonAbbrechen.setPreferredSize(new Dimension(150, 30));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 30));
 		buttonAnmelden.setPreferredSize(new Dimension(150, 30));
 
-		buttonExit.addActionListener(e -> {
+		// ActionListener
+		buttonAbbrechen.addActionListener(e -> {
 			setVisible(false);
 		});
 		buttonAnmelden.addActionListener(e -> {
@@ -76,20 +78,17 @@ public class AbsendenDialog extends JDialog {
 		// Panel hinzufügen
 		panelAnmelden.add(buttonAnmelden);
 		panelRegistrieren.add(buttonRegistrieren);
-		panelAbbrechen.add(buttonExit);
+		panelAbbrechen.add(buttonAbbrechen);
 
-		// panelMain hinzufügen
-		panelMain.add(label);
-		panelMain.add(panelAnmelden);
-		panelMain.add(panelRegistrieren);
-		panelMain.add(panelAbbrechen);
+		// panelHaupt hinzufügen
+		panelHaupt.add(labelAbsenden);
+		panelHaupt.add(panelAnmelden);
+		panelHaupt.add(panelRegistrieren);
+		panelHaupt.add(panelAbbrechen);
 
 		// Panel zu Frame hinzufügen
-		add(panelMain, BorderLayout.NORTH);
+		add(panelHaupt, BorderLayout.NORTH);
 
-		if (buttonAnmelden.getModel().isPressed()) {
-			System.out.println("button is pressed");
-		}
 		// Rest
 		pack();
 		setVisible(true);

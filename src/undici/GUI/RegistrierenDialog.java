@@ -27,7 +27,6 @@ import undici.kunde.KundeJBDBCDao;
 public class RegistrierenDialog extends JDialog {
 	private static final long serialVersionUID = 3L;
 
-	@SuppressWarnings("deprecation")
 	public RegistrierenDialog() {
 
 		// JWindow
@@ -38,8 +37,8 @@ public class RegistrierenDialog extends JDialog {
 		setUndecorated(true);
 
 		// JPanels werden erstellt
-		JPanel panelNorth = new JPanel();
-		JPanel panelSouth = new JPanel();
+		JPanel panelNorden = new JPanel();
+		JPanel panelSueden = new JPanel();
 		JPanel panelGeschlecht = new JPanel();
 		JPanel panelVorname = new JPanel();
 		JPanel panelName = new JPanel();
@@ -50,11 +49,10 @@ public class RegistrierenDialog extends JDialog {
 		JPanel panelEmailWiederholen = new JPanel();
 		JPanel panelPasswort = new JPanel();
 		JPanel panelPasswortWiederholen = new JPanel();
-		JPanel panelError = new JPanel();
+		JPanel panelFehler = new JPanel();
 
-		// gr�ssen werden definiert
-		panelNorth.setPreferredSize(new Dimension(350, 490));
-		panelSouth.setPreferredSize(new Dimension(350, 60));
+		panelNorden.setPreferredSize(new Dimension(350, 490));
+		panelSueden.setPreferredSize(new Dimension(350, 60));
 		panelGeschlecht.setPreferredSize(new Dimension(350, 40));
 		panelVorname.setPreferredSize(new Dimension(350, 40));
 		panelName.setPreferredSize(new Dimension(350, 40));
@@ -66,8 +64,8 @@ public class RegistrierenDialog extends JDialog {
 		panelPasswort.setPreferredSize(new Dimension(350, 40));
 		panelPasswortWiederholen.setPreferredSize(new Dimension(350, 40));
 
-		panelNorth.setBackground(Color.WHITE);
-		panelSouth.setBackground(Color.WHITE);
+		panelNorden.setBackground(Color.WHITE);
+		panelSueden.setBackground(Color.WHITE);
 		panelGeschlecht.setBackground(Color.WHITE);
 		panelVorname.setBackground(Color.WHITE);
 		panelName.setBackground(Color.WHITE);
@@ -78,12 +76,13 @@ public class RegistrierenDialog extends JDialog {
 		panelEmailWiederholen.setBackground(Color.WHITE);
 		panelPasswort.setBackground(Color.WHITE);
 		panelPasswortWiederholen.setBackground(Color.WHITE);
-		panelError.setBackground(Color.WHITE);
+		panelFehler.setBackground(Color.WHITE);
 
+		// Border
 		((JComponent) super.getContentPane()).setBorder(new LineBorder(Color.BLACK));
 
 		// JLabels werden erstellt
-		JLabel label = new JLabel("Registrierung");
+		JLabel labelTitel = new JLabel("Registrierung");
 		JLabel labelGeschlecht = new JLabel("                          Anrede");
 		JLabel labelVorname = new JLabel("                       Vorname");
 		JLabel labelName = new JLabel("                            Name");
@@ -97,13 +96,12 @@ public class RegistrierenDialog extends JDialog {
 		JLabel labelPasswort = new JLabel("                     Passwort");
 		JLabel labelPasswortWiederholen = new JLabel("Passwort wiederholen");
 
-		// Schriftart und gr�sse des Titels setzen
-		label.setFont(new Font("Arial", 1, 30));
+		labelTitel.setFont(new Font("Arial", 1, 30));
 
 		// Combobox
 		String[] AnredeArray = { "-", "Herr", "Frau" };
 		JComboBox geschlecht = new JComboBox(AnredeArray);
-		geschlecht.setBackground(Color.white);
+		geschlecht.setBackground(Color.WHITE);
 		geschlecht.setPreferredSize(new Dimension(170, 30));
 
 		// Eingabe
@@ -119,7 +117,6 @@ public class RegistrierenDialog extends JDialog {
 		JPasswordField eingabePasswort = new JPasswordField("", 15);
 		JPasswordField eingabePasswortWiederholen = new JPasswordField("", 15);
 
-		// gr�ssen Definiert
 		eingabeVorname.setPreferredSize(new Dimension(100, 30));
 		eingabeName.setPreferredSize(new Dimension(100, 30));
 		eingabeStrasse.setPreferredSize(new Dimension(100, 30));
@@ -136,17 +133,17 @@ public class RegistrierenDialog extends JDialog {
 		JButton buttonAbbrechen = new JButton("Abbrechen");
 		JButton buttonRegristrieren = new JButton("Registrieren");
 
-		buttonAbbrechen.setBackground(Color.white);
-		buttonRegristrieren.setBackground(Color.white);
+		buttonAbbrechen.setBackground(Color.WHITE);
+		buttonRegristrieren.setBackground(Color.WHITE);
 
+		// actionListener
 		buttonAbbrechen.addActionListener(e -> {
 			setVisible(false);
 		});
 
-		// actionListener
 		buttonRegristrieren.addActionListener(e -> {
 
-			// einsetzen id db
+			// eischreiben in die Datenbank
 			Adresse adresse = new Adresse();
 			Kunde kunde = new Kunde();
 			KundeJBDBCDao dbKunde = new KundeJBDBCDao();
@@ -168,33 +165,34 @@ public class RegistrierenDialog extends JDialog {
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
-					JOptionPane.showMessageDialog(panelError, e1, "ung�ltige PLZ", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panelFehler, e1, "ung�ltige PLZ", JOptionPane.ERROR_MESSAGE);
 				}
 				kunde.setTelefon(eingabeTelefon.getText());
 				try {
 					kunde.setEmail(eingabeEmail.getText());
 				} catch (EmailException e1) {
-					JOptionPane.showMessageDialog(panelError, e1, "ungültige E-Mail adresse",
+					JOptionPane.showMessageDialog(panelFehler, e1, "ungültige E-Mail adresse",
 							JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 
 				if ((eingabeEmail.getText().equals(eingabeEmailWiederholen.getText())
-						&& (new String(eingabePasswort.getPassword()).equals(new String(eingabePasswortWiederholen.getPassword()))))) {
-					
-					if (dbKunde.EmailSchonVorhanden(eingabeEmail.getText())) {	
+						&& (new String(eingabePasswort.getPassword())
+								.equals(new String(eingabePasswortWiederholen.getPassword()))))) {
+
+					if (dbKunde.EmailSchonVorhanden(eingabeEmail.getText())) {
 						kunde.setWohnAdresse(adresse);
 						kunde.setPasswort(new String(eingabePasswort.getPassword()));
 						int primaryKeyOfAdress = dbAdresse.insertAdresse(adresse);
 						kunde.setAdresse_id(primaryKeyOfAdress);
 						dbKunde.insertKunde(kunde);
 						setVisible(false);
-					}else{
-						JOptionPane.showMessageDialog(panelError, "Diese Email Adresse existiert bereits.",
+					} else {
+						JOptionPane.showMessageDialog(panelFehler, "Diese Email Adresse existiert bereits.",
 								"übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(panelError, "Passwort oder E-Mail adresse stimmen nicht �berein.",
+					JOptionPane.showMessageDialog(panelFehler, "Passwort oder E-Mail adresse stimmen nicht �berein.",
 							"übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -239,26 +237,24 @@ public class RegistrierenDialog extends JDialog {
 		panelPasswortWiederholen.add(labelPasswortWiederholen);
 		panelPasswortWiederholen.add(eingabePasswortWiederholen);
 
-		// panelNorth hinzufuegen
-		panelNorth.add(label);
-		panelNorth.add(panelGeschlecht);
-		panelNorth.add(panelVorname);
-		panelNorth.add(panelName);
-		panelNorth.add(panelStrasse);
-		panelNorth.add(panelOrt);
-		panelNorth.add(panelTelefon);
-		panelNorth.add(panelEmail);
-		panelNorth.add(panelEmailWiederholen);
-		panelNorth.add(panelPasswort);
-		panelNorth.add(panelPasswortWiederholen);
+		panelNorden.add(labelTitel);
+		panelNorden.add(panelGeschlecht);
+		panelNorden.add(panelVorname);
+		panelNorden.add(panelName);
+		panelNorden.add(panelStrasse);
+		panelNorden.add(panelOrt);
+		panelNorden.add(panelTelefon);
+		panelNorden.add(panelEmail);
+		panelNorden.add(panelEmailWiederholen);
+		panelNorden.add(panelPasswort);
+		panelNorden.add(panelPasswortWiederholen);
 
-		// panelSouth hinzufuegen
-		panelSouth.add(buttonRegristrieren);
-		panelSouth.add(buttonAbbrechen);
+		panelSueden.add(buttonRegristrieren);
+		panelSueden.add(buttonAbbrechen);
 
 		// Panel zu Frame hinzufuegen
-		add(panelNorth, BorderLayout.NORTH);
-		add(panelSouth, BorderLayout.SOUTH);
+		add(panelNorden, BorderLayout.NORTH);
+		add(panelSueden, BorderLayout.SOUTH);
 
 		// Rest
 		pack();

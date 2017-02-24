@@ -35,7 +35,8 @@ public class PizzaFrame extends JFrame {
 	JButton buttonBestellungAbschicken = new JButton("Bestellung Abschicken");
 	JButton buttonBestellungLoeschen = new JButton("Bestellung Löschen");
 
-	private Kunde user;
+	private Kunde kunde;
+	private Bestellung bestellung = new Bestellung();
 
 	// Jpanel erstellen
 	JPanel panelNorden = new JPanel(new BorderLayout());
@@ -47,18 +48,17 @@ public class PizzaFrame extends JFrame {
 	JPanel panelLogo = new JPanel();
 	JPanel panelBestellung = new JPanel();
 	JPanel panelGetraenke = new JPanel();
+
 	JTextPane textAreaAngemeldet = new JTextPane();
-	private Bestellung bestellung = new Bestellung();
 
 	public PizzaFrame() throws IOException {
-		Dimension d = new Dimension(800, 1000);
-
 		// JFrame
 		setTitle("Undici");
-		setPreferredSize(d);
+		setPreferredSize(new Dimension(800, 1000));
 		setLocation(600, 000);
 		setBackground(Color.WHITE);
 		setResizable(false);
+
 		// Logo
 		BufferedImage logo = ImageIO.read(new File("src/undici/GUI/Bilder/undici_logo.png"));
 
@@ -101,6 +101,7 @@ public class PizzaFrame extends JFrame {
 		if (!textAreaTotal.getText().equals("")) {
 			gesamtPreis = Double.parseDouble(textAreaTotal.getText().substring(4));
 		}
+
 		// JLabel
 		JLabel labelLogo = new JLabel(new ImageIcon(logo));
 
@@ -130,11 +131,11 @@ public class PizzaFrame extends JFrame {
 		});
 
 		buttonBestellungAbschicken.addActionListener(e -> {
-			if (user == null) {
+			if (kunde == null) {
 				JDialog abd = new AbsendenDialog(this);
 				abd.pack();
 			} else {
-				JDialog abd = new ZahlungsDialog(this, user, textAreaTotal, textAreaBestellung, textAreaAngemeldet);
+				JDialog abd = new ZahlungsDialog(this, kunde, textAreaTotal, textAreaBestellung, textAreaAngemeldet);
 				abd.pack();
 			}
 		});
@@ -163,7 +164,7 @@ public class PizzaFrame extends JFrame {
 		// TabbedPane
 		JTabbedPane tabbedPane = new JTabbedPane();
 
-		// Pizza
+		// ScrollPanes
 		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal,
 				gesamtPreis);
 		GetraenkeBoxScrollPane getraenkeBox = new GetraenkeBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal,
@@ -206,13 +207,13 @@ public class PizzaFrame extends JFrame {
 	}
 
 	public void angemeldet(Kunde kunde) {
-		this.user = kunde;
+		this.kunde = kunde;
 		buttonAnmelden.setVisible(false);
 		buttonRegistrieren.setVisible(false);
 
 		textAreaAngemeldet.setVisible(true);
-		textAreaAngemeldet.setText("Guten Tag, Sie sind angemeldet als: \n" + user.getAnrede() + " " + user.getVorname()
-				+ " " + user.getName());
+		textAreaAngemeldet.setText("Guten Tag, Sie sind angemeldet als: \n" + kunde.getAnrede() + " "
+				+ kunde.getVorname() + " " + kunde.getName());
 		textAreaAngemeldet.setFont(new Font("Arial", 1, 12));
 		textAreaAngemeldet.setEditable(false);
 

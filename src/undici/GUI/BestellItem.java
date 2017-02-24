@@ -4,11 +4,11 @@ public class BestellItem {
 
 	private int menge;
 	private String name;
-	private double price;
+	private double preis;
 	
 	public BestellItem(int menge, double preis, String name) {
 		this.menge = menge;
-		this.price = preis;
+		this.preis = preis;
 		this.name = name;
 	}
 	
@@ -25,13 +25,11 @@ public class BestellItem {
 		this.name = name;
 	}
 	public double getPrice() {
-		return price;
+		return preis;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setPrice(double preis) {
+		this.preis = preis;
 	}
-
-	@Override
 	public boolean equals(Object obj) {
 
 		return name.equals(((BestellItem)obj).name);
