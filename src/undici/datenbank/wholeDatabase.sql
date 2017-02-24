@@ -67,17 +67,17 @@ CREATE TABLE adresse (
 
     
   insert into pizza (pizza, preis, bild) values
-  ('Margharita', 16,'src/undici/GUI/Bilder/margharita.jpg')
-  ,('Funghi', 19,'src/undici/GUI/Bilder/funghi.jpg')
-  ,('Salame', 20,'src/undici/GUI/Bilder/salame.jpg')
-  ,('Salame Picante', 20,'src/undici/GUI/Bilder/salamePicante.jpg')
-  ,('Calzone', 20,'src/undici/GUI/Bilder/calzone.jpg')
-  ,('Quatro Formagi', 21,'src/undici/GUI/Bilder/quatroFormagi.jpg')
-  ,('Prosciutto', 20,'src/undici/GUI/Bilder/prosciutto.jpg')
-  ,('Hawaii', 20,'src/undici/GUI/Bilder/hawaii.jpg')
-  ,('Napoli', 18,'src/undici/GUI/Bilder/napoli.jpg')
-  ,('Quatro Stagioni', 20,'src/undici/GUI/Bilder/quatroStagioni.jpg')
-  ,('frutti di mare', 20,'src/undici/GUI/Bilder/fruttiDiMare.jpg');
+  ('Margharita', 16,'/undici/GUI/Bilder/margharita.jpg')
+  ,('Funghi', 19,'/undici/GUI/Bilder/funghi.jpg')
+  ,('Salame', 20,'/undici/GUI/Bilder/salame.jpg')
+  ,('Salame Picante', 20,'/undici/GUI/Bilder/salamePicante.jpg')
+  ,('Calzone', 20,'/undici/GUI/Bilder/calzone.jpg')
+  ,('Quatro Formagi', 21,'/undici/GUI/Bilder/quatroFormagi.jpg')
+  ,('Prosciutto', 20,'/undici/GUI/Bilder/prosciutto.jpg')
+  ,('Hawaii', 20,'/undici/GUI/Bilder/hawaii.jpg')
+  ,('Napoli', 18,'/undici/GUI/Bilder/napoli.jpg')
+  ,('Quatro Stagioni', 20,'/undici/GUI/Bilder/quatroStagioni.jpg')
+  ,('frutti di mare', 20,'/undici/GUI/Bilder/fruttiDiMare.jpg');
 
 create table pizza_zutat (
 pizza_id int not null,
@@ -117,13 +117,13 @@ foreign key(pizza_id) references undici.pizza(id));
   bild varchar(55) not null);
   
   insert into getraenk(getraenk, preis, bild) values
-  ('Coca Cola', 4,'src/undici/GUI/Bilder/cocaCola.png')
-  ,('Coca-Cola zero', 4,'src/undici/GUI/Bilder/cocaColaZero.jpg')
-  ,('Coca-Cola light', 4,'src/undici/GUI/Bilder/cocaColaLight.png')
-  ,('Fanta', 4,'src/undici/GUI/Bilder/fanta.jpg')
-  ,('Sprite', 4,'src/undici/GUI/Bilder/sprite.jpg')
-  ,('Valser Wasser', 2,'src/undici/GUI/Bilder/valserWasser.png')
-  ,('Rivella Rot', 2,'src/undici/GUI/Bilder/rivellaRot.png');
+  ('Coca Cola', 4,'/undici/GUI/Bilder/cocaCola.png')
+  ,('Coca-Cola zero', 4,'/undici/GUI/Bilder/cocaColaZero.jpg')
+  ,('Coca-Cola light', 4,'/undici/GUI/Bilder/cocaColaLight.png')
+  ,('Fanta', 4,'/undici/GUI/Bilder/fanta.jpg')
+  ,('Sprite', 4,'/undici/GUI/Bilder/sprite.jpg')
+  ,('Valser Wasser', 2,'/undici/GUI/Bilder/valserWasser.png')
+  ,('Rivella Rot', 4,'/undici/GUI/Bilder/rivellaRot.png');
     
     CREATE TABLE bestellung (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -136,4 +136,3 @@ foreign key(pizza_id) references undici.pizza(id));
 	foreign key(kunde_id) references undici.kunde(id),
 	foreign key(getraenk_id) references undici.getraenk(id),
     foreign key(pizza_id) references undici.pizza(id));
-    

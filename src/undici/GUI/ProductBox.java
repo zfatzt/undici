@@ -63,7 +63,7 @@ public class ProductBox extends JPanel {
 		border.setTitleJustification(TitledBorder.LEFT);
 
 		// PizzaBilder
-		BufferedImage bild = ImageIO.read(new File(pfad));
+		BufferedImage bild = ImageIO.read(this.getClass().getResourceAsStream(pfad));
 		JLabel labelBild = new JLabel(new ImageIcon(bild));
 
 		// ZutatenListe
