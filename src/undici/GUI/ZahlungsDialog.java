@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -40,8 +39,6 @@ public class ZahlungsDialog extends JDialog {
 		JPanel panelCenter = new JPanel();
 		JPanel panelSouth = new JPanel();
 		JOptionPane panelBestätigung = new JOptionPane();
-		JFileChooser bestellungsFile = new JFileChooser();
-		
 
 		panelNorth.setPreferredSize(new Dimension(350, 50));
 		panelSouth.setPreferredSize(new Dimension(350, 40));
@@ -53,8 +50,8 @@ public class ZahlungsDialog extends JDialog {
 		panelCenter.setBackground(Color.WHITE);
 
 		// Textdoukument
-//		writingFile wf = new writingFile(pizzaFrame, textAreaTotal, textAreaBestellung, this, kunde,
-//				textAreaAngemeldet);
+		writingFile wf = new writingFile(pizzaFrame, textAreaTotal, textAreaBestellung, this, kunde,
+				textAreaAngemeldet);
 
 		// JLabel
 		JLabel titel = new JLabel("Zahlungsart");
@@ -88,15 +85,9 @@ public class ZahlungsDialog extends JDialog {
 			writingFile w = new writingFile(pizzaFrame, textAreaTotal, textAreaBestellung, this, kunde,
 					textAreaAngemeldet);
 			
-			
-			
-			
-			
-			
 			//Bestellbestätigung
 			JOptionPane.showMessageDialog(panelBestätigung, "Ihre Bestellung wurde Erfolgreich gespeichert.");
 			setVisible(false);
-			
 			
 			
 		});

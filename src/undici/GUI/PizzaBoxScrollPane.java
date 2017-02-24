@@ -22,7 +22,7 @@ public class PizzaBoxScrollPane extends JPanel {
 	private JPanel content = new JPanel();
 
 
-	public PizzaBoxScrollPane(Bestellung bestellung, JTextArea area, JTextArea total) throws IOException {
+	public PizzaBoxScrollPane(Bestellung bestellung, JTextArea area, JTextArea total, Map<String, Integer> map, double gesamtPreis) throws IOException {
 		super();
 		
 		//h�he, breite und Anzahl Pizzen sichtbar auf einer seite
@@ -39,7 +39,7 @@ public class PizzaBoxScrollPane extends JPanel {
 		//Pizza wird von der Datenbank ausgelesen
 		try {
 			for (Pizza pizza : db.getAllpizzen()) {
-				ProductBox pizzaBox = new ProductBox(bestellung, pizza.getPizza(), pizza.getPreis(), pizza.getZutaten(), pizza.getBild(), area, total);
+				ProductBox pizzaBox = new ProductBox(bestellung, pizza.getPizza(), pizza.getPreis(), pizza.getZutaten(), pizza.getBild(), area, total, map, gesamtPreis);
 				content.add(pizzaBox);
 			}
 		} catch (SQLException e) {

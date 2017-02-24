@@ -35,15 +35,15 @@ public class PizzaFrame extends JFrame {
 	// Button
 	JButton buttonRegistrieren = new JButton("Registrieren");
 	JButton buttonAnmelden = new JButton("Anmelden");
-	JButton bestellungAbschicken = new JButton("Bestellung Abschicken");
-	JButton bestellungLoeschen = new JButton("Bestellung Loeschen");
+	JButton buttonBestellungAbschicken = new JButton("Bestellung Abschicken");
+	JButton buttonBestellungLöschen = new JButton("Bestellung Löschen");
 
 	private Kunde user;
 
 	// Jpanel erstellen
 	JPanel panelNorth = new JPanel(new BorderLayout());
-	JPanel panelCenter = new JPanel();
-	JPanel panelLeft = new JPanel();
+	JPanel panelMitte = new JPanel();
+	JPanel panelLinks = new JPanel();
 	JPanel panelAnmeldung = new JPanel();
 	JPanel panelAnmeldenButton = new JPanel();
 	JPanel panelRegistrierenButton = new JPanel();
@@ -52,7 +52,7 @@ public class PizzaFrame extends JFrame {
 	JPanel panelGetraenke = new JPanel();
 	JTextPane textAreaAngemeldet = new JTextPane();
 	private Bestellung bestellung = new Bestellung();
-	
+
 	public PizzaFrame() throws IOException {
 		Dimension d = new Dimension(800, 1000);
 
@@ -75,24 +75,14 @@ public class PizzaFrame extends JFrame {
 		TitledBorder totalBorder = BorderFactory.createTitledBorder("Total");
 		totalBorder.setTitleJustification(TitledBorder.LEFT);
 
-		panelNorth.setBackground(Color.WHITE);
-		panelCenter.setBackground(Color.WHITE);
-		panelLeft.setBackground(Color.WHITE);
-		panelAnmeldung.setBackground(Color.WHITE);
-		panelAnmeldenButton.setBackground(Color.WHITE);
-		panelRegistrierenButton.setBackground(Color.WHITE);
-		panelLogo.setBackground(Color.WHITE);
-		panelBestellung.setBackground(Color.WHITE);
-		panelGetraenke.setBackground(Color.WHITE);
-
 		// groesse setzen
 		panelNorth.setPreferredSize(new Dimension(550, 150));
-		panelCenter.setPreferredSize(new Dimension(550, 850));
-		panelLeft.setPreferredSize(new Dimension(220, 1000));
+		panelMitte.setPreferredSize(new Dimension(550, 850));
+		panelLinks.setPreferredSize(new Dimension(220, 1000));
 
 		panelAnmeldung.setPreferredSize(new Dimension(220, 150));
 		panelAnmeldenButton.setPreferredSize(new Dimension(210, 50));
-		panelBestellung.setPreferredSize(new Dimension(220, 500));
+		panelBestellung.setPreferredSize(new Dimension(220, 650));
 
 		panelGetraenke.setPreferredSize(new Dimension(550, 785));
 		panelAnmeldung.setBorder(anmeldenBorder);
@@ -102,14 +92,12 @@ public class PizzaFrame extends JFrame {
 		String textBestellung = "";
 		JTextArea textAreaBestellung = new JTextArea(textBestellung);
 		textAreaBestellung.setEditable(false);
-		textAreaBestellung.setPreferredSize(new Dimension(210, 450));
-		panelBestellung.add(textAreaBestellung);
+		textAreaBestellung.setPreferredSize(new Dimension(210, 575));
 
 		// TotalPreisTextArea
 		String total = "";
 		JTextArea textAreaTotal = new JTextArea(total);
 		textAreaTotal.setEditable(false);
-		textAreaTotal.setPreferredSize(new Dimension(210, 630));
 		textAreaTotal.setPreferredSize(new Dimension(220, 100));
 		textAreaTotal.setBorder(totalBorder);
 		double gesamtPreis = 0;
@@ -126,22 +114,12 @@ public class PizzaFrame extends JFrame {
 		SimpleAttributeSet center = new SimpleAttributeSet();
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
 		doc.setParagraphAttributes(0, doc.getLength(), center, false);
-		
-		// TabbedPane
-		JTabbedPane tabbedPane = new JTabbedPane();
-		// Pizza
 
-		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal);
-		GetraenkeBoxScrollPane getraenkeBox = new GetraenkeBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal);
-
-		tabbedPane.addTab("Pizza", pizzaBox);
-		tabbedPane.addTab("Getränke", getraenkeBox);
-		
 		// Buttons
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
-		bestellungAbschicken.setPreferredSize(new Dimension(220, 40));
-		bestellungLoeschen.setPreferredSize(new Dimension(220, 40));
+		buttonBestellungAbschicken.setPreferredSize(new Dimension(220, 40));
+		buttonBestellungLöschen.setPreferredSize(new Dimension(210, 40));
 
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
@@ -154,7 +132,7 @@ public class PizzaFrame extends JFrame {
 			rd.pack();
 		});
 
-		bestellungAbschicken.addActionListener(e -> {
+		buttonBestellungAbschicken.addActionListener(e -> {
 			if (user == null) {
 				JDialog abd = new AbsendenDialog(this);
 				abd.pack();
@@ -163,25 +141,39 @@ public class PizzaFrame extends JFrame {
 				abd.pack();
 			}
 		});
-		
-		bestellungLoeschen.addActionListener(e -> {
+		buttonBestellungLöschen.addActionListener(e -> {
 			textAreaBestellung.setText("");
-			
-			
-			
-			
+			textAreaTotal.setText("Fr. \t" + 0.00 + "\n");
+			bestellung.clear();
 		});
-		
+
 		// HintergrundFarbe setzen
 		panelNorth.setBackground(Color.WHITE);
 		buttonAnmelden.setBackground(Color.WHITE);
 		buttonRegistrieren.setBackground(Color.WHITE);
-		bestellungAbschicken.setBackground(Color.WHITE);
-		bestellungLoeschen.setBackground(Color.WHITE);
+		buttonBestellungAbschicken.setBackground(Color.WHITE);
+		buttonBestellungLöschen.setBackground(Color.WHITE);
+		panelNorth.setBackground(Color.WHITE);
+		panelMitte.setBackground(Color.WHITE);
+		panelLinks.setBackground(Color.WHITE);
+		panelAnmeldung.setBackground(Color.WHITE);
+		panelAnmeldenButton.setBackground(Color.WHITE);
+		panelRegistrierenButton.setBackground(Color.WHITE);
+		panelLogo.setBackground(Color.WHITE);
+		panelBestellung.setBackground(Color.WHITE);
+		panelGetraenke.setBackground(Color.WHITE);
 
+		// TabbedPane
+		JTabbedPane tabbedPane = new JTabbedPane();
 
+		// Pizza
+		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal, map,
+				gesamtPreis);
+		GetraenkeBoxScrollPane getraenkeBox = new GetraenkeBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal,
+				map, gesamtPreis);
 
-
+		tabbedPane.addTab("Pizza", pizzaBox);
+		tabbedPane.addTab("Getränke", getraenkeBox);
 
 		// Panel hinzufuegen
 		panelLogo.add(labelLogo);
@@ -194,20 +186,22 @@ public class PizzaFrame extends JFrame {
 		panelAnmeldung.add(panelRegistrierenButton);
 		panelAnmeldung.add(textAreaAngemeldet);
 
-		panelLeft.add(panelBestellung);
-		panelLeft.add(bestellungLoeschen);
-		panelLeft.add(textAreaTotal);
-		panelLeft.add(bestellungAbschicken);
+		panelLinks.add(panelBestellung);
+		panelLinks.add(textAreaTotal);
+		panelLinks.add(buttonBestellungAbschicken);
 
-		panelCenter.add(tabbedPane);
+		panelBestellung.add(textAreaBestellung);
+		panelBestellung.add(buttonBestellungLöschen);
+
+		panelMitte.add(tabbedPane);
 
 		panelNorth.add(panelAnmeldung, BorderLayout.WEST);
 		panelNorth.add(panelLogo);
 
 		// Panel zu Frame hinzufuegen
-		add(panelLeft, BorderLayout.WEST);
+		add(panelLinks, BorderLayout.WEST);
 		add(panelNorth, BorderLayout.NORTH);
-		add(panelCenter, BorderLayout.CENTER);
+		add(panelMitte, BorderLayout.CENTER);
 
 		// Rest
 		pack();

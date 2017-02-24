@@ -19,9 +19,6 @@ public class Bestellung extends ArrayList<BestellItem>{
 		
 		return super.add(item);
 	}
-
-
-
 	public double getTotalPreis() {
 		
 		double totalPreis = 0;
@@ -32,8 +29,4 @@ public class Bestellung extends ArrayList<BestellItem>{
 		
 		return totalPreis;
 	}
-	
-	
 }
-
-
