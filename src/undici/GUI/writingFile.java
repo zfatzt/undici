@@ -1,5 +1,6 @@
 package undici.GUI;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -70,8 +71,9 @@ public class writingFile {
 		
 		bestellBestaetigung.setTitle(nameDerBestellung);
 		bestellBestaetigung.add(bestellBestaetigungText);
-		bestellBestaetigung.setLocation(50, 50);
+		bestellBestaetigung.setLocation(600, 50);
 		bestellBestaetigung.setVisible(true);
+		bestellBestaetigung.setPreferredSize(new Dimension(250, 500));
 		bestellBestaetigung.pack();
 		
 	}

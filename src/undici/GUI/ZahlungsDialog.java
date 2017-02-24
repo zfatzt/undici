@@ -23,7 +23,7 @@ public class ZahlungsDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 
 	public ZahlungsDialog(PizzaFrame pizzaFrame, Kunde kunde, JTextArea textAreaTotal, JTextArea textAreaBestellung,
-			 JTextPane textAreaAngemeldet) {
+			JTextPane textAreaAngemeldet) {
 		Dimension d = new Dimension(350, 180);
 		// public boolean istEingelogt = true;
 
@@ -39,9 +39,8 @@ public class ZahlungsDialog extends JDialog {
 		JPanel panelNorth = new JPanel();
 		JPanel panelCenter = new JPanel();
 		JPanel panelSouth = new JPanel();
-		JOptionPane panelBestätigung = new JOptionPane();
+		JOptionPane panelBestaetigung = new JOptionPane();
 		JFileChooser bestellungsFile = new JFileChooser();
-		
 
 		panelNorth.setPreferredSize(new Dimension(350, 50));
 		panelSouth.setPreferredSize(new Dimension(350, 40));
@@ -51,10 +50,6 @@ public class ZahlungsDialog extends JDialog {
 		panelNorth.setBackground(Color.WHITE);
 		panelSouth.setBackground(Color.WHITE);
 		panelCenter.setBackground(Color.WHITE);
-
-		// Textdoukument
-//		writingFile wf = new writingFile(pizzaFrame, textAreaTotal, textAreaBestellung, this, kunde,
-//				textAreaAngemeldet);
 
 		// JLabel
 		JLabel titel = new JLabel("Zahlungsart");
@@ -80,25 +75,18 @@ public class ZahlungsDialog extends JDialog {
 		buttonBestellen.addActionListener(e -> {
 			if (zahlungsArt.getSelectedIndex() == 0) {
 				kunde.setZahlungsArt("Barzahlung");
-				
+
 			} else if (zahlungsArt.getSelectedIndex() == 1) {
 				kunde.setZahlungsArt("Kreditkarte");
 			}
 			// Textdoukument
 			writingFile w = new writingFile(pizzaFrame, textAreaTotal, textAreaBestellung, this, kunde,
 					textAreaAngemeldet);
-			
-			
-			
-			
-			
-			
-			//Bestellbestätigung
-			JOptionPane.showMessageDialog(panelBestätigung, "Ihre Bestellung wurde Erfolgreich gespeichert.");
+
+			// Bestellbestaetigung
+			JOptionPane.showMessageDialog(panelBestaetigung, "Ihre Bestellung wurde Erfolgreich gespeichert.");
 			setVisible(false);
-			
-			
-			
+
 		});
 
 		buttonExit.setBackground(Color.white);
