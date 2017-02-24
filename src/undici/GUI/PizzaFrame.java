@@ -36,7 +36,7 @@ public class PizzaFrame extends JFrame {
 	JButton buttonRegistrieren = new JButton("Registrieren");
 	JButton buttonAnmelden = new JButton("Anmelden");
 	JButton buttonBestellungAbschicken = new JButton("Bestellung Abschicken");
-	JButton buttonBestellungLöschen = new JButton("Bestellung Löschen");
+	JButton buttonBestellungLoeschen = new JButton("Bestellung Löschen");
 
 	private Kunde user;
 
@@ -119,7 +119,7 @@ public class PizzaFrame extends JFrame {
 		buttonAnmelden.setPreferredSize(new Dimension(150, 40));
 		buttonRegistrieren.setPreferredSize(new Dimension(150, 40));
 		buttonBestellungAbschicken.setPreferredSize(new Dimension(220, 40));
-		buttonBestellungLöschen.setPreferredSize(new Dimension(210, 40));
+		buttonBestellungLoeschen.setPreferredSize(new Dimension(210, 40));
 
 		// ActionListener
 		buttonAnmelden.addActionListener(e -> {
@@ -141,7 +141,7 @@ public class PizzaFrame extends JFrame {
 				abd.pack();
 			}
 		});
-		buttonBestellungLöschen.addActionListener(e -> {
+		buttonBestellungLoeschen.addActionListener(e -> {
 			textAreaBestellung.setText("");
 			textAreaTotal.setText("Fr. \t" + 0.00 + "\n");
 			bestellung.clear();
@@ -152,7 +152,7 @@ public class PizzaFrame extends JFrame {
 		buttonAnmelden.setBackground(Color.WHITE);
 		buttonRegistrieren.setBackground(Color.WHITE);
 		buttonBestellungAbschicken.setBackground(Color.WHITE);
-		buttonBestellungLöschen.setBackground(Color.WHITE);
+		buttonBestellungLoeschen.setBackground(Color.WHITE);
 		panelNorth.setBackground(Color.WHITE);
 		panelMitte.setBackground(Color.WHITE);
 		panelLinks.setBackground(Color.WHITE);
@@ -191,7 +191,7 @@ public class PizzaFrame extends JFrame {
 		panelLinks.add(buttonBestellungAbschicken);
 
 		panelBestellung.add(textAreaBestellung);
-		panelBestellung.add(buttonBestellungLöschen);
+		panelBestellung.add(buttonBestellungLoeschen);
 
 		panelMitte.add(tabbedPane);
 
