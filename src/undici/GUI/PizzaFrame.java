@@ -7,8 +7,6 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -29,7 +27,6 @@ import javax.swing.text.StyledDocument;
 import undici.kunde.Kunde;
 
 public class PizzaFrame extends JFrame {
-	Map<String, Integer> map = new HashMap<String, Integer>();
 
 	private static final long serialVersionUID = 1L;
 	// Button
@@ -41,7 +38,7 @@ public class PizzaFrame extends JFrame {
 	private Kunde user;
 
 	// Jpanel erstellen
-	JPanel panelNorth = new JPanel(new BorderLayout());
+	JPanel panelNorden = new JPanel(new BorderLayout());
 	JPanel panelMitte = new JPanel();
 	JPanel panelLinks = new JPanel();
 	JPanel panelAnmeldung = new JPanel();
@@ -61,9 +58,9 @@ public class PizzaFrame extends JFrame {
 		setPreferredSize(d);
 		setLocation(600, 000);
 		setBackground(Color.WHITE);
-
+		setResizable(false);
 		// Logo
-		BufferedImage myPicture = ImageIO.read(new File("src/undici/GUI/Bilder/undici_logo.png"));
+		BufferedImage logo = ImageIO.read(new File("src/undici/GUI/Bilder/undici_logo.png"));
 
 		// TitledBorder
 		TitledBorder anmeldenBorder = BorderFactory.createTitledBorder("Anmelden");
@@ -76,7 +73,7 @@ public class PizzaFrame extends JFrame {
 		totalBorder.setTitleJustification(TitledBorder.LEFT);
 
 		// groesse setzen
-		panelNorth.setPreferredSize(new Dimension(550, 150));
+		panelNorden.setPreferredSize(new Dimension(550, 150));
 		panelMitte.setPreferredSize(new Dimension(550, 850));
 		panelLinks.setPreferredSize(new Dimension(220, 1000));
 
@@ -105,7 +102,7 @@ public class PizzaFrame extends JFrame {
 			gesamtPreis = Double.parseDouble(textAreaTotal.getText().substring(4));
 		}
 		// JLabel
-		JLabel labelLogo = new JLabel(new ImageIcon(myPicture));
+		JLabel labelLogo = new JLabel(new ImageIcon(logo));
 
 		// labelAngemeldet
 		textAreaAngemeldet.setVisible(false);
@@ -148,12 +145,12 @@ public class PizzaFrame extends JFrame {
 		});
 
 		// HintergrundFarbe setzen
-		panelNorth.setBackground(Color.WHITE);
+		panelNorden.setBackground(Color.WHITE);
 		buttonAnmelden.setBackground(Color.WHITE);
 		buttonRegistrieren.setBackground(Color.WHITE);
 		buttonBestellungAbschicken.setBackground(Color.WHITE);
 		buttonBestellungLoeschen.setBackground(Color.WHITE);
-		panelNorth.setBackground(Color.WHITE);
+		panelNorden.setBackground(Color.WHITE);
 		panelMitte.setBackground(Color.WHITE);
 		panelLinks.setBackground(Color.WHITE);
 		panelAnmeldung.setBackground(Color.WHITE);
@@ -167,10 +164,10 @@ public class PizzaFrame extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane();
 
 		// Pizza
-		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal, map,
+		PizzaBoxScrollPane pizzaBox = new PizzaBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal,
 				gesamtPreis);
 		GetraenkeBoxScrollPane getraenkeBox = new GetraenkeBoxScrollPane(bestellung, textAreaBestellung, textAreaTotal,
-				map, gesamtPreis);
+				gesamtPreis);
 
 		tabbedPane.addTab("Pizza", pizzaBox);
 		tabbedPane.addTab("Getränke", getraenkeBox);
@@ -195,12 +192,12 @@ public class PizzaFrame extends JFrame {
 
 		panelMitte.add(tabbedPane);
 
-		panelNorth.add(panelAnmeldung, BorderLayout.WEST);
-		panelNorth.add(panelLogo);
+		panelNorden.add(panelAnmeldung, BorderLayout.WEST);
+		panelNorden.add(panelLogo);
 
 		// Panel zu Frame hinzufuegen
 		add(panelLinks, BorderLayout.WEST);
-		add(panelNorth, BorderLayout.NORTH);
+		add(panelNorden, BorderLayout.NORTH);
 		add(panelMitte, BorderLayout.CENTER);
 
 		// Rest

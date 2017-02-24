@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -20,12 +19,12 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 public class ProductBox extends JPanel {
-	private int allePizzen = 0;
 	private static final long serialVersionUID = 1L;
-	
+
 	@SuppressWarnings("rawtypes")
-	public ProductBox(Bestellung bestellung, String name, double preis, List<String> zutaten, String pfad, JTextArea area, JTextArea total,
-			Map<String, Integer> pizzen, double gesamtPreis) throws IOException, SQLException {
+	public ProductBox(Bestellung bestellung, String name, double preis, List<String> zutaten, String pfad,
+			JTextArea area, JTextArea total, double gesamtPreis)
+			throws IOException, SQLException {
 		// PreisLabel
 		JLabel labelPreis = new JLabel("" + preis + " Fr.");
 
@@ -42,13 +41,12 @@ public class ProductBox extends JPanel {
 		total.setText("Fr. \t" + 0.00 + "\n");
 
 		buttonBestellen.addActionListener(e -> {
-			
+
 			int menge = comboBoxAnzahl.getSelectedIndex() + 1;
 			bestellung.add(new BestellItem(menge, preis, name));
-			
+
 			area.setText("");
 
-			
 			for (BestellItem item : bestellung) {
 				area.append(item.getName() + "\t" + item.getMenge() + "\t" + item.getPrice() + "\n");
 			}
@@ -57,7 +55,7 @@ public class ProductBox extends JPanel {
 			total.setText("");
 			if (total.getText().equals(""))
 				total.setText(" \t0.0");
-			
+
 			total.setText("Fr. \t" + bestellung.getTotalPreis() + "\n");
 		});
 
@@ -75,7 +73,7 @@ public class ProductBox extends JPanel {
 		@SuppressWarnings("unchecked")
 		JList zutaten2 = new JList(zutatenArr);
 
-		// Alles zu JPanel Hinzuf�gen
+		// Alles zu JPanel Hinzufuegen
 		setBackground(Color.WHITE);
 		setBorder(border);
 		setVisible(true);

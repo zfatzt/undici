@@ -55,7 +55,7 @@ public class Kunde {
 		return email;
 	}
 
-	// Email wird auf gültigketi Ueberprüft.
+	// Email wird auf gï¿½ltigketi Ueberprï¿½ft.
 	@SuppressWarnings("deprecation")
 	public void setEmail(String email) throws EmailException {
 		if (EmailValidator.getInstance().isValid(email)) {
@@ -106,9 +106,9 @@ public class Kunde {
 	}
 
 	public String toString() {
-		//toString methode wird später für die Bestellbestätigung verwendet.
-		String s = this.getAnrede() + " \r\n" + " " + this.getVorname() + " " + this.getName() + "\r\n" + " "
-				+ this.getWohnAdresse() + " \r\n" + "Email: " + this.getEmail() + "\r\n" + " " + "TelefonNr: "
+		// toString methode wird spaeter fuer die Bestellbestaetigung verwendet.
+		String s = this.getAnrede() + " \r\n" + this.getVorname() + " " + this.getName() + "\r\n"
+				+ this.getWohnAdresse() + " \r\n" + "Email: " + this.getEmail() + "\r\n" + "TelefonNr: "
 				+ this.getTelefon() + "\r\n";
 		return s;
 	}

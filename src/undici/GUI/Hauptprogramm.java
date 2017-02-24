@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 public class Hauptprogramm {
 
 	public static void main(String[] args) throws IOException {
+		System.out.println(System.getProperty("user.home"));
 		JFrame abd = new PizzaFrame();
 		abd.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE); //Schliesst alle Prozesse & threats beim schliessen.
 		abd.pack();
