@@ -100,7 +100,7 @@ public class PizzaFrame extends JFrame {
 		if (!textAreaTotal.getText().equals("")) {
 			gesamtPreis = Double.parseDouble(textAreaTotal.getText().substring(4));
 		}
-
+		
 		// JLabel
 		JLabel labelLogo = new JLabel(new ImageIcon(logo));
 
