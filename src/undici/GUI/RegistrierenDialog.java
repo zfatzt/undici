@@ -165,7 +165,7 @@ public class RegistrierenDialog extends JDialog {
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
-					JOptionPane.showMessageDialog(panelFehler, e1, "ungültige PLZ", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panelFehler, e1, "ung�ltige PLZ", JOptionPane.ERROR_MESSAGE);
 				}
 				kunde.setTelefon(eingabeTelefon.getText());
 				try {
@@ -173,6 +173,7 @@ public class RegistrierenDialog extends JDialog {
 				} catch (EmailException e1) {
 					JOptionPane.showMessageDialog(panelFehler, e1, "ungültige E-Mail adresse",
 							JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
 				}
 
 				if ((eingabeEmail.getText().equals(eingabeEmailWiederholen.getText())
@@ -189,10 +190,9 @@ public class RegistrierenDialog extends JDialog {
 					} else {
 						JOptionPane.showMessageDialog(panelFehler, "Diese Email Adresse existiert bereits.",
 								"übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
-
 					}
 				} else {
-					JOptionPane.showMessageDialog(panelFehler, "Passwort oder E-Mail adresse stimmen nicht überein.",
+					JOptionPane.showMessageDialog(panelFehler, "Passwort oder E-Mail adresse stimmen nicht �berein.",
 							"übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 				}
 

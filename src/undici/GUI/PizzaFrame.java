@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -57,9 +58,9 @@ public class PizzaFrame extends JFrame {
 		setLocation(600, 000);
 		setBackground(Color.WHITE);
 		setResizable(false);
-  
+
 		// Logo
-		BufferedImage logo = ImageIO.read(this.getClass().getResourceAsStream("/undici/GUI/Bilder/undici_logo.png"));
+		BufferedImage logo = ImageIO.read(new File("src/undici/GUI/Bilder/undici_logo.png"));
 
 		// TitledBorder
 		TitledBorder anmeldenBorder = BorderFactory.createTitledBorder("Anmelden");
@@ -100,7 +101,7 @@ public class PizzaFrame extends JFrame {
 		if (!textAreaTotal.getText().equals("")) {
 			gesamtPreis = Double.parseDouble(textAreaTotal.getText().substring(4));
 		}
-		
+
 		// JLabel
 		JLabel labelLogo = new JLabel(new ImageIcon(logo));
 

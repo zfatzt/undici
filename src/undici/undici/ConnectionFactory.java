@@ -12,9 +12,9 @@ public class ConnectionFactory {
 		private String dbPwd;
 		
 		private ConnectionFactory() {
-			setDbURL("jdbc:mysql://192.168.3.155:3306/?useSSL=false");
-			setDbUser("root");
-			setDbPwd("1234");
+			setDbURL("jdbc:mysql://192.168.3.155:3306/?useSSL=false"); //IP anpassen falls nicht mein Computer
+			setDbUser("root"); //Nutzer anpassen falls nicht derselbe Nutzer
+			setDbPwd("1234"); //Passwort anpassen falls nicht dasselbe Passwort
 		}
 
 		public Connection getConnection() throws SQLException {

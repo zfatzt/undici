@@ -2,6 +2,7 @@ package undici.GUI;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -64,7 +65,6 @@ public class ProductBox extends JPanel {
 		// PizzaBilder
 		BufferedImage bild = ImageIO.read(this.getClass().getResourceAsStream(pfad));
 		JLabel labelBild = new JLabel(new ImageIcon(bild));
-
 		// ZutatenListe
 		String[] arrayZutaten = new String[zutaten.size()];
 		arrayZutaten = zutaten.toArray(arrayZutaten);
