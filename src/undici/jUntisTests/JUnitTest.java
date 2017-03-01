@@ -30,9 +30,9 @@ public class JUnitTest {
 		String email = "tobias.fatzer@bluewin.ch";
 		String passwort = "Toby1234";
 		
-		Assert.assertEquals(true, kunde.kannEinloggen(email, passwort));
-		//true = noch nicht vorhanden
-		//false = schon vorhanden
+		Assert.assertEquals(false, kunde.kannEinloggen(email, passwort));
+		//true = kann einloggen, da Nutzer vorhanden.
+		//false = kann nicht einloggen, da Nutzer noch nicht vorhanden.
 		
 		
 		
