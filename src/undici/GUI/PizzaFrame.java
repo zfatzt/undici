@@ -57,7 +57,7 @@ public class PizzaFrame extends JFrame {
 		setLocation(600, 000);
 		setBackground(Color.WHITE);
 		setResizable(false);
-
+  
 		// Logo
 		BufferedImage logo = ImageIO.read(this.getClass().getResourceAsStream("/undici/GUI/Bilder/undici_logo.png"));
 
