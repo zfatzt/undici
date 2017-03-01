@@ -18,6 +18,7 @@ public class Kunde {
 	private String kreditkartenNr;
 	private String zahlungsArt;
 
+
 	public int getAdresse_id() {
 		return adresse_id;
 	}
@@ -62,7 +63,7 @@ public class Kunde {
 		if (EmailValidator.getInstance().isValid(email)) {
 			this.email = email;
 		} else {
-			throw new EmailException("Diese Email ist ung�ltig: " + email);
+			throw new EmailException("Diese Email ist ungültig: " + email);
 		}
 	}
 

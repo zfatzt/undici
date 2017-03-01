@@ -20,6 +20,7 @@ public class Quitung {
 	public Quitung(PizzaFrame pizzaFrame, JTextArea textAreaTotal, JTextArea textAreaBestellung,
 			ZahlungsDialog zahlungsDialog, Kunde user, JTextPane textAreaAngemeldet) {
 
+		
 		BufferedWriter bufferedWriter = null;
 		FileWriter fileWriter = null;
 
@@ -27,7 +28,7 @@ public class Quitung {
 		nameDerBestellung = nameDerBestellung + user.getId();
 
 		File f = new File(System.getProperty("user.home"), "Desktop/" + nameDerBestellung); // File wird auf Desktop gespeichert 
-
+		
 		try {
 			fileWriter = new FileWriter(f);
 
