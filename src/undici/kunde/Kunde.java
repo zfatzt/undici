@@ -63,7 +63,7 @@ public class Kunde {
 		if (EmailValidator.getInstance().isValid(email)) {
 			this.email = email;
 		} else {
-			throw new EmailException("Diese Email ist ungültig: " + email);
+			throw new EmailException("Diese Email ist ungueltig: " + email);
 		}
 	}
 

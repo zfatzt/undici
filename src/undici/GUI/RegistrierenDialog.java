@@ -165,15 +165,14 @@ public class RegistrierenDialog extends JDialog {
 				try {
 					adresse.setPlz(eingabePLZ.getText());
 				} catch (PlzException e1) {
-					JOptionPane.showMessageDialog(panelFehler, e1, "ung�ltige PLZ", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panelFehler, e1, "ungueltige PLZ", JOptionPane.ERROR_MESSAGE);
 				}
 				kunde.setTelefon(eingabeTelefon.getText());
 				try {
 					kunde.setEmail(eingabeEmail.getText());
 				} catch (EmailException e1) {
-					JOptionPane.showMessageDialog(panelFehler, e1, "ungültige E-Mail adresse",
+					JOptionPane.showMessageDialog(panelFehler, e1, "ungueltige E-Mail adresse",
 							JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
 				}
 
 				if ((eingabeEmail.getText().equals(eingabeEmailWiederholen.getText())
@@ -189,11 +188,11 @@ public class RegistrierenDialog extends JDialog {
 						setVisible(false);
 					} else {
 						JOptionPane.showMessageDialog(panelFehler, "Diese Email Adresse existiert bereits.",
-								"übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
+								"uebereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(panelFehler, "Passwort oder E-Mail adresse stimmen nicht �berein.",
-							"übereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panelFehler, "Passwort oder E-Mail adresse stimmen nicht ueberein.",
+							"uebereinstimmung fehlgeschlagen", JOptionPane.ERROR_MESSAGE);
 				}
 
 			} catch (SQLException e1) {

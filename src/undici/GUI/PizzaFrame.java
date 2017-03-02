@@ -60,7 +60,7 @@ public class PizzaFrame extends JFrame {
 		setResizable(false);
 
 		// Logo
-		BufferedImage logo = ImageIO.read(new File("src/undici/GUI/Bilder/undici_logo.png"));
+		BufferedImage logo = ImageIO.read(this.getClass().getResourceAsStream("/undici/GUI/Bilder/undici_logo.png"));
 
 		// TitledBorder
 		TitledBorder anmeldenBorder = BorderFactory.createTitledBorder("Anmelden");
